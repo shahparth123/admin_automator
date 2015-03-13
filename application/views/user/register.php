@@ -7,26 +7,26 @@
 </head>
 <body>
 <div id="container">
-<?php echo form_open('user'); ?>
+<?php echo form_open('user/register'); ?>
 
 	<?php echo form_label('Name:');
-$data = array('name'=> 'name','id'=> 'name');
-echo form_input($data); ?>
+$info = array('name'=> 'name','id'=> 'name');
+echo form_input($info); ?>
 
 	<?php echo form_label('Username:');
-$data = array('name'=> 'username','id'=> 'username');
-echo form_input($data); ?>
+$info = array('name'=> 'username','id'=> 'username');
+echo form_input($info); ?>
 
 	<?php echo form_label('Email');
-$data = array('name'=> 'email','id'=> 'email');
-echo form_input($data); ?>
+$info = array('name'=> 'email','id'=> 'email');
+echo form_input($info); ?>
 
 	<?php echo form_label('Password:');
-$data = array('name'=> 'password','id'=> 'password','type'=>'password');
-echo form_input($data); ?>
+$info = array('name'=> 'password','id'=> 'password','type'=>'password');
+echo form_input($info); ?>
     
-<?php $data = array('name'=> 'submit','value'=> 'Register');
-	echo form_submit($data); ?>
+<?php $info = array('name'=> 'submit','value'=> 'Register');
+	echo form_submit($info); ?>
 <?php echo form_close(); ?>
 </div>
 </body>

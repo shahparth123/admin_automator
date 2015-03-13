@@ -21,10 +21,25 @@ class User extends CI_Controller {
 
 	function index() {
 		
+		$this->load->view('user/register');
+		
 	}
 
 	function register() {
-		$this->load->view('user/register');
+		
+		 $data = array(
+            'name' => $this->input->post('name'),
+            'username' => $this->input->post('username'),
+            'email' => $this->input->post('email'),
+            'password' => $this->input->post('password')
+        );
+
+        //insert the form data into database
+        $this->db->insert('admin_user', $data);
+
+        //display success message
+        $this->session->set_flashdata('msg','Details added to Database!!!');
+        
 	}
 
 }
