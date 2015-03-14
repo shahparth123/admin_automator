@@ -1,7 +1,7 @@
 <?php
 
-if (!defined('BASEPATH'))
-	exit('No direct script access allowed');
+// if (!defined('BASEPATH'))
+// 	exit('No direct script access allowed');
 
 class User extends CI_Controller {
 
@@ -39,8 +39,14 @@ class User extends CI_Controller {
 
         //display success message
         $this->session->set_flashdata('msg','Details added to Database!!!');
-        
+        	
 	}
+	function login() {
+		
+		$this->load->view('user/login');
+		
+	}
+
 
 }
 
