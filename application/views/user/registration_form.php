@@ -20,7 +20,7 @@
 	<link rel="stylesheet" href="<?php echo base_url ();?>/assets/css/neon-forms.css">
 	<link rel="stylesheet" href="<?php echo base_url ();?>/assets/css/custom.css">
 
-	<script src="assets/js/jquery-1.11.0.min.js"></script>
+	<script src="<?php echo base_url ();?>assets/js/jquery-1.11.0.min.js"></script>
 
 	<!--[if lt IE 9]><script src="assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
 
@@ -68,7 +68,8 @@ var baseurl = '';
 		
 		<div class="login-content">
 			
-			<form method="post" role="form" id="form_register">
+			<?php $attr=array('id'=>'form_register'); 
+			echo form_open('user/new_user_registration',$attr); ?>
 				
 				<div class="form-register-success">
 					<i class="entypo-check"></i>
@@ -86,8 +87,10 @@ var baseurl = '';
 									<i class="entypo-user"></i>
 								</div>
 								<?php 
-								$info = array('name'=> 'name','id'=> 'name','placeholder'=>'Full Name','class'=>'form-control');
+								$info = array('name'=> 'username','id'=> 'username','placeholder'=>'User name','class'=>'form-control');
 								echo form_input($info); ?>
+								
+								
 								<!-- <input type="text"y class="form-control" name="name" id="name" placeholder="Full Name" autocomplete="off" /> -->
 							</div>
 						</div>
@@ -95,16 +98,16 @@ var baseurl = '';
 						<div class="form-group">
 							<div class="input-group">
 								<div class="input-group-addon">
-									<i class="entypo-phone"></i>
+									<i class="entypo-lock"></i>
 								</div>
-								<?php echo form_label('Username:');
-								$info = array('name'=> 'username','id'=> 'username');
+								<?php
+								$info = array('name'=> 'password','id'=> 'password','type'=>'password','placeholder'=>'Password','class'=>'form-control');
 								echo form_input($info); ?>
-								<input type="text" class="form-control" name="phone" id="phone" placeholder="Phone Number" data-mask="phone" autocomplete="off" />
+								<!-- <input type="text" class="form-control" name="phone" id="phone" placeholder="Phone Number" data-mask="phone" autocomplete="off" /> -->
 							</div>
 						</div>
 						
-						<div class="form-group">
+						<!-- <div class="form-group">
 							<div class="input-group">
 								<div class="input-group-addon">
 									<i class="entypo-calendar"></i>
@@ -112,7 +115,7 @@ var baseurl = '';
 								
 								<input type="text" class="form-control" name="birthdate" id="birthdate" placeholder="Date of Birth (DD/MM/YYYY)" data-mask="date" autocomplete="off" />
 							</div>
-						</div>
+						</div> -->
 						
 						<div class="form-group">
 							<button type="button" data-step="step-2" class="btn btn-primary btn-block btn-login">
@@ -132,36 +135,41 @@ var baseurl = '';
 						<div class="form-group">
 							<div class="input-group">
 								<div class="input-group-addon">
-									<i class="entypo-user-add"></i>
+									<i class="entypo-user"></i>
 								</div>
+								<?php 
+								$info = array('name'=> 'name','id'=> 'name','placeholder'=>'Full Name','class'=>'form-control');
+								echo form_input($info); ?>
 								
-								<input type="text" class="form-control" name="username" id="username" placeholder="Username" data-mask="[a-zA-Z0-1\.]+" data-is-regex="true" autocomplete="off" />
+								<!-- <input type="text" class="form-control" name="username" id="username" placeholder="Username" data-mask="[a-zA-Z0-1\.]+" data-is-regex="true" autocomplete="off" /> -->
 							</div>
 						</div>
 					
-						<div class="form-group">
+						<!-- div class="form-group">
 							<div class="input-group">
 								<div class="input-group-addon">
 									<i class="entypo-mail"></i>
 								</div>
 								
-								<input type="text" class="form-control" name="email" id="email" data-mask="email" placeholder="E-mail" autocomplete="off" />
+								<!-- <input type="text" class="form-control" name="email" id="email" data-mask="email" placeholder="E-mail" autocomplete="off" />
 							</div>
-						</div>
+						</div> -->
 						
 						<div class="form-group">
 							<div class="input-group">
 								<div class="input-group-addon">
-									<i class="entypo-lock"></i>
+									<i class="entypo-mail"></i>
 								</div>
-								
-								<input type="password" class="form-control" name="password" id="password" placeholder="Choose Password" autocomplete="off" />
+								<?php 
+								$info = array('name'=> 'email','id'=> 'email','class'=>'form-control','placeholder'=>'Email');
+								echo form_input($info); ?>
+								<!-- <input type="password" class="form-control" name="password" id="password" placeholder="Choose Password" autocomplete="off" /> -->
 							</div>
 						</div>
 						
 						<div class="form-group">
 							<button type="submit" class="btn btn-success btn-block btn-login">
-								<i class="entypo-right-open-mini"></i>
+						<i class="entypo-right-open-mini"></i>
 								Complete Registration
 							</button>
 						</div>
@@ -171,10 +179,10 @@ var baseurl = '';
 						</div>
 						
 					</div>
-					
+						
 				</div>
 				
-			</form>
+			<?php echo form_close(); ?>
 			
 			
 			<div class="login-bottom-links">
@@ -209,28 +217,6 @@ var baseurl = '';
 	<script src="<?php echo base_url ();?>/assets/js/jquery.inputmask.bundle.min.js"></script>
 	<script src="<?php echo base_url ();?>/assets/js/neon-custom.js"></script>
 	<script src="<?php echo base_url ();?>/assets/js/neon-demo.js"></script>
-<div>
-<?php echo form_open('user/register'); ?>
 
-	<?php echo form_label('Name:');
-$info = array('name'=> 'name','id'=> 'name');
-echo form_input($info); ?>
-
-	<?php echo form_label('Username:');
-$info = array('name'=> 'username','id'=> 'username');
-echo form_input($info); ?>
-
-	<?php echo form_label('Email');
-$info = array('name'=> 'email','id'=> 'email');
-echo form_input($info); ?>
-
-	<?php echo form_label('Password:');
-$info = array('name'=> 'password','id'=> 'password','type'=>'password');
-echo form_input($info); ?>
-    
-<?php $info = array('name'=> 'submit','value'=> 'Register');
-	echo form_submit($info); ?>
-<?php echo form_close(); ?>
-</div>
 </body>
 </html>

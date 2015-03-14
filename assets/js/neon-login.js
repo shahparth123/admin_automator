@@ -61,7 +61,7 @@ var neonLogin = neonLogin || {};
 											
 					// Send data to the server
 					$.ajax({
-						url: baseurl + 'data/sample-login-form.php',
+						url: baseurl + 'user_login_process',
 						method: 'POST',
 						dataType: 'json',
 						data: {
@@ -75,6 +75,7 @@ var neonLogin = neonLogin || {};
 						success: function(response)
 						{
 							// Login status [success|invalid]
+                                                        console.log(response.success);
 							var login_status = response.login_status;
 															
 							// Form is fully completed, we update the percentage

@@ -34,7 +34,6 @@
 </head>
 <body class="page-body login-page login-form-fall" data-url="http://neon.dev">
 
-
 <!-- This is needed when you send requests via Ajax --><script type="text/javascript">
 var baseurl = '';
 </script>
@@ -70,10 +69,11 @@ var baseurl = '';
 			
 			<div class="form-login-error">
 				<h3>Invalid login</h3>
-				<p>Enter <strong>demo</strong>/<strong>demo</strong> as login and password.</p>
+				<p><strong>User Name</strong>/<strong>Password</strong> is invalid.</p>
 			</div>
 			
-			<form method="post" role="form" id="form_login">
+			<?php $attr = array('id'=> "form_login");
+			     echo form_open('user/user_login_process',$attr); ?>
 				
 				<div class="form-group">
 					
@@ -83,6 +83,8 @@ var baseurl = '';
 						</div>
 						
 						<input type="text" class="form-control" name="username" id="username" placeholder="Username" autocomplete="off" />
+						
+						
 					</div>
 					
 				</div>
@@ -130,7 +132,7 @@ var baseurl = '';
 					</button>
 					
 				</div>
-				-->
+				
 				<div class="form-group">
 				
 					<button type="button" class="btn btn-default btn-lg btn-block btn-icon icon-left google-button">
@@ -138,8 +140,8 @@ var baseurl = '';
 						<i class="entypo-gplus"></i>
 					</button>
 					
-				</div> 		
-			</form>
+				</div> -->				
+			<?php echo form_close(); ?>
 			
 			
 			<div class="login-bottom-links">
