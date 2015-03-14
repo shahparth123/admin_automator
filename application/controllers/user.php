@@ -1,48 +1,118 @@
 <?php
 
-if (!defined('BASEPATH'))
-	exit('No direct script access allowed');
+session_start(); //we need to start session in order to access it through CI
 
-class User extends CI_Controller {
+Class User extends CI_Controller {
 
-	function __construct() {
+	public function __construct() {
 		parent::__construct();
 
-		$this->load->library(array('session', 'form_validation'));
-		$this->load->helper(array('form', 'url', 'date'));
+// Load form helper library
+		$this->load->helper('form');
 
-		//$this->load->config('app', TRUE);
-		//$this->data['app'] = $this->config->item('app');
+// Load form validation library
+		$this->load->library('form_validation');
+
+// Load session library
+		$this->load->library('session');
+
+// Load database
+		$this->load->model('login_database');
 	}
 
-	function Form() {
-		parent::Controller();
+// Show login page
+	public function login() {
+		$this->load->view('user/login_form');
 	}
 
-	function index() {
-		
-		$this->load->view('user/register');
-		
+// Show registration page
+	public function registration() {
+		$this->load->view('user/registration_form');
 	}
 
-	function register() {
-		
-		 $data = array(
-            'name' => $this->input->post('name'),
-            'username' => $this->input->post('username'),
-            'email' => $this->input->post('email'),
-            'password' => $this->input->post('password')
-        );
+// Validate and store registration data in database
+	public function new_user_registration() {
 
-        //insert the form data into database
-        $this->db->insert('auto_user', $data);
+// Check validation for user input in SignUp form
+		$this->form_validation->set_rules('name', 'Name', 'trim|required|xss_clean');
+		$this->form_validation->set_rules('username', 'Username', 'trim|required|xss_clean');
+		$this->form_validation->set_rules('email', 'Email', 'trim|required|xss_clean');
+		$this->form_validation->set_rules('password', 'Password', 'trim|required|xss_clean');
+		if ($this->form_validation->run() == FALSE) {
+			//$this->load->view('user/registration_form');
+		} else {
+			$data = array(
+			    'name' => $this->input->post('name'),
+			    'username' => $this->input->post('username'),
+			    'email' => $this->input->post('email_value'),
+			    'password' => $this->input->post('password')
+			);
+			$result = $this->login_database->registration_insert($data);
+			if ($result == TRUE) {
+				$data['message_display'] = 'Registration Successfully !';
+				//$this->load->view('login_form', $data);
+				echo json_encode(array("success"=>"true"));
+			} else {
+				$data['message_display'] = 'Username already exist!';
+				//$this->load->view('user/registration_form', $data);
+			}
+		}
+	}
 
-        //display success message
-        $this->session->set_flashdata('msg','Details added to Database!!!');
-        
+// Check for user login process
+	public function user_login_process() {
+
+		$this->form_validation->set_rules('username', 'Username', 'trim|required|xss_clean');
+		$this->form_validation->set_rules('password', 'Password', 'trim|required|xss_clean');
+
+		if ($this->form_validation->run() == FALSE) {
+			$this->load->view('user/login_form');
+		} else {
+			$data = array(
+			    'username' => $this->input->post('username'),
+			    'password' => $this->input->post('password')
+			);
+			$result = $this->login_database->login($data);
+			if ($result == TRUE) {
+				$op['login_status']="success";
+				$op['redirect_url'] = base_url().'dashboard';
+				echo json_encode($op);
+				$sess_array = array(
+				    'username' => $this->input->post('username')
+				);
+
+// Add user data in session
+				$this->session->set_userdata('logged_in', $sess_array);
+				$result = $this->login_database->read_user_information($sess_array);
+				if ($result != false) {
+					$data = array(
+					    'name' => $result[0]->name,
+					    'username' => $result[0]->username,
+					    'email' => $result[0]->email,
+					    'password' => $result[0]->password
+					);
+				//	$this->load->view('user/admin_page', $data);
+				}
+			} else {
+				$op['login_status']="invalid";
+				echo json_encode($op);				
+//$this->load->view('user/login_form', $data);
+			}
+		}
+	}
+
+// Logout from admin page
+	public function logout() {
+
+// Removing session data
+		$sess_array = array(
+		    'username' => ''
+		);
+		$this->session->unset_userdata('logged_in', $sess_array);
+		$data['message_display'] = 'Successfully Logout';
+		$this->load->view('login_form', $data);
 	}
 
 }
 
-/* End of file welcome.php */
-/* Location: ./application/controllers/welcome.php */
+?>
