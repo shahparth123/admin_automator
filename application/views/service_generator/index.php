@@ -106,9 +106,9 @@
 
 
 
- <script src="<?php echo base_url();?>/assets/js/jquery.multi-select.js" type="text/javascript"></script>
-  <script src="<?php echo base_url();?>/assets/js/jquery.quicksearch.js" type="text/javascript"></script>
-  <link rel="stylesheet" href="<?php echo base_url();?>/assets/css/multi-select.css">
+ <script src="<?php echo base_url();?>/assets/js/switch/jquery.multi-select.js" type="text/javascript"></script>
+  <script src="<?php echo base_url();?>/assets/js/switch/jquery.quicksearch.js" type="text/javascript"></script>
+  <link rel="stylesheet" href="<?php echo base_url();?>assets/css/multi-select.css">
 <script type="text/javascript">
   
 $('#callbacks').multiSelect({
