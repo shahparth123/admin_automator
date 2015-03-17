@@ -51,7 +51,7 @@ Class User extends CI_Controller {
 			if ($result == TRUE) {
 				$data['message_display'] = 'Registration Successfully !';
 				//$this->load->view('login_form', $data);
-				echo json_encode(array("success"=>"true"));
+				echo json_encode(array("success" => "true"));
 			} else {
 				$data['message_display'] = 'Username already exist!';
 				//$this->load->view('user/registration_form', $data);
@@ -61,6 +61,7 @@ Class User extends CI_Controller {
 
 // Check for user login process
 	public function user_login_process() {
+
 
 		$this->form_validation->set_rules('username', 'Username', 'trim|required|xss_clean');
 		$this->form_validation->set_rules('password', 'Password', 'trim|required|xss_clean');
@@ -74,9 +75,6 @@ Class User extends CI_Controller {
 			);
 			$result = $this->login_database->login($data);
 			if ($result == TRUE) {
-				$op['login_status']="success";
-				$op['redirect_url'] = base_url().'dashboard';
-				echo json_encode($op);
 				$sess_array = array(
 				    'username' => $this->input->post('username')
 				);
@@ -86,17 +84,21 @@ Class User extends CI_Controller {
 				$result = $this->login_database->read_user_information($sess_array);
 				if ($result != false) {
 					$data = array(
+					    'id'=> $result[0]->id,
 					    'name' => $result[0]->name,
 					    'username' => $result[0]->username,
 					    'email' => $result[0]->email,
-					    'password' => $result[0]->password
 					);
-				//	$this->load->view('user/admin_page', $data);
-				}
+					//	$this->load->view('user/admin_page', $data);
+				}$this->session->set_userdata('logged_in', $data);
+				$op['login_status'] = "success";
+				$op['redirect_url'] = base_url() . 'dashboard';
+				echo json_encode($op);
+				
 			} else {
-				$op['login_status']="invalid";
-				echo json_encode($op);				
-//$this->load->view('user/login_form', $data);
+				$op['login_status'] = "invalid";
+				echo json_encode($op);
+
 			}
 		}
 	}
@@ -106,6 +108,9 @@ Class User extends CI_Controller {
 
 // Removing session data
 		$sess_array = array(
+		    'id'=>'',
+		    'name'=>'',
+		    'email'=>'',
 		    'username' => ''
 		);
 		$this->session->unset_userdata('logged_in', $sess_array);
