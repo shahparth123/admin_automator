@@ -6,7 +6,7 @@
 			<!-- logo -->
 			<div class="logo">
 				<a href="index.html">
-					<img src="assets/images/logo@2x.png" width="120" alt="" />
+					<img src="<?php echo base_url();?>/assets/images/logo@2x.png" width="120" alt="" />
 				</a>
 			</div>
 			
@@ -46,19 +46,31 @@
 					</button>
 				</form>
 			</li>
-			<li class="active opened active">
-				<a href="index.html">
+			<li class="active">
+				<a href="<?php echo base_url();?>dashboard/index">
 					<i class="entypo-gauge"></i>
 					<span>Dashboard</span>
+				</a>
+			</li>
+			<li>
+				<a href="<?php echo base_url();?>service_generator/index">
+					<i class="entypo-monitor"></i>
+					<span>Generator</span>
+				</a>
+			</li>
+			<!--<li>
+				 <a href="index.html">
+					<i class="entypo-monitor"></i>
+					<span></span>
 				</a>
 				<ul>
 					<li class="active">
 						<a href="index.html">
 							<span>Dashboard 1</span>
 						</a>
-					</li>
+					</li> 
 					<li>
-						<a href="dashboard-2.html">
+						 <a href="dashboard-2.html">
 							<span>Dashboard 2</span>
 						</a>
 					</li>
@@ -119,7 +131,7 @@
 							<span>What's New</span>
 							<span class="badge badge-success badge-roundless">v1.7</span>
 						</a>
-					</li>
+					</li> 
 				</ul>
 			</li>
 			<li>
@@ -211,7 +223,7 @@
 			<li>
 				<a href="index.html" target="_blank">
 					<i class="entypo-monitor"></i>
-					<span>Frontend</span>
+					<span>Generator</span>
 				</a>
 			</li>
 			<li>
@@ -659,7 +671,7 @@
 								</a>
 							</li>
 						</ul>
-					</li>
+					</li>-->
 				</ul>
 			</li>
 		</ul>

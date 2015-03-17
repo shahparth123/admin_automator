@@ -1,6 +1,6 @@
 <?php //if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Dashboard extends CI_Controller {
+class Service_generator extends CI_Controller {
 
 	/**
 	 * Index Page for this controller.
@@ -19,13 +19,13 @@ class Dashboard extends CI_Controller {
 	 */
 	public function index()
 	{
-		//$this->load->view('includes/header');
-		$data['title']="Dashboard";
+		
+		$data['title']="Generator";
 		$data['permission']="Dashboard";
-		$data['main_content']="dashboard/index";
+		$data['main_content']="service_generator/index";
 		$this->load->view('template/template',$data);
-		//$this->load->view('includes/footer');
 	}
+
 
 }
 
