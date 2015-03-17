@@ -115,7 +115,7 @@ Class User extends CI_Controller {
 		);
 		$this->session->unset_userdata('logged_in', $sess_array);
 		$data['message_display'] = 'Successfully Logout';
-		$this->load->view('login_form', $data);
+		redirect('user/login');
 	}
 
 }

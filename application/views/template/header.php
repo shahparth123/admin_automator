@@ -425,7 +425,7 @@
 			<li class="sep"></li>
 			
 			<li>
-				<a href="extra-login.html">
+				<a href="user/logout">
 					Log Out <i class="entypo-logout right"></i>
 				</a>
 			</li>
