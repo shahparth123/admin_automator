@@ -22,7 +22,11 @@ Class User extends CI_Controller {
 
 // Show login page
 	public function login() {
-		$this->load->view('user/login_form');
+		if ($this->login_database->is_logged_in()) {
+			redirect(base_url() . 'dashboard');
+		} else {
+			$this->load->view('user/login_form');
+		}
 	}
 
 // Show registration page
@@ -84,7 +88,7 @@ Class User extends CI_Controller {
 				$result = $this->login_database->read_user_information($sess_array);
 				if ($result != false) {
 					$data = array(
-					    'id'=> $result[0]->id,
+					    'id' => $result[0]->id,
 					    'name' => $result[0]->name,
 					    'username' => $result[0]->username,
 					    'email' => $result[0]->email,
@@ -94,11 +98,9 @@ Class User extends CI_Controller {
 				$op['login_status'] = "success";
 				$op['redirect_url'] = base_url() . 'dashboard';
 				echo json_encode($op);
-				
 			} else {
 				$op['login_status'] = "invalid";
 				echo json_encode($op);
-
 			}
 		}
 	}
@@ -107,15 +109,9 @@ Class User extends CI_Controller {
 	public function logout() {
 
 // Removing session data
-		$sess_array = array(
-		    'id'=>'',
-		    'name'=>'',
-		    'email'=>'',
-		    'username' => ''
-		);
-		$this->session->unset_userdata('logged_in', $sess_array);
+		$this->session->sess_destroy();
 		$data['message_display'] = 'Successfully Logout';
-		redirect('user/login');
+		redirect(base_url() . 'user/login');
 	}
 
 }

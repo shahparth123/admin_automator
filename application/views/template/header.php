@@ -425,7 +425,7 @@
 			<li class="sep"></li>
 			
 			<li>
-				<a href="user/logout">
+			    <a href="<?php echo base_url();?>user/logout">
 					Log Out <i class="entypo-logout right"></i>
 				</a>
 			</li>
