@@ -63,12 +63,10 @@ Class Login_Database extends CI_Model {
 	public function is_logged_in()
     {
         $user = $this->session->userdata('logged_in');
-	if(!empty($user)){
-		return isset($user);
-		
-	}else{
-		$this->load->view('user/registration_form');
-	}
+        if(!empty($user)){
+        	return isset($user);
+        }
+        return false;
     }
 
 }

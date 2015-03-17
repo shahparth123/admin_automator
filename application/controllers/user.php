@@ -21,9 +21,11 @@ Class User extends CI_Controller {
 	}
 
 // Show login page
+	
 	public function login() {
 		if ($this->login_database->is_logged_in()) {
 			redirect(base_url() . 'dashboard');
+			
 		} else {
 			$this->load->view('user/login_form');
 		}
