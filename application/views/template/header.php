@@ -9,7 +9,7 @@
 			<li class="profile-info dropdown"><!-- add class "pull-right" if you want to place this from right -->
 				
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-					<img src="assets/images/thumb-1@2x.png" alt="" class="img-circle" width="44" />
+					<img src="<?php echo base_url();?>/assets/images/thumb-1@2x.png" alt="" class="img-circle" width="44" />
 					Art Ramadani
 				</a>
 				
@@ -177,7 +177,7 @@
 		<li class="active">
 			<a href="#">
 				<span class="image pull-right">
-					<img src="assets/images/thumb-1.png" alt="" class="img-circle" />
+					<img src="<?php echo base_url();?>/assets/images/thumb-1.png" alt="" class="img-circle" />
 				</span>
 				
 				<span class="line">
@@ -194,7 +194,7 @@
 		<li class="active">
 			<a href="#">
 				<span class="image pull-right">
-					<img src="assets/images/thumb-2.png" alt="" class="img-circle" />
+					<img src="<?php echo base_url();?>/assets/images/thumb-2.png" alt="" class="img-circle" />
 				</span>
 				
 				<span class="line">
@@ -211,7 +211,7 @@
 		<li>
 			<a href="#">
 				<span class="image pull-right">
-					<img src="assets/images/thumb-3.png" alt="" class="img-circle" />
+					<img src="<?php echo base_url();?>/assets/images/thumb-3.png" alt="" class="img-circle" />
 				</span>
 				
 				<span class="line">
@@ -228,7 +228,7 @@
 		<li>
 			<a href="#">
 				<span class="image pull-right">
-					<img src="assets/images/thumb-4.png" alt="" class="img-circle" />
+					<img src="<?php echo base_url();?>/assets/images/thumb-4.png" alt="" class="img-circle" />
 				</span>
 				
 				<span class="line">
@@ -372,37 +372,37 @@
 				
 				Language: &nbsp;
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-close-others="true">
-					<img src="assets/images/flag-uk.png" />
+					<img src="<?php echo base_url();?>/assets/images/flag-uk.png" />
 				</a>
 				
 				<ul class="dropdown-menu pull-right">
 					<li>
 						<a href="#">
-							<img src="assets/images/flag-de.png" />
+							<img src="<?php echo base_url();?>/assets/images/flag-de.png" />
 							<span>Deutsch</span>
 						</a>
 					</li>
 					<li class="active">
 						<a href="#">
-							<img src="assets/images/flag-uk.png" />
+							<img src="<?php echo base_url();?>/assets/images/flag-uk.png" />
 							<span>English</span>
 						</a>
 					</li>
 					<li>
 						<a href="#">
-							<img src="assets/images/flag-fr.png" />
+							<img src="<?php echo base_url();?>/assets/images/flag-fr.png" />
 							<span>François</span>
 						</a>
 					</li>
 					<li>
 						<a href="#">
-							<img src="assets/images/flag-al.png" />
+							<img src="<?php echo base_url();?>/assets/images/flag-al.png" />
 							<span>Shqip</span>
 						</a>
 					</li>
 					<li>
 						<a href="#">
-							<img src="assets/images/flag-es.png" />
+							<img src="<?php echo base_url();?>/assets/images/flag-es.png" />
 							<span>Español</span>
 						</a>
 					</li>

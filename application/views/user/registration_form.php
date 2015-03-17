@@ -187,7 +187,7 @@ var baseurl = '';
 			
 			<div class="login-bottom-links">
 				
-				<a href="extra-login.html" class="link">
+				<a href="<?php echo base_url();?>user/login" class="link">
 					<i class="entypo-lock"></i>
 					Return to Login Page
 				</a>
