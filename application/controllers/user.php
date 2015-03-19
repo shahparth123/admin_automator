@@ -126,6 +126,7 @@ Class User extends CI_Controller {
 
 //		foreach ($query->result() as $row)
 //		{
+//		
 //		    echo $row->username;
 //		    echo $row->emailcode;
 //		}
