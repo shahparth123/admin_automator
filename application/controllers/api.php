@@ -40,6 +40,7 @@ class Api extends CI_Controller {
 		$this->load->view('template/template',$data);
 		//$this->load->view('includes/footer');
 	}
+
 	public function select()
 	{
 		//$this->load->view('includes/header');
@@ -57,22 +58,43 @@ class Api extends CI_Controller {
 		*/
 		//$this->load->view('includes/footer');
 	}
+
 	public function update()
 	{
 		//$this->load->view('includes/header');
-		$data['title']="Dashboard";
-		$data['permission']="Dashboard";
-		$data['main_content']="dashboard/index";
-		$this->load->view('template/template',$data);
+		$array = $this->uri->uri_to_assoc(3);
+		$table = $array['table'];
+		$id = $array['id'];
+		unset($array['table']);
+		unset($array['id']);
+
+		//print_r($array);
+		$result=$this->api_model->updatedata($table,$id,$array);
+		if($result==0)
+		{
+			$status['status']=0;
+		}
+		else{
+			$status['status']=1;
+		}
+		$data['output']=$status;
+		$this->load->view('template/json',$data);
 		//$this->load->view('includes/footer');
 	}
-	public function delete()
+
+	public function delete($table,$id)
 	{
 		//$this->load->view('includes/header');
-		$data['title']="Dashboard";
-		$data['permission']="Dashboard";
-		$data['main_content']="dashboard/index";
-		$this->load->view('template/template',$data);
+		$result=$this->api_model->deleterecord($table,$id);
+		if($result==0)
+		{
+			$status['status']=0;
+		}
+		else{
+			$status['status']=1;
+		}
+		$data['output']=$status;
+		$this->load->view('template/json',$data);
 		//$this->load->view('includes/footer');
 	}
 	public function tables()

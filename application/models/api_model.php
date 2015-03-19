@@ -7,29 +7,29 @@ Class Api_model extends CI_Model {
 	}
 
 // Insert registration data in database
-public function registration_insert($data) {
+	public function registration_insert($data) {
 
 // Query to check whether username already exist or not
-$condition = "user_name =" . "'" . $data['user_name'] . "'";
-$this->db->select('*');
-$this->db->from('user_login');
-$this->db->where($condition);
-$this->db->limit(1);
-$query = $this->db->get();
-if ($query->num_rows() == 0) {
+		$condition = "user_name =" . "'" . $data['user_name'] . "'";
+		$this->db->select('*');
+		$this->db->from('user_login');
+		$this->db->where($condition);
+		$this->db->limit(1);
+		$query = $this->db->get();
+		if ($query->num_rows() == 0) {
 
 // Query to insert data in database
-$this->db->insert('user_login', $data);
-if ($this->db->affected_rows() > 0) {
-return true;
-}
-} else {
-return false;
-}
-}
+			$this->db->insert('user_login', $data);
+			if ($this->db->affected_rows() > 0) {
+				return true;
+			}
+		} else {
+			return false;
+		}
+	}
 
 // Read data using username and password
-public function gettables() {
+	public function gettables() {
 		$sql = "CALL gettables()"; 
 		$qry_res = $this->db->query($sql);		
 		$res = $qry_res->result_array();
@@ -43,8 +43,8 @@ public function gettables() {
 		{
 			return 0;
 		}
-}
-public function select($values) {
+	}
+	public function select($values) {
 		$i=0;
 		$j=0;
 		$k=0;
@@ -54,7 +54,14 @@ public function select($values) {
 		foreach ($values as $key => $value) {
 			if($key=="field".$i)
 			{
-				$fields[]=$value;
+				if($value=='ALL')
+				{
+					$fields[]="*";
+				}
+				else{
+					$fields[]=$value;
+					
+				}
 				$i++;
 			}
 			else if($key=="condition".$j)
@@ -86,8 +93,8 @@ public function select($values) {
 		{
 			return 0;
 		}
-}
-public function getcolumns($tbl) {
+	}
+	public function getcolumns($tbl) {
 		$sql = "CALL getcolumn(?)"; 
 		$qry_res = $this->db->query($sql,$tbl);		
 		$res = $qry_res->result_array();
@@ -101,24 +108,38 @@ public function getcolumns($tbl) {
 		{
 			return 0;
 		}
-}
+	}
+	public function deleterecord($tbl,$id) {
+		$data = array(
+			'is_deleted' => '1'
+			);
+		$this->db->where('id', $id);
+		$this->db->update($tbl, $data); 
+		return $this->db->affected_rows();
+	}
 
+	public function updatedata($tbl,$id,$data) {
+		
+		$this->db->where('id', $id);
+		$this->db->update($tbl, $data); 
+		return $this->db->affected_rows();
+	}
 // Read data from database to show data in admin page
-public function read_user_information($sess_array) {
+	public function read_user_information($sess_array) {
 
-$condition = "user_name =" . "'" . $sess_array['username'] . "'";
-$this->db->select('*');
-$this->db->from('user_login');
-$this->db->where($condition);
-$this->db->limit(1);
-$query = $this->db->get();
+		$condition = "user_name =" . "'" . $sess_array['username'] . "'";
+		$this->db->select('*');
+		$this->db->from('user_login');
+		$this->db->where($condition);
+		$this->db->limit(1);
+		$query = $this->db->get();
 
-if ($query->num_rows() == 1) {
-return $query->result();
-} else {
-return false;
-}
-}
+		if ($query->num_rows() == 1) {
+			return $query->result();
+		} else {
+			return false;
+		}
+	}
 
 }
 
