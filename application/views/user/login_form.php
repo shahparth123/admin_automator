@@ -125,7 +125,7 @@ var baseurl = '';
 			
 			
 			<div class="login-bottom-links">
-				
+				<a href="<?php echo base_url();?>user/registration" class="link">Not yet Registered? Click Here</a>
 				<a href="extra-forgot-password.html" class="link">Forgot your password?</a>
 				
 				<br />

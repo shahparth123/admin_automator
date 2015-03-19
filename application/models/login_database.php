@@ -68,6 +68,23 @@ Class Login_Database extends CI_Model {
         }
         return false;
     }
+    
+	public function sendemail($username,$email,$subject,$message) {
+		
+		 $this->load->library('email');
+
+		$this->email->from('admin@lanet.com', 'Admin');
+		$this->email->to($email); 
+//		$this->email->cc('another@another-example.com'); 
+//		$this->email->bcc('them@their-example.com'); 
+
+		$this->email->subject($subject);
+		$this->email->message($message);	
+
+		$this->email->send();
+		//echo $this->email->print_debugger();
+    }
+    
 
 }
 

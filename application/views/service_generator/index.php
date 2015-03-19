@@ -10,47 +10,8 @@
 
 	    <div class="panel-body">
 
-		<div class="tab-content">
-
-		    <div class="tab-pane" id="area-chart">              
-			<div id="area-chart-demo" class="morrischart" style="height: 300px"></div>
-		    </div>
-
-		    <div class="tab-pane active" id="line-chart">
-			<div id="line-chart-demo" class="morrischart" style="height: 300px"></div>
-		    </div>
-
-		    <div class="tab-pane" id="pie-chart">
-			<div id="donut-chart-demo" class="morrischart" style="height: 300px;"></div>
-		    </div>
-
-		</div>
-
+		
 	    </div>
-
-      <!-- <table class="table table-bordered table-responsive">
-
-        <thead>
-          <tr>
-            <th width="50%" class="col-padding-1">
-              <div class="pull-left">
-                <div class="h4 no-margin">Pageviews</div>
-                <small>54,127</small>
-              </div>
-              <span class="pull-right pageviews">4,3,5,4,5,6,5</span>
-	      
-            </th>
-            <th width="50%" class="col-padding-1">
-              <div class="pull-left">
-                <div class="h4 no-margin">Unique Visitors</div>
-                <small>25,127</small>
-              </div>
-              <span class="pull-right uniquevisitors">2,3,5,4,3,4,5</span>
-            </th>
-          </tr>
-        </thead>
-	
-      </table> -->
 
 	</div>  
 
@@ -99,12 +60,14 @@
                 dataType: "json",
                 success: function (data) {
                     var html1 = "";
-                    jQuery.each(data, function () {
-                        //alert(JSON.stringify(this));
-                        var msg = this.Tables_in_admin_automator;
-                        //console.log(msg);
-                        html1 += "<option value='" + msg + "'>" + msg + "</option>";
+		    jQuery.each(data, function (k,v) {
+                        
 			
+			var tblnam = Object.keys(v).map(function(k) { return v[k] });
+			
+			 html1 += "<option value='" +tblnam[0] + "'>" + tblnam[0] + "</option>";
+				
+                   
                     });
 			$('#callbacks').html(html1);
 			

@@ -21,11 +21,10 @@ Class User extends CI_Controller {
 	}
 
 // Show login page
-	
+
 	public function login() {
 		if ($this->login_database->is_logged_in()) {
 			redirect(base_url() . 'dashboard');
-			
 		} else {
 			$this->load->view('user/login_form');
 		}
@@ -47,15 +46,20 @@ Class User extends CI_Controller {
 		if ($this->form_validation->run() == FALSE) {
 			//$this->load->view('user/registration_form');
 		} else {
+			$email_code = uniqid();
 			$data = array(
 			    'name' => $this->input->post('name'),
 			    'username' => $this->input->post('username'),
-			    'email' => $this->input->post('email_value'),
-			    'password' => $this->input->post('password')
+			    'email' => $this->input->post('email'),
+			    'password' => $this->input->post('password'),
+			    'emailcode' => $email_code
 			);
 			$result = $this->login_database->registration_insert($data);
 			if ($result == TRUE) {
 				$data['message_display'] = 'Registration Successfully !';
+				$subject = "Email Verification";
+				$message = "Welcome " . $data['username'] . " to Admin Automator. To verify click Here:" . base_url() . "user/login?code=" . $email_code . "&usnm=" . $data['username'];
+				$this->login_database->sendemail($data['username'], $data['email'], $subject, $message);
 				//$this->load->view('login_form', $data);
 				echo json_encode(array("success" => "true"));
 			} else {
@@ -114,6 +118,19 @@ Class User extends CI_Controller {
 		$this->session->sess_destroy();
 		$data['message_display'] = 'Successfully Logout';
 		redirect(base_url() . 'user/login');
+	}
+
+	public function verify() {
+		$username=
+		$query = $this->admin_automator->query("SELECT username, emailcode FROM auto_user where username=$username and emailcode=$emailcode");
+
+//		foreach ($query->result() as $row)
+//		{
+//		    echo $row->username;
+//		    echo $row->emailcode;
+//		}
+
+		//echo 'Total Results: ' . $query->num_rows();
 	}
 
 }
