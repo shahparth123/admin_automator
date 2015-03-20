@@ -58,7 +58,7 @@ Class User extends CI_Controller {
 			if ($result == TRUE) {
 				$data['message_display'] = 'Registration Successfully !';
 				$subject = "Email Verification";
-				$message = "Welcome " . $data['username'] . " to Admin Automator. To verify click Here:" . base_url() . "user/login?code=" . $email_code . "&usnm=" . $data['username'];
+				$message = "Welcome " . $data['username'] . " to Admin Automator. To verify click Here:" . base_url() . "user/verify?code=" . $email_code . "&usnm=" . $data['username'];
 				$this->login_database->sendemail($data['username'], $data['email'], $subject, $message);
 				//$this->load->view('login_form', $data);
 				echo json_encode(array("success" => "true"));
@@ -121,19 +121,27 @@ Class User extends CI_Controller {
 	}
 
 	public function verify() {
-		$username=
-		$query = $this->admin_automator->query("SELECT username, emailcode FROM auto_user where username=$username and emailcode=$emailcode");
-
-//		foreach ($query->result() as $row)
-//		{
-//		
-//		    echo $row->username;
-//		    echo $row->emailcode;
-//		}
-
-		//echo 'Total Results: ' . $query->num_rows();
+		$username = $_GET['usnm'];
+		$emailcode = $_GET['code'];
+		$query = $this->db->query("SELECT username, emailcode FROM auto_user where username='$username' and emailcode='$emailcode'");
+		if ($query->num_rows() == 1) {
+			$this->db->query("Update auto_user set status = 1 where username='$username' and emailcode='$emailcode'");
+			redirect(base_url() . 'user/login');
+		}
 	}
 
+	public function forgotpassword() {
+		if ($this->input->post()) {
+			$email = $this->input->post("email");
+			$verified = $this->login_database->checkemailid($email);
+			if ($verified == true) {
+				$subject = "Forgot Password";
+				$message = "Hello You have requested for new password. Please click Here" . base_url() . "user/newpassword?email=" . $email;
+				$this->login_database->sendemail($email, $email, $subject, $message);
+			}
+		}
+		$this->load->view('user/forgotpassword');
+	}
 }
 
 ?>
