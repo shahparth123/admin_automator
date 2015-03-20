@@ -27,10 +27,14 @@ Class Login_Database extends CI_Model {
 // Read data using username and password
 	public function login($data) {
 
-		$condition = "username =" . "'" . $data['username'] . "' AND " . "password =" . "'" . $data['password'] . "'";
+		
+
+		//$condition = "username =" . "'" . $data['username'] . "' AND " . "password =" . "'" . $data['password'] . "' and status = 1";
 		$this->db->select('*');
 		$this->db->from('auto_user');
-		$this->db->where($condition);
+		$this->db->where('username', $data['username']);
+		$this->db->where('password', $data['password']);
+		$this->db->where('status', 1); 
 		$this->db->limit(1);
 		$query = $this->db->get();
 		
@@ -83,6 +87,20 @@ Class Login_Database extends CI_Model {
 
 		$this->email->send();
 		//echo $this->email->print_debugger();
+    }
+    public function checkemailid($email) {
+	
+		$this->db->select('email');
+		$this->db->from('auto_user');
+		$this->db->where('email', $email);
+		$query = $this->db->get();
+		if ($query->num_rows() == 1) {
+			
+			return true;
+		} else {
+			return false;
+		}
+		
     }
     
 
