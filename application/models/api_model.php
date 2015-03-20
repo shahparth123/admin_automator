@@ -141,6 +141,10 @@ Class Api_model extends CI_Model {
 		}
 	}
 
+	public function insertrow(){
+		
+	}
+
 }
 
 ?>
