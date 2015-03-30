@@ -58,6 +58,12 @@
 					<span>Generator</span>
 				</a>
 			</li>
+			<li>
+				<a href="<?php echo base_url();?>dataviewer/index">
+					<i class="entypo-monitor"></i>
+					<span>Data viewer</span>
+				</a>
+			</li>
 			<!--<li>
 				 <a href="index.html">
 					<i class="entypo-monitor"></i>
