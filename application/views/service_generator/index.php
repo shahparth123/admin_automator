@@ -121,6 +121,7 @@
     </div>
 
 </div>
+<button type="submit" class="btn btn-blue">Generate</button>
 <?php echo form_close(); ?>
 <script src="<?php echo base_url(); ?>/assets/js/switch/jquery.multi-select.js" type="text/javascript"></script>
 <script src="<?php echo base_url(); ?>/assets/js/switch/jquery.quicksearch.js" type="text/javascript"></script>
