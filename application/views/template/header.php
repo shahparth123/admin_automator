@@ -10,7 +10,10 @@
 				
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 					<img src="<?php echo base_url();?>/assets/images/thumb-1@2x.png" alt="" class="img-circle" width="44" />
-				Chirag Vidja
+					<?php
+					$user_data = $this->session->all_userdata();
+					print_r($user_data['logged_in']['name']);
+					?>
 				</a>
 				
 				<ul class="dropdown-menu">
