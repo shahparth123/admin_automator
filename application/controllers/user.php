@@ -48,12 +48,12 @@ Class User extends CI_Controller {
 		} else {
 			$email_code = uniqid();
 			$data = array(
-			    'name' => $this->input->post('name'),
-			    'username' => $this->input->post('username'),
-			    'email' => $this->input->post('email'),
-			    'password' => $this->input->post('password'),
-			    'emailcode' => $email_code
-			);
+				'name' => $this->input->post('name'),
+				'username' => $this->input->post('username'),
+				'email' => $this->input->post('email'),
+				'password' => $this->input->post('password'),
+				'emailcode' => $email_code
+				);
 			$result = $this->login_database->registration_insert($data);
 			if ($result == TRUE) {
 				$data['message_display'] = 'Registration Successfully !';
@@ -80,25 +80,25 @@ Class User extends CI_Controller {
 			$this->load->view('user/login_form');
 		} else {
 			$data = array(
-			    'username' => $this->input->post('username'),
-			    'password' => $this->input->post('password')
-			);
+				'username' => $this->input->post('username'),
+				'password' => $this->input->post('password')
+				);
 			$result = $this->login_database->login($data);
 			if ($result == TRUE) {
 				$sess_array = array(
-				    'username' => $this->input->post('username')
-				);
+					'username' => $this->input->post('username')
+					);
 
 // Add user data in session
 				$this->session->set_userdata('logged_in', $sess_array);
 				$result = $this->login_database->read_user_information($sess_array);
 				if ($result != false) {
 					$data = array(
-					    'id' => $result[0]->id,
-					    'name' => $result[0]->name,
-					    'username' => $result[0]->username,
-					    'email' => $result[0]->email,
-					);
+						'id' => $result[0]->id,
+						'name' => $result[0]->name,
+						'username' => $result[0]->username,
+						'email' => $result[0]->email,
+						);
 					//	$this->load->view('user/admin_page', $data);
 				}$this->session->set_userdata('logged_in', $data);
 				$op['login_status'] = "success";
@@ -131,16 +131,25 @@ Class User extends CI_Controller {
 	}
 
 	public function forgotpassword() {
+
 		if ($this->input->post()) {
 			$email = $this->input->post("email");
-			$verified = $this->login_database->checkemailid($email);
+			$emailcode = uniqid();
+			$verified = $this->login_database->checkemailid($email,$emailcode);
+
 			if ($verified == true) {
 				$subject = "Forgot Password";
-				$message = "Hello You have requested for new password. Please click Here" . base_url() . "user/newpassword?email=" . $email;
-				$this->login_database->sendemail($email, $email, $subject, $message);
+				$message = "Hello You have requested for new password. Please click Here: " . base_url() . "user/newpassword?email=" . $email . "?emailcode=" . $emailcode ;
+				$this->login_database->sendemail($email, $emailcode, $subject, $message);
+				$submitted_data['email']=$email;
+				echo json_encode($submitted_data);
 			}
+
 		}
-		$this->load->view('user/forgotpassword');
+		else{
+			$this->load->view('user/forgotpassword');
+		}
+		
 	}
 }
 

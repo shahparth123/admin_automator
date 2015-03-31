@@ -73,35 +73,45 @@ Class Login_Database extends CI_Model {
         return false;
     }
     
-	public function sendemail($username,$email,$subject,$message) {
-		
-		 $this->load->library('email');
+	public function sendemail($email, $emailcode, $subject, $message) {
+		$this->load->library('email');
 
-		$this->email->from('admin@lanet.com', 'Admin');
+		$this->email->from('admin', 'Admin');
 		$this->email->to($email); 
+
 //		$this->email->cc('another@another-example.com'); 
 //		$this->email->bcc('them@their-example.com'); 
 
 		$this->email->subject($subject);
 		$this->email->message($message);	
-
-		$this->email->send();
+//echo $subject;
+//echo $message;
+		$this->email->send() or die("error");
 		//echo $this->email->print_debugger();
     }
-    public function checkemailid($email) {
-	
+    
+    public function checkemailid($email,$emailcode) {
 		$this->db->select('email');
 		$this->db->from('auto_user');
 		$this->db->where('email', $email);
 		$query = $this->db->get();
+
 		if ($query->num_rows() == 1) {
 			
-			return true;
+			$data = array(
+               'emailcode' => $emailcode,
+            );
+
+		$this->db->where('email', $email);
+		$this->db->update('auto_user', $data); 
+		return true;
 		} else {
 			return false;
 		}
 		
+
     }
+   
     
 
 }
