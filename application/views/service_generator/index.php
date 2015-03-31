@@ -6,7 +6,7 @@
      <div class="panel panel-primary" id="charts_env">
 
          <div class="panel-heading">
-          <div class="panel-title">Site Stats</div>
+          <div class="panel-title">Select fields from here</div>
       </div>
 
       <div class="panel-body" id="tables">
@@ -46,7 +46,7 @@
 
 </div>
 </div>
-    <div class="col-sm-10">
+    <div class="col-sm-11">
 
 	<div class="panel panel-primary" id="charts_env">
 
@@ -57,63 +57,115 @@
 	    <div class="panel-body" id="tables">
 		<h4>Operation</h4>
 		<div class="radio-inline">
-		    <label><input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">SELECT</label>	
+		    <label><input type="radio" name="opertation" id="optionsRadios" value="SELECT" checked="">SELECT</label>	
 		</div>
 		<div class="radio-inline">
-		    <label><input type="radio" name="optionsRadios" id="optionsRadios1" value="option2" checked="">INSERT</label>	
+		    <label><input type="radio" name="opertation" id="optionsRadios" value="INSERT" checked="">INSERT</label>	
 		</div>
 		<div class="radio-inline">
-		    <label><input type="radio" name="optionsRadios" id="optionsRadios1" value="option3" checked="">UPDATE</label>	
+		    <label><input type="radio" name="opertation" id="optionsRadios" value="UPDATE" checked="">UPDATE</label>	
 		</div>
 		<div class="radio-inline">
-		    <label><input type="radio" name="optionsRadios" id="optionsRadios1" value="option4" checked="">DELETE</label>	
+		    <label><input type="radio" name="opertation" id="optionsRadios" value="DELETE" checked="">DELETE</label>	
 		</div>
-		<div class="col-sm-10">
-		    <h4>Fields</h4>
-		    <textarea class="form-control" id="field-ta" placeholder="Select Fields"></textarea>
-		</div>
-		<div class="col-sm-10">
-		    <h4>Conditions 			    <button id="add" type="button" class="btn btn-info">
+		<div class="col-sm-12">
+		    <h4>Conditions 			    
+			<button id="add" type="button" class="btn btn-info">
 				<i class="entypo-plus"></i>
 			    </button>
-</h4>
+			</h4>
 		    <div id="addconditions">
-			<div id="condition">
+<!--			<div id="condition">
 			    <div class="col-sm-2">
 				<select class="form-control">
-				    <option>WHERE</option>
-				    <option>HAVING</option>
+				    <option name="operation[]" value="WHERE">WHERE</option>
+				    <option name="operation[]" value="HAVING">HAVING</option>
 				</select>
 			    </div>
-			    <div class="col-sm-3">
-				<input type="text" class="form-control" id="field-1" placeholder="field1">
+			    <div class="col-sm-2">
+				<input type="text" name="f1[]" class="form-control" id="field-1" placeholder="field-1">
 			    </div>
 			    <div class="col-sm-2">
 				<select class="form-control">
-				    <option value="=">=</option>
-				    <option value=">">&gt;</option>
-				    <option value=">=">&gt;=</option>
-				    <option value="<">&lt;</option>
-				    <option value="<=">&lt;=</option>
-				    <option value="!=">!=</option>
-				    <option value="LIKE">LIKE</option>
+				    <option name="op[]" value="=">=</option>
+				    <option name="op[]" value=">">&gt;</option>
+				    <option name="op[]" value=">=">&gt;=</option>
+				    <option name="op[]" value="<">&lt;</option>
+				    <option name="op[]" value="<=">&lt;=</option>
+				    <option name="op[]" value="!=">!=</option>
+				    <option name="op[]" value="LIKE">LIKE</option>
 				</select>
 			    </div>
 			    
-			    <div class="col-sm-3">
-				<input type="text" class="form-control" id="field-1" placeholder="field2">
+			    <div class="col-sm-2">
+				<input type="text" name="f2[]" class="form-control" id="field-1" placeholder="field-2">
 			    </div>
 			    <div class="col-sm-2">
 				<select class="form-control">
-				    <option>AND</option>
-				    <option>OR</option>
+				    <option name = "con[]" value="AND">AND</option>
+				    <option name = "con[]" value="OR">OR</option>
 				</select>
 			    </div>
+			    <button  id='removecon' type="button" class="btn btn-danger">
+					<i class="entypo-cancel"></i>
+			    </button>
 
-			</div>
+			</div>-->
 			
 		    </div>
 		</div>
+		<div class="col-sm-12">
+		<h4>Joins 			    
+			<button id="jadd" type="button" class="btn btn-info">
+				<i class="entypo-plus"></i>
+			    </button>
+			</h4>
+		<div id="addjoin">
+<!--			<div id="join">
+			    <div class="col-sm-2">
+				<select class="form-control">
+				    <option name = "type[]" value="LEFT">LEFT</option>
+				    <option name = "type[]" value="RIGHT">RIGHT</option>
+				    <option name = "type[]" value="INNER">INNER</option>
+				    <option name = "type[]" value="OUTER">OUTER</option>
+				</select>
+			    </div>
+			    <div class="col-sm-2">
+				<select id="tableforjoin"class="form-control">
+				   
+				</select>
+			    </div>
+			    <div class="col-sm-2">
+				<select class="form-control">
+				    <option name="operation[]" value="WHERE">WHERE</option>
+				    <option name="operation[]" value="HAVING">HAVING</option>
+				</select>
+			    </div>
+			    <div class="col-sm-2">
+				<input type="text" name="f1[]" class="form-control" id="field-1" placeholder="field-1">
+			    </div>
+			    <div class="col-sm-2">
+				<select class="form-control">
+				    <option name="op[]" value="=">=</option>
+				    <option name="op[]" value=">">&gt;</option>
+				    <option name="op[]" value=">=">&gt;=</option>
+				    <option name="op[]" value="<">&lt;</option>
+				    <option name="op[]" value="<=">&lt;=</option>
+				    <option name="op[]" value="!=">!=</option>
+				    <option name="op[]" value="LIKE">LIKE</option>
+				</select>
+			    </div>
+			    
+			    <div class="col-sm-2">
+				<input type="text" name="f2[]" class="form-control" id="field-1" placeholder="field-2">
+			    </div>
+			    <button  id='removejoin' type="button" class="btn btn-danger">
+					<i class="entypo-cancel"></i>
+			    </button>
+			</div>-->
+			
+		    </div>
+	    </div>
 	    </div>
 
 	</div>  
@@ -150,18 +202,102 @@
                 html1 += '</div>';
                 html1 += '</div>';
 
-
             });
             html1 +='</div></div></div></div>';
-                $('#tables').append(html1);//console.log(html1);
+                $('#tables').append(html1);
             }
         });                              
 }
 $(document).ready(function () {
 
-jQuery('#add').on('click', function(){
-   jQuery('#addconditions').append($('#condition').html());
+var counter = 0;
+
+jQuery('#add').click(function (e) {
+	 jQuery("#addconditions").append('<div id="condition'+counter+'">'+
+			    '<div class="col-sm-2">'+
+				'<select class="form-control">'+
+				    '<option name="operation[]" value="WHERE">WHERE</option>'+
+				    '<option name="operation[]" value="HAVING">HAVING</option>'+
+				'</select>'+
+			    '</div>'+
+			    '<div class="col-sm-2">'+
+				'<input type="text" name="f1[]" class="form-control" id="field-1" placeholder="field-1">'+
+			    '</div>'+
+			    '<div class="col-sm-2">'+
+				'<select class="form-control">'+
+				    '<option name="op[]" value="=">=</option>'+
+				    '<option name="op[]" value=">">&gt;</option>'+
+				    '<option name="op[]" value=">=">&gt;=</option>'+
+				    '<option name="op[]" value="<">&lt;</option>'+
+				    '<option name="op[]" value="<=">&lt;=</option>'+
+				    '<option name="op[]" value="!=">!=</option>'+
+				    '<option name="op[]" value="LIKE">LIKE</option>'+
+				'</select>'+
+			    '</div>'+
+			    
+			    '<div class="col-sm-2">'+
+				'<input type="text" name="f2[]" class="form-control" id="field-1" placeholder="field-2/val">'+
+			    '</div>'+
+			    '<div class="col-sm-2">'+
+				'<select class="form-control">'+
+				    '<option name = "con[]" value="AND">AND</option>'+
+				    '<option name = "con[]" value="OR">OR</option>'+
+				'</select>'+
+			    '</div>'+
+			    '<button type="button" id="removecon'+counter+'" class="btn btn-danger" onclick="jQuery(\'#condition'+counter+'\').remove()">'+
+					'<i class="entypo-cancel"></i>'+
+			    '</button>'+
+
+			'</div>');
+		counter++;
+        });
+var count = 0;
+jQuery('#jadd').click(function (e) {
+   jQuery('#addjoin').append('<div id="join'+count+'">'+
+			    '<div class="col-sm-2">'+
+				'<select class="form-control">'+
+				    '<option name = "type[]" value="LEFT">LEFT</option>'+
+				    '<option name = "type[]" value="RIGHT">RIGHT</option>'+
+				    '<option name = "type[]" value="INNER">INNER</option>'+
+				    '<option name = "type[]" value="OUTER">OUTER</option>'+
+				'</select>'+
+			    '</div>'+
+			    '<div class="col-sm-2">'+
+				'<select id="tableforjoin"class="form-control">'+
+				   
+				'</select>'+
+			    '</div>'+
+			    '<div class="col-sm-2">'+
+				'<select class="form-control">'+
+				    '<option name="operation[]" value="WHERE">WHERE</option>'+
+				    '<option name="operation[]" value="HAVING">HAVING</option>'+
+				'</select>'+
+			    '</div>'+
+			    '<div class="col-sm-2">'+
+				'<input type="text" name="f1[]" class="form-control" id="field-1" placeholder="field-1">'+
+			    '</div>'+
+			    '<div class="col-sm-2">'+
+				'<select class="form-control">'+
+				    '<option name="op[]" value="=">=</option>'+
+				    '<option name="op[]" value=">">&gt;</option>'+
+				    '<option name="op[]" value=">=">&gt;=</option>'+
+				    '<option name="op[]" value="<">&lt;</option>'+
+				    '<option name="op[]" value="<=">&lt;=</option>'+
+				    '<option name="op[]" value="!=">!=</option>'+
+				    '<option name="op[]" value="LIKE">LIKE</option>'+
+				'</select>'+
+			    '</div>'+
+			    
+			    '<div class="col-sm-2">'+
+				'<input type="text" name="f2[]" class="form-control" id="field-1" placeholder="field-2">'+
+			    '</div>'+
+			    '<button  id="removejoin'+count+'" type="button" class="btn btn-danger" onclick="jQuery(\'#join'+count+'\').remove()">'+
+					'<i class="entypo-cancel"></i>'+
+			    '</button>'+
+			'</div>');
+		count++;
 });
+
     var url1 = '<?php echo base_url(); ?>api/tables';
 
     $.ajax({
