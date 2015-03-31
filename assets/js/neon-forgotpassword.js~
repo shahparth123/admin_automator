@@ -12,7 +12,7 @@ var neonForgotPassword = neonForgotPassword || {};
 	
 	$(document).ready(function()
 	{
-		neonForgotPassword.$container = $("#form_forgotpassword");
+		neonForgotPassword.$container = $("#form_forgot_password");
 		neonForgotPassword.$steps = neonForgotPassword.$container.find(".form-steps");
 		neonForgotPassword.$steps_list = neonForgotPassword.$steps.find(".step");
 		neonForgotPassword.step = 'step-1'; // current step
@@ -69,7 +69,7 @@ var neonForgotPassword = neonForgotPassword || {};
 							success: function(response)
 							{
 								// From response you can fetch the data object retured
-								var email = response.submitted_data.email;
+								var email = response.email;
 								
 								
 								// Form is fully completed, we update the percentage

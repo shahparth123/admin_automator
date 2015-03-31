@@ -4,7 +4,7 @@
  *	Developed by Arlind Nushi - www.laborator.co
  */
 
-var neonForgotPassword = neonForgotPassword || {};
+var neonchangepassword = neonchangepassword || {};
 
 ;(function($, window, undefined)
 {
@@ -12,13 +12,13 @@ var neonForgotPassword = neonForgotPassword || {};
 	
 	$(document).ready(function()
 	{
-		neonForgotPassword.$container = $("#form_forgotpassword");
-		neonForgotPassword.$steps = neonForgotPassword.$container.find(".form-steps");
-		neonForgotPassword.$steps_list = neonForgotPassword.$steps.find(".step");
-		neonForgotPassword.step = 'step-1'; // current step
+		neonchangepassword.$container = $("#form_changepassword");
+		neonchangepassword.$steps = neonchangepassword.$container.find(".form-steps");
+		neonchangepassword.$steps_list = neonchangepassword.$steps.find(".step");
+		neonchangepassword.step = 'step-1'; // current step
 		
 				
-		neonForgotPassword.$container.validate({
+		neonchangepassword.$container.validate({
 			rules: {
 				
 				email: {
@@ -49,18 +49,18 @@ var neonForgotPassword = neonForgotPassword || {};
 				$(".login-page").addClass('logging-in');
 				
 				// We consider its 30% completed form inputs are filled
-				neonForgotPassword.setPercentage(30, function()
+				neonchangepassword.setPercentage(30, function()
 				{
 					// Lets move to 98%, meanwhile ajax data are sending and processing
-					neonForgotPassword.setPercentage(98, function()
+					neonchangepassword.setPercentage(98, function()
 					{
 						// Send data to the server
 						$.ajax({
-							url: baseurl + 'forgotpassword',
+							url: baseurl + 'changepassword',
 							method: 'POST',
 							dataType: 'json',
 							data: {
-								email: $("input#email").val(),
+								email: $("input#password").val(),
 							},
 							error: function()
 							{
@@ -73,7 +73,7 @@ var neonForgotPassword = neonForgotPassword || {};
 								
 								
 								// Form is fully completed, we update the percentage
-								neonForgotPassword.setPercentage(100);
+								neonchangepassword.setPercentage(100);
 								
 								
 								// We will give some time for the animation to finish, then execute the following procedures	
@@ -83,13 +83,13 @@ var neonForgotPassword = neonForgotPassword || {};
 									$(".login-page .login-header .description").slideUp();
 									
 									// Hide the register form (steps)
-									neonForgotPassword.$steps.slideUp('normal', function()
+									neonchangepassword.$steps.slideUp('normal', function()
 									{
 										// Remove loging-in state
 										$(".login-page").removeClass('logging-in');
 										
 										// Now we show the success message
-										$(".form-forgotpassword-success").slideDown('normal');
+										$(".form-changepassword-success").slideDown('normal');
 										
 										// You can use the data returned from response variable
 									});
@@ -103,16 +103,16 @@ var neonForgotPassword = neonForgotPassword || {};
 		});
 	
 		// Steps Handler
-		neonForgotPassword.$steps.find('[data-step]').on('click', function(ev)
+		neonchangepassword.$steps.find('[data-step]').on('click', function(ev)
 		{
 			ev.preventDefault();
 			
-			var $current_step = neonForgotPassword.$steps_list.filter('.current'),
+			var $current_step = neonchangepassword.$steps_list.filter('.current'),
 				next_step = $(this).data('step'),
-				validator = neonForgotPassword.$container.data('validator'),
+				validator = neonchangepassword.$container.data('validator'),
 				errors = 0;
 			
-			neonForgotPassword.$container.valid();
+			neonchangepassword.$container.valid();
 			errors = validator.numberOfInvalids();
 			
 			if(errors)
@@ -121,14 +121,14 @@ var neonForgotPassword = neonForgotPassword || {};
 			}
 			else
 			{
-				var $next_step = neonForgotPassword.$steps_list.filter('#' + next_step),
-					$other_steps = neonForgotPassword.$steps_list.not( $next_step ),
+				var $next_step = neonchangepassword.$steps_list.filter('#' + next_step),
+					$other_steps = neonchangepassword.$steps_list.not( $next_step ),
 					
 					current_step_height = $current_step.data('height'),
 					next_step_height = $next_step.data('height');
 				
-				TweenMax.set(neonForgotPassword.$steps, {css: {height: current_step_height}});
-				TweenMax.to(neonForgotPassword.$steps, 0.6, {css: {height: next_step_height}});
+				TweenMax.set(neonchangepassword.$steps, {css: {height: current_step_height}});
+				TweenMax.to(neonchangepassword.$steps, 0.6, {css: {height: next_step_height}});
 				
 				TweenMax.to($current_step, .3, {css: {autoAlpha: 0}, onComplete: function()
 				{
@@ -156,7 +156,7 @@ var neonForgotPassword = neonForgotPassword || {};
 			}
 		});
 		
-		neonForgotPassword.$steps_list.each(function(i, el)
+		neonchangepassword.$steps_list.each(function(i, el)
 		{
 			var $this = $(el),
 				is_current = $this.hasClass('current'),
@@ -174,24 +174,24 @@ var neonForgotPassword = neonForgotPassword || {};
 		
 		
 		// Login Form Setup
-		neonForgotPassword.$body = $(".login-page");
-		neonForgotPassword.$login_progressbar_indicator = $(".login-progressbar-indicator h3");
-		neonForgotPassword.$login_progressbar = neonForgotPassword.$body.find(".login-progressbar div");
+		neonchangepassword.$body = $(".login-page");
+		neonchangepassword.$login_progressbar_indicator = $(".login-progressbar-indicator h3");
+		neonchangepassword.$login_progressbar = neonchangepassword.$body.find(".login-progressbar div");
 		
-		neonForgotPassword.$login_progressbar_indicator.html('0%');
+		neonchangepassword.$login_progressbar_indicator.html('0%');
 		
-		if(neonForgotPassword.$body.hasClass('login-form-fall'))
+		if(neonchangepassword.$body.hasClass('login-form-fall'))
 		{
 			var focus_set = false;
 			
 			setTimeout(function(){ 
-				neonForgotPassword.$body.addClass('login-form-fall-init')
+				neonchangepassword.$body.addClass('login-form-fall-init')
 				
 				setTimeout(function()
 				{
 					if( !focus_set)
 					{
-						neonForgotPassword.$container.find('input:first').focus();
+						neonchangepassword.$container.find('input:first').focus();
 						focus_set = true;
 					}
 					
@@ -201,22 +201,22 @@ var neonForgotPassword = neonForgotPassword || {};
 		}
 		else
 		{
-			neonForgotPassword.$container.find('input:first').focus();
+			neonchangepassword.$container.find('input:first').focus();
 		}
 		
 		
 		// Functions
-		$.extend(neonForgotPassword, {
+		$.extend(neonchangepassword, {
 			setPercentage: function(pct, callback)
 			{
 				pct = parseInt(pct / 100 * 100, 10) + '%';
 				
 				// Normal Login
-				neonForgotPassword.$login_progressbar_indicator.html(pct);
-				neonForgotPassword.$login_progressbar.width(pct);
+				neonchangepassword.$login_progressbar_indicator.html(pct);
+				neonchangepassword.$login_progressbar.width(pct);
 				
 				var o = {
-					pct: parseInt(neonForgotPassword.$login_progressbar.width() / neonForgotPassword.$login_progressbar.parent().width() * 100, 10)
+					pct: parseInt(neonchangepassword.$login_progressbar.width() / neonchangepassword.$login_progressbar.parent().width() * 100, 10)
 				};
 				
 				TweenMax.to(o, .7, {
@@ -225,7 +225,7 @@ var neonForgotPassword = neonForgotPassword || {};
 					ease: Sine.easeOut,
 					onUpdate: function()
 					{
-						neonForgotPassword.$login_progressbar_indicator.html(o.pct + '%');
+						neonchangepassword.$login_progressbar_indicator.html(o.pct + '%');
 					},
 					onComplete: callback
 				});

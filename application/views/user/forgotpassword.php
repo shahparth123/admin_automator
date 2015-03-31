@@ -68,7 +68,7 @@ var baseurl = '';
 		
 		<div class="login-content">
 			
-			<form method="post" role="form" id="form_forgot_password">
+			<!-- <form method="post" role="form" id="form_forgot_password"> -->
 				
 				<div class="form-forgotpassword-success">
 					<i class="entypo-check"></i>
