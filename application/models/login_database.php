@@ -76,7 +76,7 @@ Class Login_Database extends CI_Model {
 	public function sendemail($email, $emailcode, $subject, $message) {
 		$this->load->library('email');
 
-		$this->email->from('admin@lanet.com', 'Admin');
+		$this->email->from('admin', 'Admin');
 		$this->email->to($email); 
 
 //		$this->email->cc('another@another-example.com'); 
@@ -84,10 +84,12 @@ Class Login_Database extends CI_Model {
 
 		$this->email->subject($subject);
 		$this->email->message($message);	
-
-		$this->email->send();
+//echo $subject;
+//echo $message;
+		$this->email->send() or die("error");
 		//echo $this->email->print_debugger();
     }
+    
     public function checkemailid($email,$emailcode) {
 		$this->db->select('email');
 		$this->db->from('auto_user');

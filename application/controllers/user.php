@@ -141,7 +141,8 @@ Class User extends CI_Controller {
 				$subject = "Forgot Password";
 				$message = "Hello You have requested for new password. Please click Here: " . base_url() . "user/newpassword?email=" . $email . "?emailcode=" . $emailcode ;
 				$this->login_database->sendemail($email, $emailcode, $subject, $message);
-
+				$submitted_data['email']=$email;
+				echo json_encode($submitted_data);
 			}
 
 		}
