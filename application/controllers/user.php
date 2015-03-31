@@ -151,6 +151,54 @@ Class User extends CI_Controller {
 		}
 		
 	}
+
+	public function changepassword() {
+		if (isset($_GET['email']) && isset($_GET['emailcode']) )
+		{	
+			$email=$_GET['email'];
+			$emailcode=$_GET['emailcode'];
+			$password = $this->input->post("password");
+			$changedpw = $this->login_database->changepassword($email,$emailcode,$password);
+		}
+		else
+		{
+			return FALSE;
+		}
+
+		$this->load->view('user/changepassword');
+	}
+
+	public function editpassword(){
+		if ($this->input->post()) {
+			$oldpassword = $this->input->post("oldpassword");
+			$newpassword = $this->input->post("newpassword");
+			$confirmpassword = $this->input->post("confirmpassword");
+			if($newpassword == $confirmpassword){
+				$checked = $this->login_database->editpassword($oldpassword,$newpassword);
+				if($checked == true){
+					$message="Your password is Successfully Changed";
+					echo "<script type='text/javascript'>alert('$message');</script>";
+				}
+				else{
+					$message="Your password is not Changed";
+					echo "<script type='text/javascript'>alert('$message');</script>";
+				}
+
+			}
+			else{
+				$message="Please Enter Same Password";
+				echo "<script type='text/javascript'>alert('$message');</script>";
+			}
+		}
+
+		
+		$data['title']="Edit Password";
+		$data['permission']="Dashboard";
+		$data['main_content']="user/editpassword";
+		$this->load->view('template/template',$data);
+		
+		
+	}
 }
 
 ?>

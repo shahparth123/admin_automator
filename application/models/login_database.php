@@ -65,14 +65,14 @@ Class Login_Database extends CI_Model {
 	}
 	
 	public function is_logged_in()
-    {
-        $user = $this->session->userdata('logged_in');
-        if(!empty($user)){
-        	return isset($user);
-        }
-        return false;
-    }
-    
+	{
+		$user = $this->session->userdata('logged_in');
+		if(!empty($user)){
+			return isset($user);
+		}
+		return false;
+	}
+
 	public function sendemail($email, $emailcode, $subject, $message) {
 		$this->load->library('email');
 
@@ -88,9 +88,9 @@ Class Login_Database extends CI_Model {
 //echo $message;
 		$this->email->send() or die("error");
 		//echo $this->email->print_debugger();
-    }
-    
-    public function checkemailid($email,$emailcode) {
+	}
+
+	public function checkemailid($email,$emailcode) {
 		$this->db->select('email');
 		$this->db->from('auto_user');
 		$this->db->where('email', $email);
@@ -99,20 +99,52 @@ Class Login_Database extends CI_Model {
 		if ($query->num_rows() == 1) {
 			
 			$data = array(
-               'emailcode' => $emailcode,
-            );
+				'emailcode' => $emailcode,
+				);
 
-		$this->db->where('email', $email);
-		$this->db->update('auto_user', $data); 
-		return true;
+			$this->db->where('email', $email);
+			$this->db->update('auto_user', $data); 
+			return true;
 		} else {
 			return false;
 		}
 		
 
-    }
-   
-    
+	}
+
+	public function changepassword($email,$emailcode,$password) {
+		$this->db->select('*');
+		$this->db->from('auto_user');
+		$this->db->where('email', $email);
+		$this->db->where('emailcode', $emailcode);
+		$query = $this->db->get();
+		if ($query->num_rows() == 1) {
+			$data = array(
+				'password' => $password,
+				);
+
+			$this->db->where('email', $email);
+			$this->db->update('auto_user', $data); 
+			return true;
+		}
+
+	}
+
+	public function editpassword($oldpassword,$newpassword) {
+		$this->db->select('*');
+		$this->db->from('auto_user');
+		$this->db->where('password', $oldpassword);
+		$query = $this->db->get();
+		if ($query->num_rows() == 1) {
+			$data = array(
+				'password' => $newpassword,
+				);
+
+			$this->db->where('password', $oldpassword);
+			$this->db->update('auto_user', $data); 
+			return true;
+		}
+	}	
 
 }
 

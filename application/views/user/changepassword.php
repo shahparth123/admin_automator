@@ -72,7 +72,7 @@ var baseurl = '';
 				<p><strong>User Name</strong>/<strong>Password</strong> is invalid.</p>
 			</div>
 			
-			<?php $attr = array('id'=> "form_login");
+			<?php $attr = array('id'=> "form_changepassword");
 			     echo form_open('user/changepassword',$attr); ?>
 				
 				<div class="form-group">
@@ -128,6 +128,7 @@ var baseurl = '';
 	<script src="<?php echo base_url();?>/assets/js/neon-login.js"></script>
 	<script src="<?php echo base_url();?>/assets/js/neon-custom.js"></script>
 	<script src="<?php echo base_url();?>/assets/js/neon-demo.js"></script>
+	<script src="<?php echo base_url();?>/assets/js/changepassword.js"></script>
 
 </body>
 </html>

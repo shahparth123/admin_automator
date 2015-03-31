@@ -10,7 +10,7 @@
 				
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 					<img src="<?php echo base_url();?>/assets/images/thumb-1@2x.png" alt="" class="img-circle" width="44" />
-					Art Ramadani
+				Chirag Vidja
 				</a>
 				
 				<ul class="dropdown-menu">
@@ -27,9 +27,9 @@
 					</li>
 					
 					<li>
-						<a href="mailbox.html">
+						<a href="<?php echo base_url();?>user/editpassword">
 							<i class="entypo-mail"></i>
-							Inbox
+							Change Password
 						</a>
 					</li>
 					
