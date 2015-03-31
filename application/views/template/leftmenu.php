@@ -60,7 +60,7 @@
 			</li>
 			<li>
 				<a href="<?php echo base_url();?>dataviewer/index">
-					<i class="entypo-monitor"></i>
+					<i class="entypo-doc-text"></i>
 					<span>Data viewer</span>
 				</a>
 			</li>
