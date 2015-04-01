@@ -18,6 +18,11 @@ Class User extends CI_Controller {
 
 // Load database
 		$this->load->model('login_database');
+
+// Load md5		
+		$this->load->helper('security');
+// Load email library				
+		$this->load->library('email');
 	}
 
 // Show login page
@@ -51,7 +56,7 @@ Class User extends CI_Controller {
 				'name' => $this->input->post('name'),
 				'username' => $this->input->post('username'),
 				'email' => $this->input->post('email'),
-				'password' => $this->input->post('password'),
+				'password' => do_hash($this->input->post('password'),'md5'),
 				'emailcode' => $email_code
 				);
 			$result = $this->login_database->registration_insert($data);
@@ -59,7 +64,7 @@ Class User extends CI_Controller {
 				$data['message_display'] = 'Registration Successfully !';
 				$subject = "Email Verification";
 				$message = "Welcome " . $data['username'] . " to Admin Automator. To verify click Here:" . base_url() . "user/verify?code=" . $email_code . "&usnm=" . $data['username'];
-				$this->login_database->sendemail($data['username'], $data['email'], $subject, $message);
+				$this->login_database->sendemail($data['email'], $subject, $message);
 				//$this->load->view('login_form', $data);
 				echo json_encode(array("success" => "true"));
 			} else {
@@ -81,7 +86,7 @@ Class User extends CI_Controller {
 		} else {
 			$data = array(
 				'username' => $this->input->post('username'),
-				'password' => $this->input->post('password')
+				'password' => do_hash($this->input->post('password'),'md5'),
 				);
 			$result = $this->login_database->login($data);
 			if ($result == TRUE) {
@@ -140,7 +145,7 @@ Class User extends CI_Controller {
 			if ($verified == true) {
 				$subject = "Forgot Password";
 				$message = "Hello You have requested for new password. Please click Here: " . base_url() . "user/newpassword?email=" . $email . "?emailcode=" . $emailcode ;
-				$this->login_database->sendemail($email, $emailcode, $subject, $message);
+				$this->login_database->sendemail($email,$subject, $message);
 				$submitted_data['email']=$email;
 				echo json_encode($submitted_data);
 			}

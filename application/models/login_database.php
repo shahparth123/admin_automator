@@ -26,9 +26,7 @@ Class Login_Database extends CI_Model {
 
 // Read data using username and password
 	public function login($data) {
-
-		
-
+//print_r($data);
 		//$condition = "username =" . "'" . $data['username'] . "' AND " . "password =" . "'" . $data['password'] . "' and status = 1";
 		$this->db->select('*');
 		$this->db->from('auto_user');
@@ -73,8 +71,8 @@ Class Login_Database extends CI_Model {
 		return false;
 	}
 
-	public function sendemail($email, $emailcode, $subject, $message) {
-		$this->load->library('email');
+	public function sendemail($email,$subject, $message) {
+		
 
 		$this->email->from('admin', 'Admin');
 		$this->email->to($email); 
