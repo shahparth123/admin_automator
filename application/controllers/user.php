@@ -204,6 +204,34 @@ Class User extends CI_Controller {
 		
 		
 	}
+
+
+	public function editprofile(){
+		$data['user_detail'] = $this->login_database->editprofile();      
+		$data['title']="Edit Profile";
+		$data['permission']="Dashboard";
+		$data['main_content']="user/editprofile";
+		$this->load->view('template/template',$data);
+		
+	}
+
+	function updateprofile() {
+		
+		$data = array(
+			'name' => $this->input->post('name'),
+			'email' => $this->input->post('email'),
+			'username' => $this->input->post('username')
+
+			);
+
+		$success = $this->login_database->updateprofile($data);
+		if($success == true){
+		redirect('dashboard/index',$data);
+		}
+		
+	}
+	
+
 }
 
 ?>

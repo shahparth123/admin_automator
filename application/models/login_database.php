@@ -142,7 +142,25 @@ Class Login_Database extends CI_Model {
 			$this->db->update('auto_user', $data); 
 			return true;
 		}
+	}
+
+	public function editprofile(){
+
+		$query = $this->db->query('SELECT name, username ,email FROM auto_user');
+		$result = $query->result();
+		return $result;
+		
 	}	
+	public function updateprofile($data){
+	$user_data = $this->session->all_userdata();
+	$id = $user_data['logged_in']['id'];
+	$this->db->where('id',$id );
+	$this->db->update('auto_user', $data);
+	return true; 
+
+}	
+
+
 
 }
 

@@ -23,7 +23,7 @@
 					
 					<!-- Profile sub-links -->
 					<li>
-						<a href="extra-timeline.html">
+						<a href="<?php echo base_url();?>user/editprofile">
 							<i class="entypo-user"></i>
 							Edit Profile
 						</a>
