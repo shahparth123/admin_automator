@@ -28,7 +28,7 @@ class Api extends CI_Controller {
 		echo "<pre>";
 		print_r($_POST);
 		echo "</pre>";
-			
+
 	}
 
 	public function index()
@@ -58,8 +58,18 @@ class Api extends CI_Controller {
 						$f1=$_POST['f1'][$i];
 						$f2=$_POST['f2'][$i];
 						$op=$_POST['op'][$i];
-						$con=$_POST['con'][$i];
-						echo "where('".$f1." ".$op."',".$f2.")";
+						if($opcode=="where")
+						{
+							echo "where('".$f1." ".$op."',".$f2.")";
+						}
+						else if($opcode=="or_where")
+						{
+							echo "or_where('".$f1." ".$op."',".$f2.")";
+						}
+						else if($opcode=="having")
+						{
+							echo "having('".$f1." ".$op."',".$f2.")";
+						}
 						$i++;
 					}
 				}
