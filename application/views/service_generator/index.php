@@ -161,10 +161,9 @@ echo form_open('api/index',$attr); ?>
 			jQuery("#addconditions").append('<div id="condition'+counter+'">'+
 				'<div class="col-sm-2">'+
 				'<select class="form-control" name="opcode[]">'+
-				'<option value="WHERE">WHERE</option>'+
-				'<option value="WHERE(AND)">WHERE(AND)</option>'+
-				'<option value="WHERE(OR)">WHERE(OR)</option>'+
-				'<option value="HAVING">HAVING</option>'+
+				'<option value="where">WHERE</option>'+
+				'<option value="or_where">WHERE(OR)</option>'+
+				'<option value="having">HAVING</option>'+
 				'</select>'+
 				'</div>'+
 				'<div class="col-sm-2">'+
