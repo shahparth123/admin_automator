@@ -239,6 +239,8 @@ jQuery('#add').click(function (e) {
 			    '<div class="col-sm-2">'+
 				'<select class="form-control" name="opcode[]">'+
 				    '<option value="WHERE">WHERE</option>'+
+				    '<option value="WHERE(AND)">WHERE(AND)</option>'+
+				    '<option value="WHERE(OR)">WHERE(OR)</option>'+
 				    '<option value="HAVING">HAVING</option>'+
 				'</select>'+
 			    '</div>'+
@@ -260,12 +262,6 @@ jQuery('#add').click(function (e) {
 			    '<div class="col-sm-2">'+
 				'<input type="text" name="f2[]" class="form-control" id="field-1" placeholder="field-2/value">'+
 			    '</div>'+
-			    '<div class="col-sm-2">'+
-				'<select class="form-control" name = "con[]">'+
-				    '<option value="AND">AND</option>'+
-				    '<option value="OR">OR</option>'+
-				'</select>'+
-			    '</div>'+
 			    '<button type="button" id="removecon'+counter+'" class="btn btn-danger" onclick="jQuery(\'#condition'+counter+'\').remove()">'+
 					'<i class="entypo-cancel"></i>'+
 			    '</button>'+
@@ -277,7 +273,7 @@ var count = 0;
 jQuery('#jadd').click(function (e) {
    jQuery('#addjoin').append('<div id="join'+count+'">'+
 			    '<div class="col-sm-2">'+
-				'<select class="form-control" name = "type[]">'+
+				'<select class="form-control" name = "jtype[]">'+
 				    '<option value="LEFT">LEFT</option>'+
 				    '<option value="RIGHT">RIGHT</option>'+
 				    '<option value="INNER">INNER</option>'+
@@ -299,7 +295,7 @@ jQuery('#jadd').click(function (e) {
 				'</select>'+
 			    '</div>'+
 			    '<div class="col-sm-2">'+
-				'<input type="text" name="f1[]" class="form-control" id="field-1" placeholder="field-1">'+
+				'<input type="text" name="jf1[]" class="form-control" id="field-1" placeholder="field-1">'+
 			    '</div>'+
 			    '<div class="col-sm-2">'+
 				'<select class="form-control" name="jop[]">'+
@@ -314,7 +310,7 @@ jQuery('#jadd').click(function (e) {
 			    '</div>'+
 			    
 			    '<div class="col-sm-2">'+
-				'<input type="text" name="f2[]" class="form-control" id="field-1" placeholder="field-2/value">'+
+				'<input type="text" name="jf2[]" class="form-control" id="field-1" placeholder="field-2/value">'+
 			    '</div>'+
 			    '<button  id="removejoin'+count+'" type="button" class="btn btn-danger" onclick="jQuery(\'#join'+count+'\').remove()">'+
 					'<i class="entypo-cancel"></i>'+
