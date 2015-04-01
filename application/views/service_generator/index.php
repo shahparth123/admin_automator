@@ -105,7 +105,7 @@ echo form_open('api/index',$attr); ?>
 
 				<div class="panel-body" id="tables">
 					<div class="col-sm-10">
-						<textarea class="form-control autogrow" id="field-ta" placeholder="Build your Custom Query here" style="overflow: hidden; word-wrap: break-word; resize: horizontal; height: 72px;"></textarea>
+					    <textarea class="form-control autogrow" name="custom_query" id="field-ta" placeholder="Build your Custom Query here" style="overflow: hidden; word-wrap: break-word; resize: horizontal; height: 72px;"></textarea>
 					</div>
 
 
