@@ -18,17 +18,80 @@ class Api extends CI_Controller {
 	 * @see http://codeigniter.com/user_guide/general/urls.html
 	 */
 	public function __construct() {
-	parent::__construct();
+		parent::__construct();
 
-	$this->load->model('api_model');
-}
+		$this->load->model('api_model');
+	}
+	
+	public function generate()
+	{
+		echo "<pre>";
+		print_r($_POST);
+		echo "</pre>";
+			
+	}
+
 	public function index()
 	{
+		echo "<pre>";
+		print_r($_POST);
+		echo "</pre>";
+		$opertation=$_POST['opertation'];
+		if($opertation=="SELECT")
+		{
+			echo "select";
+			foreach($_POST as $key => $values)
+			{
+				if($key=="fields")
+				{
+					foreach($values as $value)
+					{
+						echo $value.",";
+					}
+				}
+				else if($key=="f1")
+				{
+					$i=0;
+					foreach($values as $value)
+					{
+						$opcode=$_POST['opcode'][$i];
+						$f1=$_POST['f1'][$i];
+						$f2=$_POST['f2'][$i];
+						$op=$_POST['op'][$i];
+						$con=$_POST['con'][$i];
+						echo "where('".$f1." ".$op."',".$f2.")";
+						$i++;
+					}
+				}
+
+			}
+
+
+		}
+		else if($operation=="update")
+		{
+			echo "update";
+		}
+		else if($operation=="insert")
+		{
+			echo "insert";
+		}
+		else if($operation=="delete")
+		{
+			echo "delete";
+		}
+		else if($operation=="custom")
+		{
+			echo "custom";
+		}
+
+
 		//$this->load->view('includes/header');
-		$data['title']="Dashboard";
+		/*$data['title']="Dashboard";
 		$data['permission']="Dashboard";
 		$data['main_content']="dashboard/index";
 		$this->load->view('template/template',$data);
+		*/
 		//$this->load->view('includes/footer');
 	}
 	public function insert()
