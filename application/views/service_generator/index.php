@@ -164,11 +164,33 @@
 			    </button>
 			</div>-->
 			
-		    </div>
-	    </div>
+		</div>
+
+		</div>
+
 	    </div>
 
-	</div>  
+
+	</div>
+	<div class="col-sm-12">
+
+	    <div class="panel panel-primary" id="charts_env">
+
+		<div class="panel-heading">
+		    <div class="panel-title">Custom Query</div>
+		</div>
+
+		<div class="panel-body" id="tables">
+		    <div class="col-sm-10">
+			<textarea class="form-control autogrow" id="field-ta" placeholder="Build your Custom Query here" style="overflow: hidden; word-wrap: break-word; resize: horizontal; height: 72px;"></textarea>
+		    </div>
+
+
+		</div>
+
+	    </div>  
+
+	</div>
 
     </div>
 
@@ -215,33 +237,33 @@ var counter = 0;
 jQuery('#add').click(function (e) {
 	 jQuery("#addconditions").append('<div id="condition'+counter+'">'+
 			    '<div class="col-sm-2">'+
-				'<select class="form-control">'+
-				    '<option name="operation[]" value="WHERE">WHERE</option>'+
-				    '<option name="operation[]" value="HAVING">HAVING</option>'+
+				'<select class="form-control" name="opcode[]">'+
+				    '<option value="WHERE">WHERE</option>'+
+				    '<option value="HAVING">HAVING</option>'+
 				'</select>'+
 			    '</div>'+
 			    '<div class="col-sm-2">'+
 				'<input type="text" name="f1[]" class="form-control" id="field-1" placeholder="field-1">'+
 			    '</div>'+
 			    '<div class="col-sm-2">'+
-				'<select class="form-control">'+
-				    '<option name="op[]" value="=">=</option>'+
-				    '<option name="op[]" value=">">&gt;</option>'+
-				    '<option name="op[]" value=">=">&gt;=</option>'+
-				    '<option name="op[]" value="<">&lt;</option>'+
-				    '<option name="op[]" value="<=">&lt;=</option>'+
-				    '<option name="op[]" value="!=">!=</option>'+
-				    '<option name="op[]" value="LIKE">LIKE</option>'+
+				'<select class="form-control" name="op[]">'+
+				    '<option value="=">=</option>'+
+				    '<option value=">">&gt;</option>'+
+				    '<option value=">=">&gt;=</option>'+
+				    '<option value="<">&lt;</option>'+
+				    '<option value="<=">&lt;=</option>'+
+				    '<option value="!=">!=</option>'+
+				    '<option value="LIKE">LIKE</option>'+
 				'</select>'+
 			    '</div>'+
 			    
 			    '<div class="col-sm-2">'+
-				'<input type="text" name="f2[]" class="form-control" id="field-1" placeholder="field-2/val">'+
+				'<input type="text" name="f2[]" class="form-control" id="field-1" placeholder="field-2/value">'+
 			    '</div>'+
 			    '<div class="col-sm-2">'+
-				'<select class="form-control">'+
-				    '<option name = "con[]" value="AND">AND</option>'+
-				    '<option name = "con[]" value="OR">OR</option>'+
+				'<select class="form-control" name = "con[]">'+
+				    '<option value="AND">AND</option>'+
+				    '<option value="OR">OR</option>'+
 				'</select>'+
 			    '</div>'+
 			    '<button type="button" id="removecon'+counter+'" class="btn btn-danger" onclick="jQuery(\'#condition'+counter+'\').remove()">'+
@@ -255,11 +277,11 @@ var count = 0;
 jQuery('#jadd').click(function (e) {
    jQuery('#addjoin').append('<div id="join'+count+'">'+
 			    '<div class="col-sm-2">'+
-				'<select class="form-control">'+
-				    '<option name = "type[]" value="LEFT">LEFT</option>'+
-				    '<option name = "type[]" value="RIGHT">RIGHT</option>'+
-				    '<option name = "type[]" value="INNER">INNER</option>'+
-				    '<option name = "type[]" value="OUTER">OUTER</option>'+
+				'<select class="form-control" name = "type[]">'+
+				    '<option value="LEFT">LEFT</option>'+
+				    '<option value="RIGHT">RIGHT</option>'+
+				    '<option value="INNER">INNER</option>'+
+				    '<option value="OUTER">OUTER</option>'+
 				'</select>'+
 			    '</div>'+
 			    '<div class="col-sm-2">'+
@@ -268,28 +290,31 @@ jQuery('#jadd').click(function (e) {
 				'</select>'+
 			    '</div>'+
 			    '<div class="col-sm-2">'+
-				'<select class="form-control">'+
-				    '<option name="operation[]" value="WHERE">WHERE</option>'+
-				    '<option name="operation[]" value="HAVING">HAVING</option>'+
+				'<select class="form-control" name="jopcode[]">'+
+				    '<option value="ON">ON</option>'+
+				    '<option value="AND">AND</option>'+
+				    '<option value="OR">OR</option>'+
+				    '<option value="WHERE">WHERE</option>'+
+				    '<option value="HAVING">HAVING</option>'+
 				'</select>'+
 			    '</div>'+
 			    '<div class="col-sm-2">'+
 				'<input type="text" name="f1[]" class="form-control" id="field-1" placeholder="field-1">'+
 			    '</div>'+
 			    '<div class="col-sm-2">'+
-				'<select class="form-control">'+
-				    '<option name="op[]" value="=">=</option>'+
-				    '<option name="op[]" value=">">&gt;</option>'+
-				    '<option name="op[]" value=">=">&gt;=</option>'+
-				    '<option name="op[]" value="<">&lt;</option>'+
-				    '<option name="op[]" value="<=">&lt;=</option>'+
-				    '<option name="op[]" value="!=">!=</option>'+
-				    '<option name="op[]" value="LIKE">LIKE</option>'+
+				'<select class="form-control" name="jop[]">'+
+				    '<option value="=">=</option>'+
+				    '<option value=">">&gt;</option>'+
+				    '<option value=">=">&gt;=</option>'+
+				    '<option value="<">&lt;</option>'+
+				    '<option value="<=">&lt;=</option>'+
+				    '<option value="!=">!=</option>'+
+				    '<option value="LIKE">LIKE</option>'+
 				'</select>'+
 			    '</div>'+
 			    
 			    '<div class="col-sm-2">'+
-				'<input type="text" name="f2[]" class="form-control" id="field-1" placeholder="field-2">'+
+				'<input type="text" name="f2[]" class="form-control" id="field-1" placeholder="field-2/value">'+
 			    '</div>'+
 			    '<button  id="removejoin'+count+'" type="button" class="btn btn-danger" onclick="jQuery(\'#join'+count+'\').remove()">'+
 					'<i class="entypo-cancel"></i>'+
