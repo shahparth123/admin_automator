@@ -21,7 +21,7 @@
 	<link rel="stylesheet" href="<?php echo base_url();?>assets/css/custom.css">
 
 	<script src="<?php echo base_url();?>assets/js/jquery-1.11.0.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
 <script src="<?php echo base_url();?>assets/js/ui-bootstra-tpls-0.10.0.min.js"></script>
 <script src="<?php echo base_url();?>assets/js/app.js"></script>
 
