@@ -72,7 +72,7 @@ echo form_open('api/index',$attr); ?>
 					<label><input type="radio" ng-model="opertation" name="opertation" id="optionsRadios" value="CUSTOM">CUSTOM</label>	
 				</div>
 				<div class="radio-inline" class="col-sm-3">
-				    <label>PRIMARY TABLE:</label><select class="form-control" name="pri_tab" id="pri_tab">
+				    <label>PRIMARY TABLE:</label><select class="form-control pri_tab" name="pri_tab" id="pri_tab">
 				    
 				    
 				    </select>
@@ -95,7 +95,12 @@ echo form_open('api/index',$attr); ?>
 					</h4>
 					<div id="addjoin">
 					</div>
-
+				    
+					<div class="col-sm-8 form-group">
+					    <div class="col-sm-4"><input type="text" class="form-control" name="groupby" id="group" placeholder="GROUP BY"></div>					  
+					    <div class="col-sm-4"><input type="text" class="form-control" name="orderby" id="order" placeholder="ORDER BY"></div>
+					</div>
+					</div>				  
 				</div>
 
 			</div>
@@ -118,10 +123,10 @@ echo form_open('api/index',$attr); ?>
 
 				</div>
 
-			</div>  
+			</div>
 
 		</div>
-
+	 
 	</div>
 
 </div>
@@ -164,8 +169,10 @@ echo form_open('api/index',$attr); ?>
 	$(document).ready(function () {
 	
 		function add_table(tablename){
-		jQuery("#tableforjoin").append('<option value="'+tablename+'">'+tablename+'</option>');
-		jQuery("#pri_tab").append('<option value="'+tablename+'">'+tablename+'</option>');
+		//jQuery("#tableforjoin").append('<option value="'+tablename+'">'+tablename+'</option>');
+		jQuery(".pri_tab").append('<option value="'+tablename+'">'+tablename+'</option>');
+		jQuery('.tableforjoin').append(jQuery('.pri_tab').html());
+		
 		}
 		
 		function remove_table(tablename){
@@ -176,6 +183,7 @@ echo form_open('api/index',$attr); ?>
 		var counter = 0;
 
 		jQuery('#add').click(function (e) {
+			
 			jQuery("#addconditions").append('<div id="condition'+counter+'">'+
 				'<div class="col-sm-2">'+
 				'<select class="form-control" name="opcode[]">'+
@@ -221,7 +229,7 @@ jQuery('#jadd').click(function (e) {
 		'</select>'+
 		'</div>'+
 		'<div class="col-sm-2">'+
-		'<select id="tableforjoin"class="form-control">'+
+		'<select id="tableforjoin"class="form-control tableforjoin">'+
 
 		'</select>'+
 		'</div>'+
