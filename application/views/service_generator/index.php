@@ -1,5 +1,5 @@
 <?php $attr=array('id'=>'query_maker'); 
-echo form_open('api/index',$attr); ?>
+echo form_open('api/generate',$attr); ?>
 <div class="row">
 	<div class="col-sm-8">
 
