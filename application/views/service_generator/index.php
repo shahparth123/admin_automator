@@ -92,7 +92,7 @@ echo form_open('api/generate',$attr); ?>
 							<i class="entypo-plus"></i>
 						</button>
 					</h4>
-					<div id="addjoin">
+                                    <div id="addjoin" class="row form-group">
 					</div>
 				    <div class="col-sm-8 form-group">
 					    <div class="col-sm-4"><input type="text" class="form-control" name="groupby" id="group" placeholder="GROUP BY"></div>					  
@@ -158,7 +158,7 @@ echo form_open('api/generate',$attr); ?>
 		function add_table(tablename){
 		//jQuery("#tableforjoin").append('<option value="'+tablename+'">'+tablename+'</option>');
 		jQuery(".pri_tab").append('<option value="'+tablename+'">'+tablename+'</option>');
-		jQuery('.tableforjoin').append(jQuery('.pri_tab').html());
+		jQuery('.tableforjoin').html(jQuery('.pri_tab').html());
 		
 		}
 		
@@ -171,7 +171,7 @@ echo form_open('api/generate',$attr); ?>
 
 		jQuery('#add').click(function (e) {
 			
-			jQuery("#addconditions").append('<div id="condition'+counter+'">'+
+			jQuery("#addconditions").append('<div id="condition'+counter+'" class="row form-group">'+
 				'<div class="col-sm-2">'+
 				'<select class="form-control" name="opcode[]">'+
 				'<option value="where">WHERE</option>'+
@@ -207,6 +207,7 @@ counter++;
 var count = 0;
 jQuery('#jadd').click(function (e) {
 	jQuery('#addjoin').append('<div id="join'+count+'">'+
+                '<div class="col-sm-11 form-group">'+
 		'<div class="col-sm-2">'+
 		'<select class="form-control" name = "jtype[]">'+
 		'<option value="LEFT">LEFT</option>'+
@@ -217,7 +218,7 @@ jQuery('#jadd').click(function (e) {
 		'</div>'+
 		'<div class="col-sm-2">'+
 		'<select id="tableforjoin"class="form-control tableforjoin">'+
-
+			jQuery('#pri_tab').html()+
 		'</select>'+
 		'</div>'+
 		'<div class="col-sm-2">'+
@@ -246,11 +247,11 @@ jQuery('#jadd').click(function (e) {
 
 		'<div class="col-sm-2">'+
 		'<input type="text" name="jf2[]" class="form-control" id="field-1" placeholder="field-2/value">'+
-		'</div>'+
+		'</div>'+'</div>'+'<div class="col-sm-1">'+
 		'<button  id="removejoin'+count+'" type="button" class="btn btn-danger" onclick="jQuery(\'#join'+count+'\').remove()">'+
 		'<i class="entypo-cancel"></i>'+
 		'</button>'+
-		'</div>');
+		'</div></div>');
 count++;
 });
 
