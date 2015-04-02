@@ -86,8 +86,7 @@ echo form_open('api/index',$attr); ?>
 					</h4>
 					<div id="addconditions">
 					</div>
-				</div>
-				<div class="col-sm-12" ng-show="opertation=='SELECT'">
+				
 					<h4>Joins 			    
 						<button id="jadd" type="button" class="btn btn-info">
 							<i class="entypo-plus"></i>
@@ -95,38 +94,26 @@ echo form_open('api/index',$attr); ?>
 					</h4>
 					<div id="addjoin">
 					</div>
-				    
-					<div class="col-sm-8 form-group">
+				    <div class="col-sm-8 form-group">
 					    <div class="col-sm-4"><input type="text" class="form-control" name="groupby" id="group" placeholder="GROUP BY"></div>					  
 					    <div class="col-sm-4"><input type="text" class="form-control" name="orderby" id="order" placeholder="ORDER BY"></div>
 					</div>
-					</div>				  
+
 				</div>
+				<div class="col-sm-10" ng-show="opertation=='CUSTOM'">
 
-			</div>
-
-
-		</div>
-		<div class="col-sm-12" ng-show="opertation=='CUSTOM'">
-
-			<div class="panel panel-primary" id="charts_env">
-
-				<div class="panel-heading">
-					<div class="panel-title">Custom Query</div>
-				</div>
-
-				<div class="panel-body" id="tables">
+				
 					<div class="col-sm-10">
 					    <textarea class="form-control autogrow" name="custom_query" id="field-ta" placeholder="Build your Custom Query here" style="overflow: hidden; word-wrap: break-word; resize: horizontal; height: 72px;"></textarea>
 					</div>
-
-
-				</div>
+		</div>
 
 			</div>
 
+
 		</div>
-	 
+		
+
 	</div>
 
 </div>
