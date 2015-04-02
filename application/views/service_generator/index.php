@@ -71,6 +71,13 @@ echo form_open('api/index',$attr); ?>
 				<div class="radio-inline">
 					<label><input type="radio" ng-model="opertation" name="opertation" id="optionsRadios" value="CUSTOM">CUSTOM</label>	
 				</div>
+				<div class="radio-inline" class="col-sm-3">
+				    <label>PRIMARY TABLE:</label><select class="form-control" name="pri_tab" id="pri_tab">
+				    
+				    
+				    </select>
+					
+				</div>
 				<div class="col-sm-12" ng-show="opertation=='SELECT'">
 					<h4>Conditions 			    
 						<button id="add" type="button" class="btn btn-info">
@@ -124,10 +131,10 @@ echo form_open('api/index',$attr); ?>
 <script src="<?php echo base_url(); ?>/assets/js/switch/jquery.quicksearch.js" type="text/javascript"></script>
 <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/multi-select.css">
 <script>
-	function remove_table(tablename){
+	function hide_table(tablename){
 		$('#'+tablename).remove();
 	}
-	function add_table(tablename){
+	function show_table(tablename){
 		var url2 = '<?php echo base_url(); ?>api/column_table/'+tablename;
 		$.ajax({
 			url: url2,
@@ -153,7 +160,18 @@ echo form_open('api/index',$attr); ?>
 			}
 		});                              
 	}
+	
 	$(document).ready(function () {
+	
+		function add_table(tablename){
+		jQuery("#tableforjoin").append('<option value="'+tablename+'">'+tablename+'</option>');
+		jQuery("#pri_tab").append('<option value="'+tablename+'">'+tablename+'</option>');
+		}
+		
+		function remove_table(tablename){
+		$("#tableforjoin option[value="+tablename+"]").remove();
+		$("#pri_tab option[value="+tablename+"]").remove();
+		}
 
 		var counter = 0;
 
@@ -291,12 +309,15 @@ $.ajax({
 					alert("Select value: " + values);
 					this.qs1.cache();
 					this.qs2.cache();
+					show_table(values);
 					add_table(values);
+					
 				},
 				afterDeselect: function (values) {
 					alert("Deselect value: " + values);
 					this.qs1.cache();
 					this.qs2.cache();
+					hide_table(values);
 					remove_table(values);
 				}
 			});
