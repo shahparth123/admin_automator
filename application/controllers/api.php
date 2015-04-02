@@ -28,55 +28,122 @@ class Api extends CI_Controller {
 		echo "<pre>";
 		print_r($_POST);
 		echo "</pre>";
+		$a=json_encode($_POST);
+		print_r($a);
+		$string = "/\?\?[0-9]+\?\?/";
+		if (preg_match_all($string, $a, $matches)) {
+			$parameter_count = count(array_unique($matches[0]));
+		}else {
+			$parameter_count = 0;
+		}
+		echo $this->api_model->generate($a,$parameter_count);
 
 	}
 
-	public function index()
+	public function index($id)
 	{
-		echo "<pre>";
-		print_r($_POST);
+		/*echo "<pre>";
+		echo $a=json_encode($_POST);
+		//echo serialize($_POST);
 		echo "</pre>";
-		$opertation=$_POST['opertation'];
+		*/
+				$d=$this->api_model->retrive($id);
+				$c=$d[0]['perameter_count'];
+				$a=$d[0]['fields'];
+		for($count=1;$count<=$c;$count++)
+		{
+		$string = "/\?\?".$count."\?\?/";
+		$a= preg_replace($string,"hello".$count,$a);
+			
+		}
+		
+		$input=json_decode($a,true);
+		//print_r($input);
+		$opertation=$input['opertation'];
 		if($opertation=="SELECT")
 		{
-			echo "select";
-			foreach($_POST as $key => $values)
+		//	echo "select ";
+			 $this->db->trans_start();
+			foreach($input as $key => $values)
 			{
 				if($key=="fields")
 				{
 					foreach($values as $value)
 					{
-						echo $value.",";
+		//				echo $value.",";
+						$this->db->select($value);
 					}
+				}
+				else if($key=="pri_tab")
+				{
+					$this->db->from($values);
+					
+		//			echo "from(".$values.")";
 				}
 				else if($key=="f1")
 				{
 					$i=0;
 					foreach($values as $value)
 					{
-						$opcode=$_POST['opcode'][$i];
-						$f1=$_POST['f1'][$i];
-						$f2=$_POST['f2'][$i];
-						$op=$_POST['op'][$i];
+						$opcode=$input['opcode'][$i];
+						$f1=$input['f1'][$i];
+						$f2=$input['f2'][$i];
+						$op=$input['op'][$i];
+						
 						if($opcode=="where")
 						{
-							echo "where('".$f1." ".$op."',".$f2.")";
+
+							if($opcode=="like")
+							{
+		//						echo "like(".$f1." ".$op."',".$f2.")";
+								$this->db->like($f1." ".$op,$f2);
+							}
+							else{
+		//						echo "where('".$f1." ".$op."',".$f2.")";
+								$this->db->where($f1." ".$op,$f2);
+							}
 						}
 						else if($opcode=="or_where")
 						{
-							echo "or_where('".$f1." ".$op."',".$f2.")";
+							if($opcode=="like")
+							{
+		//						echo "or_like(".$f1." ".$op."',".$f2.")";
+								$this->db->or_like($f1." ".$op,$f2);
+							}
+							else{
+		//						echo "or_where('".$f1." ".$op."',".$f2.")";
+								$this->db->or_where($f1." ".$op,$f2);
+							}
+
+
 						}
 						else if($opcode=="having")
 						{
-							echo "having('".$f1." ".$op."',".$f2.")";
+		//					echo "having('".$f1." ".$op."',".$f2.")";
 						}
 						$i++;
 					}
 				}
+				else if($key=="jtype")
+				{
+					$j=0;
+					foreach($values as $value)
+					{
+						$jtype=$input['jtype'][$j];
+						$jtable=$input['jtable'][$j];
+						$jf1=$input['jf1'][$j];
+						$jf2=$input['jf2'][$j];
+						$jop=$input['jop'][$j];
+		//				echo "join(".$jtable.",".$jf1." ".$jop." ".$jf2.",".$jtype.")";
+					}
+				}
 
 			}
-
-
+			$ans=$this->db->get()->result_array();
+			$this->db->trans_complete();
+			$data['output']=$ans;
+			$this->load->view('template/json',$data);
+		//	print_r($ans);
 		}
 		else if($operation=="update")
 		{
@@ -90,12 +157,11 @@ class Api extends CI_Controller {
 		{
 			echo "delete";
 		}
-		else if($operation=="custom")
+		else if($opertation=="CUSTOM")
 		{
-			echo "custom";
+			$customquery=$_POST['customquery'];
+			echo $customquery;
 		}
-
-
 		//$this->load->view('includes/header');
 		/*$data['title']="Dashboard";
 		$data['permission']="Dashboard";

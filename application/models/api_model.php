@@ -10,6 +10,20 @@ Class Api_model extends CI_Model {
 		
 	}
 
+	public function generate($query_fields,$perameter_count) {
+		$this->db->set("fields",$query_fields);
+		$this->db->set("perameter_count",$perameter_count);
+		$this->db->insert("query_param");
+		return $this->db->insert_id();
+	}
+
+	public function retrive($id) {
+		$this->db->select("*");
+		$this->db->from("query_param");
+		$this->db->where("id =",$id);
+		
+		return $this->db->get()->result_array();
+	}
 
 
 // Read data using username and password
