@@ -6,7 +6,7 @@
 			<!-- logo -->
 			<div class="logo">
 				<a href="index.html">
-					<img src="<?php echo base_url();?>/assets/images/logo@2x.png" width="120" alt="" />
+					<img src="<?php echo base_url();?>/assets/images/servicegenerator.png" width="80" height="80" alt="" />
 				</a>
 			</div>
 			
