@@ -37,15 +37,17 @@ class Dashboard extends CI_Controller {
 	public function index()
 	{
 		if ($this->login_database->is_logged_in()) {
-		//$this->load->view('includes/header');
-		$data['title']="Dashboard";
-		$data['permission']="Dashboard";
-		$data['main_content']="dashboard/index";
-		$this->load->view('template/template',$data);
+			$this->db->select('id');
+			$this->db->from('auto_user');
+			$num_results = $this->db->count_all_results();
+			$data = array('num_results' => $num_results);
+			$data['title']="Dashboard";
+			$data['permission']="Dashboard";
+			$data['main_content']="dashboard/index";
+			$this->load->view('template/template',$data);
 		}else{
 			redirect(base_url() . 'user/login');
 		}
-		//$this->load->view('includes/footer');
 	}
 
 }

@@ -209,7 +209,7 @@ Class User extends CI_Controller {
         $data = array(
             'name' => $this->input->post('name'),
             'email' => $this->input->post('email'),
-            'username' => $this->input->post('username')
+            //'username' => $this->input->post('username')
         );
 
         $success = $this->login_database->updateprofile($data);
