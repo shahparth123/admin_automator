@@ -46,7 +46,7 @@ var baseurl = '';
 		<div class="login-content">
 			
 			<a href="index.html" class="logo">
-				<img src="<?php echo base_url ();?>assets/images/logo@2x.png" width="120" alt="" />
+				<img src="<?php echo base_url ();?>assets/images/servicegenerator.png" width="120" alt="" />
 			</a>
 			
 			<p class="description">Create an account, it's free and takes few moments only!</p>
@@ -107,15 +107,7 @@ var baseurl = '';
 							</div>
 						</div>
 						
-						<!-- <div class="form-group">
-							<div class="input-group">
-								<div class="input-group-addon">
-									<i class="entypo-calendar"></i>
-								</div>
-								
-								<input type="text" class="form-control" name="birthdate" id="birthdate" placeholder="Date of Birth (DD/MM/YYYY)" data-mask="date" autocomplete="off" />
-							</div>
-						</div> -->
+						
 						
 						<div class="form-group">
 							<button type="button" data-step="step-2" class="btn btn-primary btn-block btn-login">
@@ -145,15 +137,7 @@ var baseurl = '';
 							</div>
 						</div>
 					
-						<!-- div class="form-group">
-							<div class="input-group">
-								<div class="input-group-addon">
-									<i class="entypo-mail"></i>
-								</div>
-								
-								<!-- <input type="text" class="form-control" name="email" id="email" data-mask="email" placeholder="E-mail" autocomplete="off" />
-							</div>
-						</div> -->
+						
 						
 						<div class="form-group">
 							<div class="input-group">

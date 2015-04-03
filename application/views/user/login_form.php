@@ -28,52 +28,52 @@
 	<!--[if lt IE 9]>
 		<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
 		<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-	<![endif]-->
-	
-	
-</head>
-<body class="page-body login-page login-form-fall" data-url="http://neon.dev">
-
-<!-- This is needed when you send requests via Ajax --><script type="text/javascript">
-var baseurl = '';
-</script>
-
-<div class="login-container">
-	
-	<div class="login-header login-caret">
+		<![endif]-->
 		
-		<div class="login-content">
+		
+	</head>
+	<body class="page-body login-page login-form-fall" data-url="http://neon.dev">
+
+		<!-- This is needed when you send requests via Ajax --><script type="text/javascript">
+		var baseurl = '';
+	</script>
+
+	<div class="login-container">
+		
+		<div class="login-header login-caret">
 			
-			<a href="index.html" class="logo">
-				<img src="<?php echo base_url();?>/assets/images/logo@2x.png" width="120" alt="" />
-			</a>
-			
-			<p class="description">Dear user, log in to access the admin area!</p>
-			
-			<!-- progress bar indicator -->
-			<div class="login-progressbar-indicator">
-				<h3>43%</h3>
-				<span>logging in...</span>
+			<div class="login-content">
+				
+				<a href="index.html" class="logo">
+					<img src="<?php echo base_url();?>/assets/images/servicegenerator.png" width="120" alt="" />
+				</a>
+				
+				<p class="description">Dear user, log in to access the admin area!</p>
+				
+				<!-- progress bar indicator -->
+				<div class="login-progressbar-indicator">
+					<h3>43%</h3>
+					<span>logging in...</span>
+				</div>
 			</div>
+			
 		</div>
 		
-	</div>
-	
-	<div class="login-progressbar">
-		<div></div>
-	</div>
-	
-	<div class="login-form">
+		<div class="login-progressbar">
+			<div></div>
+		</div>
 		
-		<div class="login-content">
+		<div class="login-form">
 			
-			<div class="form-login-error">
-				<h3>Invalid login</h3>
-				<p><strong>User Name</strong>/<strong>Password</strong> is invalid.</p>
-			</div>
-			
-			<?php $attr = array('id'=> "form_login");
-			     echo form_open('user/user_login_process',$attr); ?>
+			<div class="login-content">
+				
+				<div class="form-login-error">
+					<h3>Invalid login</h3>
+					<p><strong>User Name</strong>/<strong>Password</strong> is invalid.</p>
+				</div>
+				
+				<?php $attr = array('id'=> "form_login");
+				echo form_open('user/user_login_process',$attr); ?>
 				
 				<div class="form-group">
 					
@@ -98,7 +98,7 @@ var baseurl = '';
 						
 						<input type="password" class="form-control" name="password" id="password" placeholder="Password" autocomplete="off" />
 					</div>
-				
+					
 				</div>
 				
 				<div class="form-group">
@@ -108,37 +108,25 @@ var baseurl = '';
 					</button>
 				</div>
 				
-				<!-- Implemented in v1.1.4 -->				<div class="form-group">
-					<em>- or -</em>
-				</div>
 				
-				<div class="form-group">
+				<?php echo form_close(); ?>
 				
-					<button type="button" class="btn btn-default btn-lg btn-block btn-icon icon-left facebook-button">
-						Login with Facebook
-						<i class="entypo-facebook"></i>
-					</button>
+				
+				<div class="login-bottom-links">
+					<a href="<?php echo base_url();?>user/registration" class="link">Not yet Registered?</a></br>
+					<a href="<?php echo base_url();?>user/forgotpassword" class="link">Forgot your password?</a>
+					
+					<br />
+					
+					<a href="#">ToS</a>  - <a href="#">Privacy Policy</a>
 					
 				</div>
-						
-			<?php echo form_close(); ?>
-			
-			
-			<div class="login-bottom-links">
-			    <a href="<?php echo base_url();?>user/registration" class="link">Not yet Registered?</a></br>
-				<a href="<?php echo base_url();?>user/forgotpassword" class="link">Forgot your password?</a>
-				
-				<br />
-				
-				<a href="#">ToS</a>  - <a href="#">Privacy Policy</a>
 				
 			</div>
 			
 		</div>
 		
 	</div>
-	
-</div>
 
 
 	<!-- Bottom Scripts -->
