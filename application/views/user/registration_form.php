@@ -46,7 +46,7 @@ var baseurl = '';
 		<div class="login-content">
 			
 			<a href="index.html" class="logo">
-				<img src="<?php echo base_url ();?>assets/images/servicegenerator.png" width="120" alt="" />
+				<img src="<?php echo base_url ();?>assets/images/servicegenerator.png" class="img-responsive" alt="" />
 			</a>
 			
 			<p class="description">Create an account, it's free and takes few moments only!</p>

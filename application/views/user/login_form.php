@@ -45,7 +45,7 @@
 			<div class="login-content">
 				
 				<a href="index.html" class="logo">
-					<img src="<?php echo base_url();?>/assets/images/servicegenerator.png" width="120" alt="" />
+					<img src="<?php echo base_url();?>/assets/images/servicegenerator.png" class="img-responsive" alt="" />
 				</a>
 				
 				<p class="description">Dear user, log in to access the admin area!</p>
