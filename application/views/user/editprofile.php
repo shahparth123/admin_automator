@@ -62,7 +62,7 @@
 							<label for="field-1" class="col-sm-3 control-label">Name</label>
 
 							<div class="col-sm-5">
-								<input type="text" name="name" class="form-control" id="field-1" value="<?php echo $user->name; ?>">
+								<input type="text" name="name" class="form-control" id="field-1" value="<?php echo $user['name']; ?>">
 							</div>
 						</div>
 
@@ -70,7 +70,7 @@
 							<label for="field-1" class="col-sm-3 control-label">Email id</label>
 
 							<div class="col-sm-5">
-								<input type="email" name="email" class="form-control" id="field-1" value="<?php echo $user->email; ?>">
+								<input type="email" name="email" class="form-control" id="field-1" value="<?php echo $user['email']; ?>">
 							</div>
 						</div>
 
@@ -79,7 +79,7 @@
 							<label for="field-1" class="col-sm-3 control-label">Username</label>
 
 							<div class="col-sm-5">
-								<input type="text" name="username" class="form-control" id="field-1" value="<?php echo $user->username?>">
+								<input type="text" name="username" class="form-control" id="field-1" value="<?php echo $user['username']?>">
 							</div>
 						</div>
 						<div class="form-group">

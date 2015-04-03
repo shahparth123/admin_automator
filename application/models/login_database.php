@@ -145,20 +145,27 @@ Class Login_Database extends CI_Model {
 	}
 
 	public function editprofile(){
+		$user_data = $this->session->all_userdata();
+        $id = $user_data['logged_in']['id'];
+		$this->db->select('name,username,email');
+		$this->db->from('auto_user');
+		$this->db->where('id', $id);
+		$result = $this->db->get()->result_array();
 
-		$query = $this->db->query('SELECT name, username ,email FROM auto_user');
-		$result = $query->result();
 		return $result;
+		//$query = $this->db->query('SELECT name, username ,email FROM auto_user');
+		//$result = $query->result();
+		//return $result;
 		
 	}	
 	public function updateprofile($data){
-	$user_data = $this->session->all_userdata();
-	$id = $user_data['logged_in']['id'];
-	$this->db->where('id',$id );
-	$this->db->update('auto_user', $data);
-	return true; 
+		$user_data = $this->session->all_userdata();
+		$id = $user_data['logged_in']['id'];
+		$this->db->where('id',$id );
+		$this->db->update('auto_user', $data);
+		return true; 
 
-}	
+	}	
 
 
 
