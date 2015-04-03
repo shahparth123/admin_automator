@@ -9,7 +9,7 @@
 			<li class="profile-info dropdown"><!-- add class "pull-right" if you want to place this from right -->
 
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-					<img src="<?php echo base_url();?>/uploads/<?php echo $user_data['logged_in']['id']?>.jpg" alt="" class="img-circle" width="44" />
+					<img src="<?php echo base_url();?>uploads/<?php echo $user_data['logged_in']['id']?>.jpg" alt="" class="img-circle" width="44" />
 					<?php
 					echo $user_data['logged_in']['name'];
 					?>
