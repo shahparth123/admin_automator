@@ -72,13 +72,14 @@ echo form_open('api/generate',$attr); ?>
                     <label><input type="radio" ng-model="opertation" name="opertation" id="optionsRadios" value="CUSTOM">CUSTOM</label>	
                 </div>
                 <div class="radio-inline" class="col-sm-3">
-                    <label>PRIMARY TABLE:</label><select class="form-control pri_tab" name="pri_tab" id="pri_tab">
+				    <label>PRIMARY TABLE:</label><select class="form-control pri_tab" name="pri_tab" id="pri_tab">
+				    
+				    
+				    </select>
+					
+				</div>
 
-
-                    </select>
-
-                </div>
-                <div class="col-sm-12" ng-show="opertation== 'SELECT'">
+                <div class="col-sm-12" ng-show="opertation== 'SELECT' || opertation== 'DELETE'">
                     <h4>Conditions 			    
                         <button id="add" type="button" class="btn btn-info">
                             <i class="entypo-plus"></i>
@@ -119,7 +120,7 @@ echo form_open('api/generate',$attr); ?>
                     </div>
                 </div>
 
-                <div class="col-md-6">
+                <div class="col-md-6 row">
                     <textarea class="form-control autogrow" name="comment" id="comment" placeholder="Comment" style="height: 72px; overflow: hidden; word-wrap: break-word; resize: horizontal;"></textarea>
                 </div>
 
@@ -172,16 +173,15 @@ echo form_open('api/generate',$attr); ?>
                 
                 $(document).on("change",".fields",function(){
                         var id=this.id;
+                        nid = id.replace(".", "");
         if($(this).is(":checked"))
         {
-                alert(id);
-                jQuery("#insertvalues").append('<div class ="col-sm-6"><h4>'+id+':</h4><input type="text" id="ins_" name="ins_'+id+'" class="form-control" placeholder="value"></div>');
+                jQuery("#insertvalues").append('<div class ="col-sm-6"><h4>'+id+':</h4><input type="text" id="'+nid+'" name="'+id+'" class="form-control" placeholder="value"></div>');
                 
         }
         else
         {
-                alert('uncheck');
-                $('#ins/.'+id).parent().remove();
+                $('#'+nid).parent().remove();
         }
     });
 
@@ -333,7 +333,7 @@ $.ajax({
 					});
 				},
 				afterSelect: function (values) {
-					alert("Select value: " + values);
+					//alert("Select value: " + values);
 					this.qs1.cache();
 					this.qs2.cache();
 					show_table(values);
@@ -341,7 +341,7 @@ $.ajax({
 					
 				},
 				afterDeselect: function (values) {
-					alert("Deselect value: " + values);
+					//alert("Deselect value: " + values);
 					this.qs1.cache();
 					this.qs2.cache();
 					hide_table(values);
