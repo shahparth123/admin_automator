@@ -20,7 +20,7 @@
 			"hideMethod": "fadeOut"
 		};
 
-		toastr.success("You have been awarded with 1 year free subscription. Enjoy it!", "Account Subcription Updated", opts);
+		//toastr.success("You have been awarded with 1 year free subscription. Enjoy it!", "Account Subcription Updated", opts);
 	}, 3000);
 	
 	
@@ -204,10 +204,10 @@ function getRandomInt(min, max)
 		
 		<div class="tile-stats tile-green">
 			<div class="icon"><i class="entypo-chart-bar"></i></div>
-			<div class="num" data-start="0" data-end="135" data-postfix="" data-duration="1500" data-delay="600">0</div>
+			<div class="num" data-start="0" data-end="<?php echo $num_results_api;?>" data-postfix="" data-duration="1500" data-delay="600">0</div>
 			
-			<h3>Daily Visitors</h3>
-			<p>this is the average value.</p>
+			<h3>APIs</h3>
+			<p>Generated till now</p>
 		</div>
 		
 	</div>

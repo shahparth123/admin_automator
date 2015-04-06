@@ -31,7 +31,7 @@ class Dashboard extends CI_Controller {
 	 * config/routes.php, it's displayed at http://example.com/
 	 *
 	 * So any other public methods not prefixed with an underscore will
-	 * map to /index.php/welcome/<method_name>
+	 * map to /index.}php/welcome/<method_name>
 	 * @see http://codeigniter.com/user_guide/general/urls.html
 	 */
 	public function index()
@@ -40,7 +40,12 @@ class Dashboard extends CI_Controller {
 			$this->db->select('id');
 			$this->db->from('auto_user');
 			$num_results = $this->db->count_all_results();
-			$data = array('num_results' => $num_results);
+
+			$this->db->select('id');
+			$this->db->from('query_param');
+			$num_results_api = $this->db->count_all_results();
+			$data = array('num_results_api' => $num_results_api,'num_results' => $num_results);
+
 			$data['title']="Dashboard";
 			$data['permission']="Dashboard";
 			$data['main_content']="dashboard/index";
@@ -49,8 +54,5 @@ class Dashboard extends CI_Controller {
 			redirect(base_url() . 'user/login');
 		}
 	}
-
 }
 
-/* End of file welcome.php */
-/* Location: ./application/controllers/welcome.php */

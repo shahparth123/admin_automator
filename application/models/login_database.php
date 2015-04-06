@@ -146,7 +146,7 @@ Class Login_Database extends CI_Model {
 
 	public function editprofile(){
 		$user_data = $this->session->all_userdata();
-        $id = $user_data['logged_in']['id'];
+		$id = $user_data['logged_in']['id'];
 		$this->db->select('name,username,email');
 		$this->db->from('auto_user');
 		$this->db->where('id', $id);
@@ -165,6 +165,25 @@ Class Login_Database extends CI_Model {
 		$this->db->update('auto_user', $data);
 		return true; 
 
+	}	
+	public function user_list(){
+		$this->db->select('*');
+		$this->db->from('auto_user');
+		$this->db->where('is_delete', 0);
+		$result = $this->db->get()->result_array();
+		return $result;
+		
+		
+	}	
+
+	public function api_list(){
+		$this->db->select('*');
+		$this->db->from('query_param');
+		$this->db->where('is_delete', 0);
+		$result = $this->db->get()->result_array();
+		return $result;
+		
+		
 	}	
 
 

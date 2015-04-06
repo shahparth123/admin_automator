@@ -5,7 +5,7 @@
 			
 			<!-- logo -->
 			<div class="logo">
-				<a href="index.html">
+				<a href="<?php echo base_url();?>dashboard/index">
 					<img src="<?php echo base_url();?>/assets/images/servicegenerator.png" class="img-responsive" alt="" />
 				</a>
 			</div>
@@ -62,6 +62,18 @@
 				<a href="<?php echo base_url();?>dataviewer/index">
 					<i class="entypo-doc-text"></i>
 					<span>Data viewer</span>
+				</a>
+			</li>
+			<li>
+				<a href="<?php echo base_url();?>user_list/index">
+					<i class="entypo-users"></i>
+					<span>Users List</span>
+				</a>
+			</li>
+			<li>
+				<a href="<?php echo base_url();?>api_list/index">
+					<i class="entypo-tools"></i>
+					<span>API List</span>
 				</a>
 			</li>
 			<!--<li>
