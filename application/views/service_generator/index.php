@@ -1,121 +1,134 @@
 <?php $attr=array('id'=>'query_maker'); 
 echo form_open('api/generate',$attr); ?>
 <div class="row">
-	<div class="col-sm-8">
+    <div class="col-sm-8">
 
-		<div class="panel panel-primary" id="charts_env">
+        <div class="panel panel-primary" id="charts_env">
 
-			<div class="panel-heading">
-				<div class="panel-title">Select fields from here</div>
-			</div>
+            <div class="panel-heading">
+                <div class="panel-title">Select fields from here</div>
+            </div>
 
-			<div class="panel-body" id="tables">
-
-
-			</div>
-
-		</div>  
-
-	</div>
-	<div class="col-sm-4">
-
-		<div class="panel panel-primary">
-			<div class="panel-heading">
-				<div class="panel-title">
-					<h4>
-						Real Time Stats
-						<br />
-						<small>current server uptime</small>
-					</h4>
-				</div>
-
-				<div class="panel-options">
-					<a href="#sample-modal" data-toggle="modal" data-target="#sample-modal-dialog-1" class="bg"><i class="entypo-cog"></i></a>
-					<a href="#" data-rel="collapse"><i class="entypo-down-open"></i></a>
-					<a href="#" data-rel="reload"><i class="entypo-arrows-ccw"></i></a>
-					<a href="#" data-rel="close"><i class="entypo-cancel"></i></a>
-				</div>
-			</div>
-			<div class="panel-body no-padding">
-
-				<select id='callbacks' multiple='multiple' >
-
-				</select>
-
-			</div>
-
-		</div>
-	</div>
-	<div class="col-sm-11">
-
-		<div class="panel panel-primary" id="charts_env">
-
-			<div class="panel-heading">
-				<div class="panel-title">Query Generator</div>
-			</div>
-
-			<div class="panel-body" id="tables">
-				<h4>Operation</h4>
-				<div class="radio-inline">
-				<label><input type="radio" ng-model="opertation" name="opertation" id="optionsRadios" value="SELECT">SELECT</label>	
-				</div>
-				<div class="radio-inline">
-					<label><input type="radio" ng-model="opertation" name="opertation" id="optionsRadios" value="INSERT">INSERT</label>	
-				</div>
-				<div class="radio-inline">
-					<label><input type="radio" ng-model="opertation" name="opertation" id="optionsRadios" value="UPDATE">UPDATE</label>	
-				</div>
-				<div class="radio-inline">
-					<label><input type="radio" ng-model="opertation" name="opertation" id="optionsRadios" value="DELETE">DELETE</label>	
-				</div>
-				<div class="radio-inline">
-					<label><input type="radio" ng-model="opertation" name="opertation" id="optionsRadios" value="CUSTOM">CUSTOM</label>	
-				</div>
-				<div class="radio-inline" class="col-sm-3">
-				    <label>PRIMARY TABLE:</label><select class="form-control pri_tab" name="pri_tab" id="pri_tab">
-				    
-				    
-				    </select>
-					
-				</div>
-				<div class="col-sm-12" ng-show="opertation=='SELECT'">
-					<h4>Conditions 			    
-						<button id="add" type="button" class="btn btn-info">
-							<i class="entypo-plus"></i>
-						</button>
-					</h4>
-					<div id="addconditions">
-					</div>
-				
-					<h4>Joins 			    
-						<button id="jadd" type="button" class="btn btn-info">
-							<i class="entypo-plus"></i>
-						</button>
-					</h4>
-                                    <div id="addjoin" class="row form-group">
-					</div>
-				    <div class="col-sm-8 form-group">
-					    <div class="col-sm-4"><input type="text" class="form-control" name="groupby" id="group" placeholder="GROUP BY"></div>					  
-					    <div class="col-sm-4"><input type="text" class="form-control" name="orderby" id="order" placeholder="ORDER BY"></div>
-					</div>
-
-				</div>
-				<div class="col-sm-10" ng-show="opertation=='CUSTOM'">
-
-				
-					<div class="col-sm-10">
-					    <textarea class="form-control autogrow" name="custom_query" id="field-ta" placeholder="Build your Custom Query here" style="overflow: hidden; word-wrap: break-word; resize: horizontal; height: 72px;"></textarea>
-					</div>
-		</div>
-
-			</div>
+            <div class="panel-body" id="tables">
 
 
-		</div>
-		
+            </div>
 
-	</div>
+        </div>  
 
+    </div>
+    <div class="col-sm-4">
+
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <div class="panel-title">
+                    <h4>
+                        Real Time Stats
+                        <br />
+                        <small>current server uptime</small>
+                    </h4>
+                </div>
+
+                <div class="panel-options">
+                    <a href="#sample-modal" data-toggle="modal" data-target="#sample-modal-dialog-1" class="bg"><i class="entypo-cog"></i></a>
+                    <a href="#" data-rel="collapse"><i class="entypo-down-open"></i></a>
+                    <a href="#" data-rel="reload"><i class="entypo-arrows-ccw"></i></a>
+                    <a href="#" data-rel="close"><i class="entypo-cancel"></i></a>
+                </div>
+            </div>
+            <div class="panel-body no-padding">
+
+                <select id='callbacks' multiple='multiple' >
+
+                </select>
+
+            </div>
+
+        </div>
+    </div>
+    <div class="col-sm-11">
+
+        <div class="panel panel-primary" id="charts_env">
+
+            <div class="panel-heading">
+                <div class="panel-title">Query Generator</div>
+            </div>
+
+            <div class="panel-body" id="tables">
+                <h4>Operation</h4>
+                <div class="radio-inline">
+                    <label><input type="radio" ng-model="opertation" name="opertation" id="optionsRadios" value="SELECT">SELECT</label>	
+                </div>
+                <div class="radio-inline">
+                    <label><input type="radio" ng-model="opertation" name="opertation" id="optionsRadios" value="INSERT">INSERT</label>	
+                </div>
+                <div class="radio-inline">
+                    <label><input type="radio" ng-model="opertation" name="opertation" id="optionsRadios" value="UPDATE">UPDATE</label>	
+                </div>
+                <div class="radio-inline">
+                    <label><input type="radio" ng-model="opertation" name="opertation" id="optionsRadios" value="DELETE">DELETE</label>	
+                </div>
+                <div class="radio-inline">
+                    <label><input type="radio" ng-model="opertation" name="opertation" id="optionsRadios" value="CUSTOM">CUSTOM</label>	
+                </div>
+                <div class="radio-inline" class="col-sm-3">
+                    <label>PRIMARY TABLE:</label><select class="form-control pri_tab" name="pri_tab" id="pri_tab">
+
+
+                    </select>
+
+                </div>
+                <div class="col-sm-12" ng-show="opertation== 'SELECT'">
+                    <h4>Conditions 			    
+                        <button id="add" type="button" class="btn btn-info">
+                            <i class="entypo-plus"></i>
+                        </button>
+                    </h4>
+                    <div id="addconditions">
+                    </div>
+
+                    <h4>Joins 			    
+                        <button id="jadd" type="button" class="btn btn-info">
+                            <i class="entypo-plus"></i>
+                        </button>
+                    </h4>
+                    <div id="addjoin" class="row form-group">
+                    </div>
+                    <div class="col-sm-8 form-group">
+                        <div class="col-sm-4"><input type="text" class="form-control" name="groupby" id="group" placeholder="GROUP BY"></div>					  
+                        <div class="col-sm-4"><input type="text" class="form-control" name="orderby" id="order" placeholder="ORDER BY"></div>
+                    </div>
+
+                </div>
+
+                <div class="col-sm-12" ng-show="opertation == 'INSERT'">
+
+                    <h4>SELECT THE FIELDS FROM ABOVE AND INSERT THEIR RESPECTIVE VALUES BELOW:</h4>    
+                    <div id="insertvalues">
+
+
+                    </div>
+
+                </div>
+
+                <div class="col-sm-10" ng-show="opertation == 'CUSTOM'">
+
+
+                    <div class="col-sm-10">
+                        <textarea class="form-control autogrow" name="custom_query" id="field-ta" placeholder="Build your Custom Query here" style="overflow: hidden; word-wrap: break-word; resize: horizontal; height: 72px;"></textarea>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <textarea class="form-control autogrow" name="comment" id="comment" placeholder="Comment" style="height: 72px; overflow: hidden; word-wrap: break-word; resize: horizontal;"></textarea>
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </div>
 </div>
 <button type="submit" class="btn btn-blue">Generate</button>
 <?php echo form_close(); ?>
@@ -139,7 +152,8 @@ echo form_open('api/generate',$attr); ?>
 					html1 += '<div class="col-sm-12">';
 					html1 += '<div class="checkbox">';
 					html1 += '<label>';
-					html1 += '<input name="fields[]" value="'+tablename+'.'+v.Field+'" type="checkbox">'+ v.Field +" " +v.Type+'';
+					html1 += '<input name="fields[]" class="fields" id="'+tablename+'.'+v.Field+'" value="'+tablename+'.'+v.Field+'" type="checkbox">'+ v.Field +" " +v.Type+'';
+                                
 					html1 += '</label>';
 					html1 += '</div>';
 
@@ -149,11 +163,28 @@ echo form_open('api/generate',$attr); ?>
 				});
 				html1 +='</div></div></div></div>';
 				$('#tables').append(html1);
+                                //$('.fields').bind('click', ins_val);
 			}
 		});                              
 	}
-	
+   	
 	$(document).ready(function () {
+                
+                $(document).on("change",".fields",function(){
+                        var id=this.id;
+        if($(this).is(":checked"))
+        {
+                alert(id);
+                jQuery("#insertvalues").append('<div class ="col-sm-6"><h4>'+id+':</h4><input type="text" id="ins_" name="ins_'+id+'" class="form-control" placeholder="value"></div>');
+                
+        }
+        else
+        {
+                alert('uncheck');
+                $('#ins/.'+id).parent().remove();
+        }
+    });
+
 	
 		function add_table(tablename){
 		//jQuery("#tableforjoin").append('<option value="'+tablename+'">'+tablename+'</option>');
@@ -217,7 +248,7 @@ jQuery('#jadd').click(function (e) {
 		'</select>'+
 		'</div>'+
 		'<div class="col-sm-2">'+
-		'<select id="tableforjoin"class="form-control tableforjoin">'+
+		'<select name="jtable[]" id="tableforjoin" class="form-control tableforjoin">'+
 			jQuery('#pri_tab').html()+
 		'</select>'+
 		'</div>'+
