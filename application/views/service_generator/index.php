@@ -95,14 +95,14 @@ echo form_open('api/generate',$attr); ?>
                     </h4>
                     <div id="addjoin" class="row form-group">
                     </div>
-                    <div class="col-sm-8 form-group">
+                    <div class="col-sm-8 form-group" ng-show="opertation== 'SELECT'">
                         <div class="col-sm-4"><input type="text" class="form-control" name="groupby" id="group" placeholder="GROUP BY"></div>					  
                         <div class="col-sm-4"><input type="text" class="form-control" name="orderby" id="order" placeholder="ORDER BY"></div>
                     </div>
 
                 </div>
 
-                <div class="col-sm-12" ng-show="opertation == 'INSERT'">
+                <div class="col-sm-12" ng-show="opertation == 'INSERT' || opertation== 'UPDATE'">
 
                     <h4>SELECT THE FIELDS FROM ABOVE AND INSERT THEIR RESPECTIVE VALUES BELOW:</h4>    
                     <div id="insertvalues">
@@ -110,6 +110,18 @@ echo form_open('api/generate',$attr); ?>
 
                     </div>
 
+                </div>
+                
+                    <div class="col-sm-10" ng-show="opertation == 'UPDATE'">
+                        <h4>Conditions 			    
+                        <button id="upadd" type="button" class="btn btn-info">
+                            <i class="entypo-plus"></i>
+                        </button>
+                    </h4>
+                        <div id="updateconditions">
+                    
+                        </div>
+                        
                 </div>
 
                 <div class="col-sm-10" ng-show="opertation == 'CUSTOM'">
@@ -160,11 +172,11 @@ echo form_open('api/generate',$attr); ?>
 
 					html1 += '</div>';
 					html1 += '</div>';
-
+                                                
 				});
 				html1 +='</div></div></div></div>';
 				$('#tables').append(html1);
-                                //$('.fields').bind('click', ins_val);
+                                
 			}
 		});                              
 	}
@@ -197,9 +209,9 @@ echo form_open('api/generate',$attr); ?>
 		$("#tableforjoin option[value="+tablename+"]").remove();
 		$("#pri_tab option[value="+tablename+"]").remove();
 		}
-
+                
+                //jQuery to add Condition in SELECT
 		var counter = 0;
-
 		jQuery('#add').click(function (e) {
 			
 			jQuery("#addconditions").append('<div id="condition'+counter+'" class="row form-group">'+
@@ -235,6 +247,46 @@ echo form_open('api/generate',$attr); ?>
 				'</div>');
 counter++;
 });
+
+                //jQuery to add Condition in UPDATE
+                var counter = 0;
+		jQuery('#upadd').click(function (e) {
+			
+			jQuery("#updateconditions").append('<div id="condition'+counter+'" class="row form-group">'+
+				'<div class="col-sm-2">'+
+				'<select class="form-control" name="opcode[]">'+
+				'<option value="where">WHERE</option>'+
+				'<option value="or_where">WHERE(OR)</option>'+
+				'<option value="having">HAVING</option>'+
+				'</select>'+
+				'</div>'+
+				'<div class="col-sm-2">'+
+				'<input type="text" name="f1[]" class="form-control" id="field-1" placeholder="field-1">'+
+				'</div>'+
+				'<div class="col-sm-2">'+
+				'<select class="form-control" name="op[]">'+
+				'<option value="=">=</option>'+
+				'<option value=">">&gt;</option>'+
+				'<option value=">=">&gt;=</option>'+
+				'<option value="<">&lt;</option>'+
+				'<option value="<=">&lt;=</option>'+
+				'<option value="!=">!=</option>'+
+				'<option value="LIKE">LIKE</option>'+
+				'</select>'+
+				'</div>'+
+
+				'<div class="col-sm-2">'+
+				'<input type="text" name="f2[]" class="form-control" id="field-1" placeholder="field-2/value">'+
+				'</div>'+
+				'<button type="button" id="removecon'+counter+'" class="btn btn-danger" onclick="jQuery(\'#condition'+counter+'\').remove()">'+
+				'<i class="entypo-cancel"></i>'+
+				'</button>'+
+
+				'</div>');
+counter++;
+});
+
+//jQuery to add Join in SELECT
 var count = 0;
 jQuery('#jadd').click(function (e) {
 	jQuery('#addjoin').append('<div id="join'+count+'">'+
