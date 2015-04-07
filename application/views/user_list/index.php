@@ -29,7 +29,7 @@
 						<td><?php echo $user['name']; ?></td>
 						<td><?php echo $user['username']; ?></td>
 						<td><?php echo $user['email']; ?></td>
-						<td class="center"><?php echo $user['status']; ?></td>
+						<td class="center"><?php if($user['status']==1){$status="Verified";}else{$status="Pending";}?><?php echo $status; ?></td>
 						<td class="center"><?php echo $user['created']; ?></td> 
 						<td><a id="deletebut" href="<?php echo base_url();?>user_list/delete?id=<?php echo$user['id']?>" class="btn btn-danger btn-sm btn-icon icon-left">
 							<i class="entypo-cancel"></i>
