@@ -1,7 +1,4 @@
-
-<div class="main-content">
-
-	<div class="row">
+<div class="row">
 
 		<h2>API List</h2>
 
@@ -17,20 +14,23 @@
 			<thead>
 
 				<tr class="replace-inputs">
-
+					<th>ID</th>
 					<th>perameter_count</th>
 					<th>auth_key</th>
 					<th>user_id</th>
 					<th>created_at</th> 
 					<th>Comment</th>
+					<th>API_URL</th>
 					<th>Action</th>
 				</tr>
 				<tr>
+					<th>ID</th>
 					<th>perameter_count</th>
 					<th>auth_key</th>
 					<th>user_id</th>
 					<th>created_at</th> 
 					<th>Comment</th>
+					<th>API_URL</th>
 					<th>Action</th>
 
 				</tr>
@@ -38,11 +38,13 @@
 			<tbody>
 				<?php foreach ($api_list as $api): ?>
 					<tr class="odd gradeX">
+						<td><?php echo $api['id']; ?></td>
 						<td><?php echo $api['perameter_count']; ?></td>
 						<td><?php echo $api['auth_key']; ?></td>
 						<td class="center"><?php echo $api['user_id']; ?></td>
 						<td class="center"><?php echo $api['created_at']; ?></td>
 						<td><?php echo $api['comment']; ?></td>
+						<td><a href="<?php echo base_url()."api/index/".$api['id']."/".$api['auth_key'] ?>"><?php echo base_url()."api/index/".$api['id']."/".$api['auth_key'] ?></a></td>
 						<td><a id="deletebut" href="<?php echo base_url();?>api_list/delete?id=<?php echo$api['id']?>" class="btn btn-danger btn-sm btn-icon icon-left">
 							<i class="entypo-cancel"></i>
 							Delete
@@ -55,12 +57,13 @@
 			</tbody>
 			<tfoot>
 				<tr>
-
+					<th>ID</th>
 					<th>perameter_count</th>
 					<th>auth_key</th>
 					<th>user_id</th>
 					<th>created_at</th> 
 					<th>Comment</th>
+					<th>API_URL</th>
 					<th>Action</th>
 					
 				</tr>
@@ -68,8 +71,6 @@
 		</table>
 
 	</div>
-</div>
-
 
 
 <script src="<?php echo base_url();?>assets/js/gsap/main-gsap.js"></script>

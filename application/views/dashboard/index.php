@@ -190,11 +190,11 @@ function getRandomInt(min, max)
 <div class="row">
 	<div class="col-sm-3">
 		
-		<div class="tile-stats tile-red">
+		<div class="tile-stats tile-red" onclick="location.href='<?php echo base_url();?>user_list/index';">
 			<div class="icon"><i class="entypo-users"></i></div>
 			<div class="num" data-start="0" data-end="<?php echo $num_results;?>" data-postfix="" data-duration="1500" data-delay="0">0</div>
 			
-			<h3>Registered users</h3>
+			<h3>Registered users</a></h3>
 			<p>Total user in Database</p>
 		</div>
 		
@@ -202,11 +202,11 @@ function getRandomInt(min, max)
 	
 	<div class="col-sm-3">
 		
-		<div class="tile-stats tile-green">
+		<div class="tile-stats tile-green" onclick="location.href='<?php echo base_url();?>api_list/index';">
 			<div class="icon"><i class="entypo-chart-bar"></i></div>
 			<div class="num" data-start="0" data-end="<?php echo $num_results_api;?>" data-postfix="" data-duration="1500" data-delay="600">0</div>
 			
-			<h3>APIs</h3>
+			<h3>APIs</a></h3>
 			<p>Generated till now</p>
 		</div>
 		
@@ -335,237 +335,5 @@ function getRandomInt(min, max)
 </div>
 
 
-<br />
-
-<div class="row">
-	
-	<div class="col-sm-4">
-		
-		<div class="panel panel-primary">
-			<table class="table table-bordered table-responsive">
-				<thead>
-					<tr>
-						<th class="padding-bottom-none text-center">
-							<br />
-							<br />
-							<span class="monthly-sales"></span>
-						</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td class="panel-heading">
-							<h4>Monthly Sales</h4>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-		
-	</div>
-	
-	<div class="col-sm-8">
-		
-		<div class="panel panel-primary">
-			<div class="panel-heading">
-				<div class="panel-title">Latest Updated Profiles</div>
-				
-				<div class="panel-options">
-					<a href="#sample-modal" data-toggle="modal" data-target="#sample-modal-dialog-1" class="bg"><i class="entypo-cog"></i></a>
-					<a href="#" data-rel="collapse"><i class="entypo-down-open"></i></a>
-					<a href="#" data-rel="reload"><i class="entypo-arrows-ccw"></i></a>
-					<a href="#" data-rel="close"><i class="entypo-cancel"></i></a>
-				</div>
-			</div>
-			
-			<table class="table table-bordered table-responsive">
-				<thead>
-					<tr>
-						<th>#</th>
-						<th>Name</th>
-						<th>Position</th>
-						<th>Activity</th>
-					</tr>
-				</thead>
-				
-				<tbody>
-					<tr>
-						<td>1</td>
-						<td>Art Ramadani</td>
-						<td>CEO</td>
-						<td class="text-center"><span class="inlinebar">4,3,5,4,5,6</span></td>
-					</tr>
-					
-					<tr>
-						<td>2</td>
-						<td>Filan Fisteku</td>
-						<td>Member</td>
-						<td class="text-center"><span class="inlinebar-2">1,3,4,5,3,5</span></td>
-					</tr>
-					
-					<tr>
-						<td>3</td>
-						<td>Arlind Nushi</td>
-						<td>Co-founder</td>
-						<td class="text-center"><span class="inlinebar-3">5,3,2,5,4,5</span></td>
-					</tr>
-
-				</tbody>
-			</table>
-		</div>
-		
-	</div>
-	
-</div>
-
-<br />
 
 
-<script type="text/javascript">
-	// Code used to add Todo Tasks
-	jQuery(document).ready(function($)
-	{
-		var $todo_tasks = $("#todo_tasks");
-		
-		$todo_tasks.find('input[type="text"]').on('keydown', function(ev)
-		{
-			if(ev.keyCode == 13)
-			{
-				ev.preventDefault();
-				
-				if($.trim($(this).val()).length)
-				{
-					var $todo_entry = $('<li><div class="checkbox checkbox-replace color-white"><input type="checkbox" /><label>'+$(this).val()+'</label></div></li>');
-					$(this).val('');
-					
-					$todo_entry.appendTo($todo_tasks.find('.todo-list'));
-					$todo_entry.hide().slideDown('fast');
-					replaceCheckboxes();
-				}
-			}
-		});
-	});
-</script>
-
-<div class="row">
-	
-	<div class="col-sm-3">
-		<div class="tile-block" id="todo_tasks">
-			
-			<div class="tile-header">
-				<i class="entypo-list"></i>
-				
-				<a href="#">
-					Tasks
-					<span>To do list, tick one.</span>
-				</a>
-			</div>
-			
-			<div class="tile-content">
-				
-				<input type="text" class="form-control" placeholder="Add Task" />
-				
-				
-				<ul class="todo-list">
-					<li>
-						<div class="checkbox checkbox-replace color-white">
-							<input type="checkbox" />
-							<label>Website Design</label>
-						</div>
-					</li>
-					
-					<li>
-						<div class="checkbox checkbox-replace color-white">
-							<input type="checkbox" id="task-2" checked />
-							<label>Slicing</label>
-						</div>
-					</li>
-					
-					<li>
-						<div class="checkbox checkbox-replace color-white">
-							<input type="checkbox" id="task-3" />
-							<label>WordPress Integration</label>
-						</div>
-					</li>
-					
-					<li>
-						<div class="checkbox checkbox-replace color-white">
-							<input type="checkbox" id="task-4" />
-							<label>SEO Optimize</label>
-						</div>
-					</li>
-					
-					<li>
-						<div class="checkbox checkbox-replace color-white">
-							<input type="checkbox" id="task-5" checked="" />
-							<label>Minify &amp; Compress</label>
-						</div>
-					</li>
-				</ul>
-				
-			</div>
-			
-			<div class="tile-footer">
-				<a href="#">View all tasks</a>
-			</div>
-			
-		</div>
-	</div>
-
-	<div class="col-sm-9">
-		
-		<script type="text/javascript">
-			jQuery(document).ready(function($)
-			{
-				var map = $("#map-2");
-				
-				map.vectorMap({
-					map: 'europe_merc_en',
-					zoomMin: '3',
-					backgroundColor: '#383f47',
-					focusOn: { x: 0.5, y: 0.8, scale: 3 }
-				});
-			});
-		</script>
-		
-		<div class="tile-group">
-			
-			<div class="tile-left">
-				<div class="tile-entry">
-					<h3>Map</h3>
-					<span>top visitors location</span>
-				</div>
-				
-				<div class="tile-entry">
-					<img src="assets/images/sample-al.png" alt="" class="pull-right op" />
-					
-					<h4>Albania</h4>
-					<span>25%</span>
-				</div>
-				
-				<div class="tile-entry">
-					<img src="assets/images/sample-it.png" alt="" class="pull-right op" />
-					
-					<h4>Italy</h4>
-					<span>18%</span>
-				</div>
-				
-				<div class="tile-entry">
-					<img src="assets/images/sample-au.png" alt="" class="pull-right op" />
-					
-					<h4>Austria</h4>
-					<span>15%</span>
-				</div>
-			</div>
-			
-			<div class="tile-right">
-				
-				<div id="map-2" class="map"></div>
-				
-			</div>
-			
-		</div>
-		
-	</div>
-
-</div>

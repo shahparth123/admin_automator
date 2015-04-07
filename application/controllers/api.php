@@ -36,34 +36,45 @@ class Api extends CI_Controller {
 		}else {
 			$parameter_count = 0;
 		}
-		echo $this->api_model->generate($a,$parameter_count);
+		$user_id=$this->session->userdata('logged_in')['id'];
+		$auth_key=random_string('alnum', 10);
+		$id= $this->api_model->generate($a,$parameter_count,$user_id,$auth_key,$_POST['comment']);
 
+		echo base_url()."api/index/".$id."/".$auth_key;
 	}
 
-	public function index($id)
+	public function index($id,$auth_key)
 	{
 		/*echo "<pre>";
 		echo $a=json_encode($_POST);
 		//echo serialize($_POST);
 		echo "</pre>";
 		*/
-				$d=$this->api_model->retrive($id);
-				$c=$d[0]['perameter_count'];
-				$a=$d[0]['fields'];
+		$d=$this->api_model->retrive($id,$auth_key);
+		$c=$d[0]['perameter_count'];
+		$a=$d[0]['fields'];
+ 		//echo file_get_contents('php://input');
+ 		//exit();
 		for($count=1;$count<=$c;$count++)
 		{
-		$string = "/\?\?".$count."\?\?/";
-		$a= preg_replace($string,"hello".$count,$a);
-			
+			$string = "/\?\?".$count."\?\?/";
+			$a= preg_replace($string,$_POST['p'.$count],$a);
+			//echo $a;	
 		}
 		
 		$input=json_decode($a,true);
 		//print_r($input);
 		$opertation=$input['opertation'];
+
 		if($opertation=="SELECT")
 		{
 		//	echo "select ";
-			 $this->db->trans_start();
+			$this->db->trans_start();
+			if(isset($input['fields'])==FALSE)
+			{
+				$this->db->select("*");
+
+			}
 			foreach($input as $key => $values)
 			{
 				if($key=="fields")
@@ -120,6 +131,7 @@ class Api extends CI_Controller {
 						else if($opcode=="having")
 						{
 		//					echo "having('".$f1." ".$op."',".$f2.")";
+							$this->db->having($f1." ".$op,$f2);
 						}
 						$i++;
 					}
@@ -135,7 +147,17 @@ class Api extends CI_Controller {
 						$jf2=$input['jf2'][$j];
 						$jop=$input['jop'][$j];
 		//				echo "join(".$jtable.",".$jf1." ".$jop." ".$jf2.",".$jtype.")";
+						$this->db->join($jtable,$jf1." ".$jop." ".$jf2,$jtype);
+						$j++;
 					}
+				}
+				else if($key=="groupby" && $values!="")
+				{
+					$this->db->group_by($values);
+				}
+				else if($key=="orderby" && $values!="")
+				{
+					$this->db->order_by($values,"DESC");
 				}
 
 			}
@@ -145,22 +167,33 @@ class Api extends CI_Controller {
 			$this->load->view('template/json',$data);
 		//	print_r($ans);
 		}
-		else if($operation=="update")
+		else if($opertation=="update")
 		{
 			echo "update";
 		}
-		else if($operation=="insert")
+		else if($opertation=="insert")
 		{
 			echo "insert";
 		}
-		else if($operation=="delete")
+		else if($opertation=="delete")
 		{
 			echo "delete";
 		}
 		else if($opertation=="CUSTOM")
 		{
-			$customquery=$_POST['customquery'];
-			echo $customquery;
+			if($input['custom_query']!="")
+			{
+				$customquery=$input['custom_query'];
+				//echo $customquery;	
+				$sql= $customquery;
+				$qry_res = $this->db->query($sql);		
+				$res=$qry_res->result_array();
+				$qry_res->free_result();
+				$data['output']=$res;
+				$this->load->view('template/json',$data);
+			}	
+			
+
 		}
 		//$this->load->view('includes/header');
 		/*$data['title']="Dashboard";

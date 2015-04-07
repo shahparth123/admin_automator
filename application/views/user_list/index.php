@@ -1,23 +1,12 @@
-
-<div class="main-content">
+	
 
 	<div class="row">
 
 		<h2>User List</h2>
 
-
-
-
-		<br />
-
-
-
-
 		<table class="table table-bordered datatable" id="table-3">
 			<thead>
-
 				<tr class="replace-inputs">
-
 					<th>Name</th>
 					<th>Username</th>
 					<th>Email id</th>
@@ -40,7 +29,7 @@
 						<td><?php echo $user['name']; ?></td>
 						<td><?php echo $user['username']; ?></td>
 						<td><?php echo $user['email']; ?></td>
-						<td class="center"><?php echo $user['status']; ?></td>
+						<td class="center"><?php if($user['status']==1){$status="Verified";}else{$status="Pending";}?><?php echo $status; ?></td>
 						<td class="center"><?php echo $user['created']; ?></td> 
 						<td><a id="deletebut" href="<?php echo base_url();?>user_list/delete?id=<?php echo$user['id']?>" class="btn btn-danger btn-sm btn-icon icon-left">
 							<i class="entypo-cancel"></i>
@@ -48,9 +37,6 @@
 						</a></td>
 					</tr>
 				<?php endforeach; ?>
-
-
-
 			</tbody>
 			<tfoot>
 				<tr>
@@ -65,16 +51,8 @@
 		</table>
 
 	</div>
-</div>
 
 
-
-<script src="<?php echo base_url();?>assets/js/gsap/main-gsap.js"></script>
-<script src="<?php echo base_url();?>assets/js/jquery-ui/js/jquery-ui-1.10.3.minimal.min.js"></script>
-<script src="<?php echo base_url();?>assets/js/bootstrap.js"></script>
-<script src="<?php echo base_url();?>assets/js/joinable.js"></script>
-<script src="<?php echo base_url();?>assets/js/resizeable.js"></script>
-<script src="<?php echo base_url();?>assets/js/neon-api.js"></script>
 <script src="<?php echo base_url();?>assets/js/jquery.dataTables.min.js"></script>
 <script src="<?php echo base_url();?>assets/js/datatables/TableTools.min.js"></script>
 <script src="<?php echo base_url();?>assets/js/dataTables.bootstrap.js"></script>
