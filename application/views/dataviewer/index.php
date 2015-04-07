@@ -11,7 +11,7 @@
     <div class="panel-body" id="tables">
 
       <div ng-controller="customersCrtl">
-        <div class="container">
+       
           <div class="row">
             <div class="col-md-2">PageSize:
               <select ng-model="entryLimit" class="form-control">
@@ -60,7 +60,7 @@
         </div>
       </div>
 
-    </div>
+
 
   </div>  
 
