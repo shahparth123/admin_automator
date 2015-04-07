@@ -53,11 +53,13 @@ class Api extends CI_Controller {
 		$d=$this->api_model->retrive($id,$auth_key);
 		$c=$d[0]['perameter_count'];
 		$a=$d[0]['fields'];
+ 		//echo file_get_contents('php://input');
+ 		//exit();
 		for($count=1;$count<=$c;$count++)
 		{
 			$string = "/\?\?".$count."\?\?/";
-			$a= preg_replace($string,"hello".$count,$a);
-			
+			$a= preg_replace($string,$_POST['p'.$count],$a);
+			//echo $a;	
 		}
 		
 		$input=json_decode($a,true);

@@ -13,7 +13,7 @@ app.controller('customersCrtl', function ($scope, $http, $timeout) {
         $scope.currentPage = pageNo;
     };
     $scope.filter = function() {
-    $http.get($scope.url).success(function(data){
+    $http.post($scope.url).success(function(data){
         $scope.list = data;
         $scope.currentPage = 1; //current page
         $scope.entryLimit = 5; //max no of items to display in a page
