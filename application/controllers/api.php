@@ -167,7 +167,7 @@ class Api extends CI_Controller {
 			$this->load->view('template/json',$data);
 		//	print_r($ans);
 		}
-		else if($opertation=="update")
+		else if($opertation=="UPDATE")
 		{
 			echo "update";
 			$this->db->trans_start();
