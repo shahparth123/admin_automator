@@ -45,5 +45,39 @@ class User_list extends CI_Controller {
 		}
 
 	}
+
+	public function edit()
+	{
+		if (isset($_GET['id'])) {
+			$id = $_GET['id'];	
+		}
+
+		$data['user_detail']=$this->login_database->edituser($id);
+		$role=$this->session->userdata('logged_in');
+		$data['title'] = "Edit User Profile";
+		$data['permission'] = $role['permission'];
+		$data['main_content']="user_list/edit";
+		$this->load->view('template/template', $data);
+
+	}
+
+	public function updateuser()
+	{	 
+		//$id = $_GET['id'];	
+		$id = $this->input->post('id');
+		$data = array(			
+
+			'name' => $this->input->post('name'),
+			'email' => $this->input->post('email'),
+			'username' => $this->input->post('username')
+			);
+
+		$success = $this->login_database->updateuser($data,$id);
+		if ($success == true) {
+			redirect('user_list/index');
+		}
+	}
+
+
 }
 

@@ -61,7 +61,7 @@
 						<label for="field-3" class="col-sm-3 control-label">Old Password</label>
 						
 						<div class="col-sm-5">
-							<input type="password" name="oldpassword" class="form-control" id="field-3" >
+							<input type="password" name="oldpassword" class="form-control" id="field-3" required>
 						</div>
 					</div>
 					
@@ -69,7 +69,7 @@
 						<label for="field-3" class="col-sm-3 control-label">New Password</label>
 						
 						<div class="col-sm-5">
-							<input type="password" name="newpassword" class="form-control" id="field-3" >
+							<input type="password" name="newpassword" class="form-control" id="field-3" required>
 						</div>
 					</div>
 
@@ -77,7 +77,7 @@
 						<label for="field-3" class="col-sm-3 control-label">Confirm Password</label>
 						
 						<div class="col-sm-5">
-							<input type="password" name="confirmpassword" class="form-control" id="field-3" >
+							<input type="password" name="confirmpassword" class="form-control" id="field-3" required>
 						</div>
 					</div>
 					
@@ -85,7 +85,7 @@
 					
 					<div class="form-group">
 						<div class="col-sm-offset-3 col-sm-5">
-							<button type="submit" name="submit" class="btn btn-default">Submit</button>
+							<button type="submit" class="btn btn-default">Submit</button>
 						</div>
 					</div>
 					<?php echo form_close(); ?>

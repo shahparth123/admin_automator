@@ -128,17 +128,17 @@ Class Login_Database extends CI_Model {
 
 	}
 
-	public function editpassword($oldpassword,$newpassword) {
+	public function editpassword($id,$newpassword) {
 		$this->db->select('*');
 		$this->db->from('auto_user');
-		$this->db->where('password', $oldpassword);
+		$this->db->where('id', $id);
 		$query = $this->db->get();
 		if ($query->num_rows() == 1) {
 			$data = array(
 				'password' => $newpassword,
 				);
 
-			$this->db->where('password', $oldpassword);
+			$this->db->where('id', $id);
 			$this->db->update('auto_user', $data); 
 			return true;
 		}
@@ -147,7 +147,7 @@ Class Login_Database extends CI_Model {
 	public function editprofile(){
 		$user_data = $this->session->all_userdata();
 		$id = $user_data['logged_in']['id'];
-		$this->db->select('name,username,email');
+		$this->db->select('id,name,username,email');
 		$this->db->from('auto_user');
 		$this->db->where('id', $id);
 		$result = $this->db->get()->result_array();
@@ -158,9 +158,8 @@ Class Login_Database extends CI_Model {
 		//return $result;
 		
 	}	
-	public function updateprofile($data){
-		$user_data = $this->session->all_userdata();
-		$id = $user_data['logged_in']['id'];
+	public function updateprofile($data,$id){
+		
 		$this->db->where('id',$id );
 		$this->db->update('auto_user', $data);
 		return true; 
@@ -192,6 +191,25 @@ Class Login_Database extends CI_Model {
 			redirect(base_url() . 'dashboard/index');
 		}
 	}
+
+	public function edituser($id){
+		$this->db->select('*');
+		$this->db->from('auto_user');
+		$this->db->where('id', $id);
+		$result = $this->db->get()->result_array();
+		return $result;
+		//$query = $this->db->query('SELECT name, username ,email FROM auto_user');
+		//$result = $query->result();
+		//return $result;
+		
+	}
+
+	public function updateuser($data,$id){
+		$this->db->where('id',$id );
+		return $this->db->update('auto_user', $data);
+	
+
+	}		
 }
 
 ?>
