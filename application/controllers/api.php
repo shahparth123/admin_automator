@@ -167,17 +167,246 @@ class Api extends CI_Controller {
 			$this->load->view('template/json',$data);
 		//	print_r($ans);
 		}
-		else if($opertation=="update")
+		else if($opertation=="UPDATE")
 		{
 			echo "update";
+			$this->db->trans_start();
+			if(isset($input['fields'])==FALSE)
+			{
+				//$this->db->select("*");
+
+			}
+			foreach($input as $key => $values)
+			{
+				if($key=="fields")
+				{
+					foreach($values as $value)
+					{
+		//				echo $value.",";
+						$this->db->set($value,$input[str_replace(".","_",$value)]);
+					}
+				}
+				else if($key=="pri_tab")
+				{
+					$tab=$input['pri_tab'];
+		//			echo "from(".$values.")";
+				}
+				else if($key=="f1")
+				{
+					$i=0;
+					foreach($values as $value)
+					{
+						$opcode=$input['opcode'][$i];
+						$f1=$input['f1'][$i];
+						$f2=$input['f2'][$i];
+						$op=$input['op'][$i];
+						
+						if($opcode=="where")
+						{
+
+							if($opcode=="like")
+							{
+		//						echo "like(".$f1." ".$op."',".$f2.")";
+								$this->db->like($f1." ".$op,$f2);
+							}
+							else{
+		//						echo "where('".$f1." ".$op."',".$f2.")";
+								$this->db->where($f1." ".$op,$f2);
+							}
+						}
+						else if($opcode=="or_where")
+						{
+							if($opcode=="like")
+							{
+		//						echo "or_like(".$f1." ".$op."',".$f2.")";
+								$this->db->or_like($f1." ".$op,$f2);
+							}
+							else{
+		//						echo "or_where('".$f1." ".$op."',".$f2.")";
+								$this->db->or_where($f1." ".$op,$f2);
+							}
+
+
+						}
+						else if($opcode=="having")
+						{
+		//					echo "having('".$f1." ".$op."',".$f2.")";
+							$this->db->having($f1." ".$op,$f2);
+						}
+						$i++;
+					}
+				}
+				
+			}
+			
+			$status=$this->db->update($tab);
+			
+			$count=$this->db->affected_rows();					
+			$this->db->trans_complete();
+			if($count>0)
+			{
+				$ans['status']=1;
+				$ans['count']=$count;
+			}
+			else
+			{
+				$ans['status']=0;
+				$ans['count']=$count;
+				
+			}
+			$data['output']=$ans;
+			$this->load->view('template/json',$data);
+
+
+
 		}
-		else if($opertation=="insert")
+		else if($opertation=="INSERT")
 		{
-			echo "insert";
+			//echo "insert";
+
+			$this->db->trans_start();
+			if(isset($input['fields'])==FALSE)
+			{
+				//$this->db->select("*");
+
+			}
+			foreach($input as $key => $values)
+			{
+				if($key=="fields")
+				{
+					foreach($values as $value)
+					{
+		//				echo $value.",";
+						$this->db->set($value,$input[str_replace(".","_",$value)]);
+					}
+				}
+				else if($key=="pri_tab")
+				{
+					$tab=$input['pri_tab'];
+		//			echo "from(".$values.")";
+				}
+			}
+			
+			$status=$this->db->insert($tab);
+			
+			$id=$this->db->insert_id();					
+			$this->db->trans_complete();
+			if($status==true)
+			{
+				$ans['status']=1;
+				$ans['id']=$id;
+			}
+			else
+			{
+				$ans['status']=0;
+				$ans['id']=0;
+				
+			}
+			$data['output']=$ans;
+			$this->load->view('template/json',$data);
+
 		}
-		else if($opertation=="delete")
+		else if($opertation=="DELETE")
 		{
-			echo "delete";
+		//	echo "select ";
+			$this->db->trans_start();
+			if(isset($input['fields'])==FALSE)
+			{
+				$this->db->select("*");
+
+			}
+			foreach($input as $key => $values)
+			{
+				if($key=="fields")
+				{
+					foreach($values as $value)
+					{
+		//				echo $value.",";
+						$this->db->select($value);
+					}
+				}
+				else if($key=="pri_tab")
+				{
+					$this->db->from($values);
+					
+		//			echo "from(".$values.")";
+				}
+				else if($key=="f1")
+				{
+					$i=0;
+					foreach($values as $value)
+					{
+						$opcode=$input['opcode'][$i];
+						$f1=$input['f1'][$i];
+						$f2=$input['f2'][$i];
+						$op=$input['op'][$i];
+						
+						if($opcode=="where")
+						{
+
+							if($opcode=="like")
+							{
+		//						echo "like(".$f1." ".$op."',".$f2.")";
+								$this->db->like($f1." ".$op,$f2);
+							}
+							else{
+		//						echo "where('".$f1." ".$op."',".$f2.")";
+								$this->db->where($f1." ".$op,$f2);
+							}
+						}
+						else if($opcode=="or_where")
+						{
+							if($opcode=="like")
+							{
+		//						echo "or_like(".$f1." ".$op."',".$f2.")";
+								$this->db->or_like($f1." ".$op,$f2);
+							}
+							else{
+		//						echo "or_where('".$f1." ".$op."',".$f2.")";
+								$this->db->or_where($f1." ".$op,$f2);
+							}
+
+
+						}
+						else if($opcode=="having")
+						{
+		//					echo "having('".$f1." ".$op."',".$f2.")";
+							$this->db->having($f1." ".$op,$f2);
+						}
+						$i++;
+					}
+				}
+				else if($key=="jtype")
+				{
+					$j=0;
+					foreach($values as $value)
+					{
+						$jtype=$input['jtype'][$j];
+						$jtable=$input['jtable'][$j];
+						$jf1=$input['jf1'][$j];
+						$jf2=$input['jf2'][$j];
+						$jop=$input['jop'][$j];
+		//				echo "join(".$jtable.",".$jf1." ".$jop." ".$jf2.",".$jtype.")";
+						$this->db->join($jtable,$jf1." ".$jop." ".$jf2,$jtype);
+						$j++;
+					}
+				}
+				
+
+			}
+			$ans=$this->db->delete($input['pri_tab']);
+			$count=$this->db->affected_rows();
+			$this->db->trans_complete();
+			if($count>0)
+			{
+				$ans=array('status' => 1,'count'=>$count);
+			}
+			else{
+				$ans=array('status' => 0,'count'=>$count);
+			}
+			$data['output']=$ans;
+			$this->load->view('template/json',$data);
+
 		}
 		else if($opertation=="CUSTOM")
 		{
