@@ -37,6 +37,7 @@ class Dashboard extends CI_Controller {
 	public function index()
 	{
 		if ($this->login_database->is_logged_in()) {
+			$role=$this->session->userdata('logged_in');
 			$this->db->select('id');
 			$this->db->from('auto_user');
 			$num_results = $this->db->count_all_results();
@@ -47,7 +48,7 @@ class Dashboard extends CI_Controller {
 			$data = array('num_results_api' => $num_results_api,'num_results' => $num_results);
 
 			$data['title']="Dashboard";
-			$data['permission']="Dashboard";
+			$data['permission']=$role['permission'];
 			$data['main_content']="dashboard/index";
 			$this->load->view('template/template',$data);
 		}else{

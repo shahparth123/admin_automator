@@ -19,8 +19,10 @@ class Dataviewer extends CI_Controller {
 	public function index()
 	{
 		if ($this->login_database->is_logged_in()) {
+			
+			$role=$this->session->userdata('logged_in');
 			$data['title']="Generator";
-			$data['permission']="Dashboard";
+			$data['permission']=$role['permission'];
 			$data['main_content']="dataviewer/index";
 			$this->load->view('template/template',$data);
 		}else{

@@ -19,11 +19,14 @@ class Api_list extends CI_Controller {
 	public function index()
 	{
 		if ($this->login_database->is_logged_in()) {
+			
+			$role=$this->session->userdata('logged_in');
 			$data['api_list'] = $this->login_database->api_list();
 			$data['title']="API List";
-			$data['permission']="Dashboard";
+			$data['permission']=$role['permission'];
 			$data['main_content']="api_list/index";
 			$this->load->view('template/template',$data);
+
 		}else{
 			redirect(base_url() . 'user/login');
 		}

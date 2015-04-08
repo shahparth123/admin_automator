@@ -105,6 +105,7 @@ Class User extends CI_Controller {
                         'name' => $result[0]->name,
                         'username' => $result[0]->username,
                         'email' => $result[0]->email,
+                        'permission' => $result[0]->permission
                     );
                     //	$this->load->view('user/admin_page', $data);
                 }$this->session->set_userdata('logged_in', $data);
@@ -255,6 +256,7 @@ Class User extends CI_Controller {
         $this->load->view('template/template', $data);
     }
     }
+
 }
 
 ?>

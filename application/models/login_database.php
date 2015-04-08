@@ -185,9 +185,13 @@ Class Login_Database extends CI_Model {
 		
 		
 	}	
-
-
-
+	public function admin_protect(){
+		$role=$this->session->userdata('logged_in');
+		if($role['permission']!=2)
+		{
+			redirect(base_url() . 'dashboard/index');
+		}
+	}
 }
 
 ?>
