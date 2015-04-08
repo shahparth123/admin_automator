@@ -28,6 +28,10 @@
           <div class="col-md-4">Data source URL:
             <input type="text" ng-model="url" ng-change="filter()" placeholder="URL" class="form-control" />
           </div>
+            <div class="col-md-4">Param:
+              <input type="text" ng-model="para" ng-change="filter()" placeholder="Para" class="form-control" />
+              {{para|json}}
+            </div>
         </div>
         <br/>
         <div class="row">
