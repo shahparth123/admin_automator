@@ -54,7 +54,7 @@ echo form_open('api/generate',$attr); ?>
                 <div class="panel-title">Query Generator</div>
             </div>
 
-            <div class="panel-body" id="query_generator">
+            <div class="panel-body" id="query_generator" ng-init="opertation='SELECT'">
                 <h4>Operation</h4>
                 <div class="radio-inline">
                     <label><input type="radio" ng-model="opertation" name="opertation" id="optionsRadios1" value="SELECT">SELECT</label>	
@@ -95,9 +95,13 @@ echo form_open('api/generate',$attr); ?>
                     </h4>
                     <div id="addjoin" class="row form-group">
                     </div>
-                    <div class="col-sm-8 form-group" ng-show="opertation== 'SELECT'">
+                    <div class="col-md-12 form-group" ng-show="opertation== 'SELECT'">
                         <div class="col-sm-4"><input type="text" class="form-control" name="groupby" id="group" placeholder="GROUP BY"></div>					  
                         <div class="col-sm-4"><input type="text" class="form-control" name="orderby" id="order" placeholder="ORDER BY"></div>
+                        <select class="form-control col-sm-4" name="ascdesc" id="ascdesc">
+				    <option value="asc">ASC</option>
+				    <option value="desc">DESC</option>
+				    </select>
                     </div>
 
                 </div>
@@ -133,7 +137,7 @@ echo form_open('api/generate',$attr); ?>
                 </div>
 
                 <div class="col-md-6 row">
-                    <textarea class="form-control autogrow" name="comment" id="comment" placeholder="Comment" style="height: 72px; overflow: hidden; word-wrap: break-word; resize: horizontal;"></textarea>
+                    <textarea class="form-control autogrow" name="comment" id="comment" required placeholder="Comment" style="height: 72px; overflow: hidden; word-wrap: break-word; resize: horizontal;"></textarea>
                 </div>
 
             </div>
@@ -143,7 +147,13 @@ echo form_open('api/generate',$attr); ?>
 
     </div>
 </div>
-<button type="submit" id="submitbtn" class="btn btn-blue">Generate</button>
+<div class="input-group col-md-12">
+    <input type="text" class="form-control" name="name" required placeholder="Enter any unique name for generating your API">
+
+    <span class="input-group-btn">
+        <button class="btn btn-blue" type="submit" id="submitbtn">Generate!</button>
+    </span>
+</div>
 <?php echo form_close(); ?>
 <script src="<?php echo base_url(); ?>/assets/js/switch/jquery.multi-select.js" type="text/javascript"></script>
 <script src="<?php echo base_url(); ?>/assets/js/switch/jquery.quicksearch.js" type="text/javascript"></script>
@@ -183,7 +193,8 @@ echo form_open('api/generate',$attr); ?>
    	
 	$(document).ready(function () {
         var flag=false;
-        //on submit validation
+               //on submit validation
+                var flag=false;
                 jQuery("#submitbtn").click(function() { 
                         
                         if($('#optionsRadios5').is(':checked')) {
@@ -199,13 +210,13 @@ echo form_open('api/generate',$attr); ?>
                                      flag=true;   
                                 }
                                 
-                        }else{
-                            if( !$.trim( $('#tables').html() ).length ) {
+                        }else if($('#optionsRadios1').is(':checked') || $('#optionsRadios4').is(':checked')){
+                                if( !$.trim( $('#tables').html() ).length ) {
                                         alert('Please select atleast one table');
                                         flag=false;
                                 }
                                 else if ($("input[type=checkbox]:checked").length == 0) {
-                                        alert('no way you submit it without checking a box');
+                                        alert('Select atleast one field');
                                         flag=false;
                                 }else if (!$.trim($("#comment").val())) {
                                         alert('Please fill Comment box');
@@ -214,6 +225,25 @@ echo form_open('api/generate',$attr); ?>
                                 else{
                                      flag=true;   
                                 }
+                                   
+                                
+                        }else if($('#optionsRadios2').is(':checked') || $('#optionsRadios3').is(':checked')){
+                                if($('#pri_tab').children('option').length > 1) {
+                                        alert('Please select only one table');
+                                        flag=false;
+                                }
+                                else if ($("input[type=checkbox]:checked").length == 0) {
+                                        alert('Select atleast one field');
+                                        flag=false;
+                                }else if (!$.trim($("#comment").val())) {
+                                        alert('Please fill Comment box');
+                                        flag=false;
+                                }
+                                else{
+                                     flag=true;   
+                                }
+                                   
+                                
                         }
 
                         return flag;
@@ -248,6 +278,7 @@ echo form_open('api/generate',$attr); ?>
 		$("#pri_tab option[value="+tablename+"]").remove();
 		}
                 
+                
                 //jQuery to add Condition in SELECT
 		var counter = 0;
 		jQuery('#add').click(function (e) {
@@ -261,7 +292,7 @@ echo form_open('api/generate',$attr); ?>
 				'</select>'+
 				'</div>'+
 				'<div class="col-sm-2">'+
-				'<input type="text" name="f1[]" class="form-control" id="field-1" placeholder="field-1">'+
+				'<input type="text" name="f1[]" class="form-control" id="field-1" required placeholder="field-1">'+
 				'</div>'+
 				'<div class="col-sm-2">'+
 				'<select class="form-control" name="op[]">'+
@@ -276,7 +307,7 @@ echo form_open('api/generate',$attr); ?>
 				'</div>'+
 
 				'<div class="col-sm-2">'+
-				'<input type="text" name="f2[]" class="form-control" id="field-1" placeholder="field-2/value">'+
+				'<input type="text" name="f2[]" class="form-control" id="field-1" required placeholder="field-2/value">'+
 				'</div>'+
 				'<button type="button" id="removecon'+counter+'" class="btn btn-danger" onclick="jQuery(\'#condition'+counter+'\').remove()">'+
 				'<i class="entypo-cancel"></i>'+
@@ -299,7 +330,7 @@ counter++;
 				'</select>'+
 				'</div>'+
 				'<div class="col-sm-2">'+
-				'<input type="text" name="f1[]" class="form-control" id="field-1" placeholder="field-1">'+
+				'<input type="text" name="f1[]" class="form-control" id="field-1" required placeholder="field-1">'+
 				'</div>'+
 				'<div class="col-sm-2">'+
 				'<select class="form-control" name="op[]">'+
@@ -314,7 +345,7 @@ counter++;
 				'</div>'+
 
 				'<div class="col-sm-2">'+
-				'<input type="text" name="f2[]" class="form-control" id="field-1" placeholder="field-2/value">'+
+				'<input type="text" name="f2[]" class="form-control" id="field-1" required placeholder="field-2/value">'+
 				'</div>'+
 				'<button type="button" id="removecon'+counter+'" class="btn btn-danger" onclick="jQuery(\'#condition'+counter+'\').remove()">'+
 				'<i class="entypo-cancel"></i>'+
@@ -338,7 +369,7 @@ jQuery('#jadd').click(function (e) {
 		'</select>'+
 		'</div>'+
 		'<div class="col-sm-2">'+
-		'<select name="jtable[]" id="tableforjoin" class="form-control tableforjoin">'+
+		'<select name="jtable[]" id="tableforjoin" required class="form-control tableforjoin">'+
 			jQuery('#pri_tab').html()+
 		'</select>'+
 		'</div>'+
@@ -352,7 +383,7 @@ jQuery('#jadd').click(function (e) {
 		'</select>'+
 		'</div>'+
 		'<div class="col-sm-2">'+
-		'<input type="text" name="jf1[]" class="form-control" id="field-1" placeholder="field-1">'+
+		'<input type="text" name="jf1[]" class="form-control" id="field-1" required placeholder="field-1">'+
 		'</div>'+
 		'<div class="col-sm-2">'+
 		'<select class="form-control" name="jop[]">'+
@@ -367,7 +398,7 @@ jQuery('#jadd').click(function (e) {
 		'</div>'+
 
 		'<div class="col-sm-2">'+
-		'<input type="text" name="jf2[]" class="form-control" id="field-1" placeholder="field-2/value">'+
+		'<input type="text" name="jf2[]" class="form-control" id="field-1" required placeholder="field-2/value">'+
 		'</div>'+'</div>'+'<div class="col-sm-1">'+
 		'<button  id="removejoin'+count+'" type="button" class="btn btn-danger" onclick="jQuery(\'#join'+count+'\').remove()">'+
 		'<i class="entypo-cancel"></i>'+
