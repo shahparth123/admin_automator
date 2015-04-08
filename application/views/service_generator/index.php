@@ -54,22 +54,22 @@ echo form_open('api/generate',$attr); ?>
                 <div class="panel-title">Query Generator</div>
             </div>
 
-            <div class="panel-body" id="tables">
+            <div class="panel-body" id="query_generator">
                 <h4>Operation</h4>
                 <div class="radio-inline">
-                    <label><input type="radio" ng-model="opertation" name="opertation" id="optionsRadios" value="SELECT">SELECT</label>	
+                    <label><input type="radio" ng-model="opertation" name="opertation" id="optionsRadios1" value="SELECT">SELECT</label>	
                 </div>
                 <div class="radio-inline">
-                    <label><input type="radio" ng-model="opertation" name="opertation" id="optionsRadios" value="INSERT">INSERT</label>	
+                    <label><input type="radio" ng-model="opertation" name="opertation" id="optionsRadios2" value="INSERT">INSERT</label>	
                 </div>
                 <div class="radio-inline">
-                    <label><input type="radio" ng-model="opertation" name="opertation" id="optionsRadios" value="UPDATE">UPDATE</label>	
+                    <label><input type="radio" ng-model="opertation" name="opertation" id="optionsRadios3" value="UPDATE">UPDATE</label>	
                 </div>
                 <div class="radio-inline">
-                    <label><input type="radio" ng-model="opertation" name="opertation" id="optionsRadios" value="DELETE">DELETE</label>	
+                    <label><input type="radio" ng-model="opertation" name="opertation" id="optionsRadios4" value="DELETE">DELETE</label>	
                 </div>
                 <div class="radio-inline">
-                    <label><input type="radio" ng-model="opertation" name="opertation" id="optionsRadios" value="CUSTOM">CUSTOM</label>	
+                    <label><input type="radio" ng-model="opertation" name="opertation" id="optionsRadios5" value="CUSTOM">CUSTOM</label>	
                 </div>
                 <div class="radio-inline" class="col-sm-3">
 				    <label>PRIMARY TABLE:</label><select class="form-control pri_tab" name="pri_tab" id="pri_tab">
@@ -128,7 +128,7 @@ echo form_open('api/generate',$attr); ?>
 
 
                     <div class="col-sm-10">
-                        <textarea class="form-control autogrow" name="custom_query" id="field-ta" placeholder="Build your Custom Query here" style="overflow: hidden; word-wrap: break-word; resize: horizontal; height: 72px;"></textarea>
+                        <textarea class="form-control autogrow" name="custom_query" id="custom_query" placeholder="Build your Custom Query here" style="overflow: hidden; word-wrap: break-word; resize: horizontal; height: 72px;"></textarea>
                     </div>
                 </div>
 
@@ -143,7 +143,7 @@ echo form_open('api/generate',$attr); ?>
 
     </div>
 </div>
-<button type="submit" class="btn btn-blue">Generate</button>
+<button type="submit" id="submitbtn" class="btn btn-blue">Generate</button>
 <?php echo form_close(); ?>
 <script src="<?php echo base_url(); ?>/assets/js/switch/jquery.multi-select.js" type="text/javascript"></script>
 <script src="<?php echo base_url(); ?>/assets/js/switch/jquery.quicksearch.js" type="text/javascript"></script>
@@ -182,20 +182,58 @@ echo form_open('api/generate',$attr); ?>
 	}
    	
 	$(document).ready(function () {
+        var flag=false;
+        //on submit validation
+                jQuery("#submitbtn").click(function() { 
+                        
+                        if($('#optionsRadios5').is(':checked')) {
+                                if (!$.trim($("#custom_query").val())) {
+                                        alert('Please write your custom query');
+                                        flag=false;
+                                }else if (!$.trim($("#comment").val())) {
+                                        alert('Please fill Comment box');
+                                        flag=false;
+                                }
+                                
+                                else{
+                                     flag=true;   
+                                }
+                                
+                        }else{
+                            if( !$.trim( $('#tables').html() ).length ) {
+                                        alert('Please select atleast one table');
+                                        flag=false;
+                                }
+                                else if ($("input[type=checkbox]:checked").length == 0) {
+                                        alert('no way you submit it without checking a box');
+                                        flag=false;
+                                }else if (!$.trim($("#comment").val())) {
+                                        alert('Please fill Comment box');
+                                        flag=false;
+                                }
+                                else{
+                                     flag=true;   
+                                }
+                        }
+
+                        return flag;
+                });
+                        
+        
+        //jQuery to insert and remove a field when checkbox is checked or unchecked        
+        $(document).on("change",".fields",function(){
+                var id=this.id;
+                nid = id.replace(".", "");
                 
-                $(document).on("change",".fields",function(){
-                        var id=this.id;
-                        nid = id.replace(".", "");
-        if($(this).is(":checked"))
-        {
-                jQuery("#insertvalues").append('<div class ="col-sm-6"><h4>'+id+':</h4><input type="text" id="'+nid+'" name="'+id+'" class="form-control" placeholder="value"></div>');
-                
-        }
-        else
-        {
-                $('#'+nid).parent().remove();
-        }
-    });
+                if($(this).is(":checked"))
+                {
+                        jQuery("#insertvalues").append('<div class ="col-sm-6"><h4>'+id+':</h4><input type="text" id="'+nid+'" name="'+id+'" class="form-control" placeholder="value"></div>');
+                }
+                else
+                {
+                        $('#'+nid).parent().remove();
+                }
+        });
 
 	
 		function add_table(tablename){
@@ -337,7 +375,7 @@ jQuery('#jadd').click(function (e) {
 		'</div></div>');
 count++;
 });
-
+            
 var url1 = '<?php echo base_url(); ?>api/tables';
 
 $.ajax({
