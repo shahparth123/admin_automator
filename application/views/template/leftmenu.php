@@ -76,15 +76,7 @@
 	<ul id="main-menu" class="">
 		<!-- add class "multiple-expanded" to allow multiple submenus to open -->
 		<!-- class "auto-inherit-active-class" will automatically add "active" class for parent elements who are marked already with class "active" -->
-		<!-- Search Bar -->
-		<li id="search">
-			<form method="get" action="">
-				<input type="text" name="q" class="search-input" placeholder="Search something..."/>
-				<button type="submit">
-					<i class="entypo-search"></i>
-				</button>
-			</form>
-		</li>
+		
 		<li class="active">
 			<a href="<?php echo base_url();?>dashboard/index">
 				<i class="entypo-gauge"></i>
@@ -155,19 +147,54 @@
 		</div>
 
 	</header>
+    
+    
+    	<div class="sidebar-user-info">
+			
+			<div class="sui-normal">
+				<a href="#" class="user-link">
+					<img src="<?php echo base_url();?>uploads/<?php echo $user_data['logged_in']['id']?>.jpg" alt="" class="img-circle" />
+					
+					<span>Welcome,</span>
+					<strong><?php
+					echo $user_data['logged_in']['name'];
+					?></strong>
+				</a>
+			</div>
+			
+			<div class="sui-hover animate-in"><!-- You can remove "inline-links" class to make links appear vertically, class "animate-in" will make A elements animateable when click on user profile -->				
+				
+						<a href="<?php echo base_url(); ?>user/editprofile">
+							<i class="entypo-vcard"></i>
+							Edit Profile
+						</a>
+									
+						<a href="<?php echo base_url(); ?>user/changepic">
+							<i class="entypo-user"></i>
+							Change Pic
+                                                </a>
+					
+						<a href="<?php echo base_url(); ?>user/editpassword">
+							<i class="entypo-key"></i>
+							Change Password
+						</a>
+					
+
+				
+						<a href="<?php echo base_url(); ?>user/logout">
+							<i class="entypo-logout"></i>
+							LogOut
+						</a>
+					
+				<span class="close-sui-popup">&times;</span><!-- this is mandatory -->			</div>
+		</div>
+					
+			
 
 	<ul id="main-menu" class="">
 		<!-- add class "multiple-expanded" to allow multiple submenus to open -->
 		<!-- class "auto-inherit-active-class" will automatically add "active" class for parent elements who are marked already with class "active" -->
-		<!-- Search Bar -->
-		<li id="search">
-			<form method="get" action="">
-				<input type="text" name="q" class="search-input" placeholder="Search something..."/>
-				<button type="submit">
-					<i class="entypo-search"></i>
-				</button>
-			</form>
-		</li>
+		
 		<li class="active">
 			<a href="<?php echo base_url();?>dashboard/index">
 				<i class="entypo-gauge"></i>

@@ -63,7 +63,7 @@
 			<div></div>
 		</div>
 		
-		<div class="login-form">
+            <div class="login-form" style="padding-top: 5px">
 			
 			<div class="login-content">
 				

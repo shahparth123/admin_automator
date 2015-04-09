@@ -94,29 +94,32 @@
 
 
 
-
-		<table class="table table-bordered datatable" id="table-3">
+<table class="table table-bordered datatable" id="table-3">
 			<thead>
 
 				<tr class="replace-inputs">
 					<th>ID</th>
-					<th>perameter_count</th>
-					<th>auth_key</th>
-					<th>user_id</th>
-					<th>created_at</th> 
-					<th>Comment</th>
-					<th>API_URL</th>
-					
+                                        <th>auth_key</th>
+                                        <th>Operation</th>
+                                        <th>API_URL</th>
+                                        <th>API Name</th>
+                                        <th>Description</th>
+                                        <th>Username</th>
+                                         <th>Parameters</th>
+                                         <th>Created At</th>
+					                                 
 				</tr>
 				<tr>
 					<th>ID</th>
-					<th>perameter_count</th>
-					<th>auth_key</th>
-					<th>user_id</th>
-					<th>created_at</th> 
-					<th>Comment</th>
-					<th>API_URL</th>
-					
+                                        <th>auth_key</th>
+                                        <th>Operation</th>
+                                        <th>API_URL</th>
+                                        <th>API Name</th>
+                                        <th>Description</th>
+                                        <th>Username</th>
+                                         <th>Parameters</th>
+                                         <th>Created At</th>
+					      
 
 				</tr>
 			</thead>
@@ -124,12 +127,16 @@
 				<?php foreach ($api_list as $api): ?>
 					<tr class="odd gradeX">
 						<td><?php echo $api['id']; ?></td>
-						<td><?php echo $api['perameter_count']; ?></td>
-						<td><?php echo $api['auth_key']; ?></td>
-						<td class="center"><?php echo $api['user_id']; ?></td>
+                                                <td><?php echo $api['auth_key']; ?></td>
+                                                <td><?php echo "select" ?></td>
+                                                <td><a href="<?php echo base_url()."api/index/".$api['id']."/".$api['auth_key'] ?>"><?php echo base_url()."api/index/".$api['id']."/".$api['auth_key'] ?></a></td>
+						<td><?php echo "apiname" ?></td>
+                                                <td><?php echo $api['comment']; ?></td>
+                                                <td class="center"><?php echo $api['username']; ?></td>
+                                                <td><?php echo $api['perameter_count']; ?></td>
+						
+						
 						<td class="center"><?php echo $api['created_at']; ?></td>
-						<td><?php echo $api['comment']; ?></td>
-						<td><a href="<?php echo base_url()."api/index/".$api['id']."/".$api['auth_key'] ?>"><?php echo base_url()."api/index/".$api['id']."/".$api['auth_key'] ?></a></td>
 						
 					</tr>
 				<?php endforeach; ?>
@@ -140,13 +147,15 @@
 			<tfoot>
 				<tr>
 					<th>ID</th>
-					<th>perameter_count</th>
-					<th>auth_key</th>
-					<th>user_id</th>
-					<th>created_at</th> 
-					<th>Comment</th>
-					<th>API_URL</th>
-					
+                                        <th>auth_key</th>
+                                        <th>Operation</th>
+                                        <th>API_URL</th>
+                                        <th>API Name</th>
+                                        <th>Description</th>
+                                        <th>Username</th>
+                                         <th>Parameters</th>
+                                         <th>Created At</th>
+					  
 					
 				</tr>
 			</tfoot>
