@@ -176,7 +176,7 @@ Class Login_Database extends CI_Model {
 	}	
 
 	public function api_list(){
-		$this->db->select('query_param.id,query_param.fields,query_param.auth_key,query_param.comment,auto_user.username,query_param.created_at,query_param.perameter_count');
+		$this->db->select('query_param.id,query_param.fields,query_param.auth_key,query_param.comment,auto_user.username,query_param.created_at,query_param.perameter_count,query_param.opertation,query_param.name');
 		$this->db->from('query_param');
                 $this->db->where('query_param.is_delete =', 0);
                 $this->db->join('auto_user','auto_user.id=query_param.user_id');

@@ -21,6 +21,7 @@ class Api extends CI_Controller {
 		parent::__construct();
 
 		$this->load->model('api_model');
+               $this->load->model('login_database');
 	}
 	
 	public function detail()
@@ -30,6 +31,7 @@ class Api extends CI_Controller {
 
 	public function generate()
 	{
+           
 		//echo "<pre>";
 		//print_r($_POST);
 		//echo "</pre>";
@@ -41,6 +43,7 @@ class Api extends CI_Controller {
 		}else {
 			$parameter_count = 0;
 		}
+                $this->login_database->admin_protect();
 		$user_id=$this->session->userdata('logged_in')['id'];
 		$auth_key=random_string('alnum', 10);
 		$_POST['name']=preg_replace('/[^a-zA-Z0-9]/', '', $_POST['name']);
