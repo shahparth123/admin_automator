@@ -43,7 +43,7 @@ class Api extends CI_Controller {
 
 		$data['apiurl'] = base_url()."api/index/".$_POST['opertation']."/".$id."/".$auth_key."/".$_POST['name'];
 $role=$this->session->userdata('logged_in');
-$data['permission']=$$role['permission'];
+$data['permission']=$role['permission'];
 			
 		$data['title']="Service Generated";
 		$data['main_content']="service_generator/success";
