@@ -3036,7 +3036,7 @@ input[type="button"].btn-block {
   -webkit-transition: transform 350ms cubic-bezier(0.445, 0.050, 0.550, 0.950);
   transition: transform 350ms cubic-bezier(0.445, 0.050, 0.550, 0.950);
   display: block;
-  max-width: 100%;
+  max-width: 60px;
   height: auto;
 }
 .page-container .sidebar-menu .sidebar-user-info .user-link span,
