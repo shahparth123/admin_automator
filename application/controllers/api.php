@@ -25,11 +25,11 @@ class Api extends CI_Controller {
 	
 	public function generate()
 	{
-		echo "<pre>";
-		print_r($_POST);
-		echo "</pre>";
+		//echo "<pre>";
+		//print_r($_POST);
+		//echo "</pre>";
 		$a=json_encode($_POST);
-		print_r($a);
+		//print_r($a);
 		$string = "/\?\?[0-9]+\?\?/";
 		if (preg_match_all($string, $a, $matches)) {
 			$parameter_count = count(array_unique($matches[0]));
@@ -38,19 +38,26 @@ class Api extends CI_Controller {
 		}
 		$user_id=$this->session->userdata('logged_in')['id'];
 		$auth_key=random_string('alnum', 10);
-		$id= $this->api_model->generate($a,$parameter_count,$user_id,$auth_key,$_POST['comment']);
+		$_POST['name']=preg_replace('/[^a-zA-Z0-9]/', '', $_POST['name']);
+		$id= $this->api_model->generate($_POST['opertation'],$a,$parameter_count,$user_id,$auth_key,$_POST['comment'],$_POST['name']);
 
-		echo base_url()."api/index/".$id."/".$auth_key;
+		$data['apiurl'] = base_url()."api/index/".$_POST['opertation']."/".$id."/".$auth_key."/".$_POST['name'];
+$role=$this->session->userdata('logged_in');
+$data['permission']=$$role['permission'];
+			
+		$data['title']="Service Generated";
+		$data['main_content']="service_generator/success";
+		$this->load->view('template/template',$data);	
 	}
 
-	public function index($id,$auth_key)
-	{
+		public function index($oper,$id,$auth_key,$name)
+		{
 		/*echo "<pre>";
 		echo $a=json_encode($_POST);
 		//echo serialize($_POST);
 		echo "</pre>";
 		*/
-		$d=$this->api_model->retrive($id,$auth_key);
+		$d=$this->api_model->retrive($oper,$id,$auth_key,$name);
 		$c=$d[0]['perameter_count'];
 		$a=$d[0]['fields'];
  		//echo file_get_contents('php://input');
@@ -104,10 +111,11 @@ class Api extends CI_Controller {
 						if($opcode=="where")
 						{
 
-							if($opcode=="like")
+							if($op=="LIKE")
 							{
 		//						echo "like(".$f1." ".$op."',".$f2.")";
-								$this->db->like($f1." ".$op,$f2);
+								$this->db->like($f1,$f2);
+
 							}
 							else{
 		//						echo "where('".$f1." ".$op."',".$f2.")";
@@ -116,10 +124,10 @@ class Api extends CI_Controller {
 						}
 						else if($opcode=="or_where")
 						{
-							if($opcode=="like")
+							if($op=="LIKE")
 							{
 		//						echo "or_like(".$f1." ".$op."',".$f2.")";
-								$this->db->or_like($f1." ".$op,$f2);
+								$this->db->or_like($f1,$f2);
 							}
 							else{
 		//						echo "or_where('".$f1." ".$op."',".$f2.")";
@@ -157,7 +165,7 @@ class Api extends CI_Controller {
 				}
 				else if($key=="orderby" && $values!="")
 				{
-					$this->db->order_by($values,"DESC");
+					$this->db->order_by($values,$input['ascdesc']);
 				}
 
 			}
@@ -169,7 +177,7 @@ class Api extends CI_Controller {
 		}
 		else if($opertation=="UPDATE")
 		{
-			echo "update";
+			//echo "update";
 			$this->db->trans_start();
 			if(isset($input['fields'])==FALSE)
 			{
@@ -204,7 +212,7 @@ class Api extends CI_Controller {
 						if($opcode=="where")
 						{
 
-							if($opcode=="like")
+							if($opcode=="LIKE")
 							{
 		//						echo "like(".$f1." ".$op."',".$f2.")";
 								$this->db->like($f1." ".$op,$f2);
@@ -216,7 +224,7 @@ class Api extends CI_Controller {
 						}
 						else if($opcode=="or_where")
 						{
-							if($opcode=="like")
+							if($opcode=="LIKE")
 							{
 		//						echo "or_like(".$f1." ".$op."',".$f2.")";
 								$this->db->or_like($f1." ".$op,$f2);

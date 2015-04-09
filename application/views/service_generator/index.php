@@ -72,80 +72,81 @@ echo form_open('api/generate',$attr); ?>
                     <label><input type="radio" ng-model="opertation" name="opertation" id="optionsRadios5" value="CUSTOM">CUSTOM</label>	
                 </div>
                 <div class="radio-inline" class="col-sm-3">
-				    <label>PRIMARY TABLE:</label><select class="form-control pri_tab" name="pri_tab" id="pri_tab">
-				    
-				    
-				    </select>
-					
-				</div>
+                    <label>PRIMARY TABLE:</label><select class="form-control pri_tab" name="pri_tab" id="pri_tab">
 
-                <div class="col-sm-12" ng-show="opertation== 'SELECT' || opertation== 'DELETE'">
-                    <h4>Conditions 			    
-                        <button id="add" type="button" class="btn btn-info">
-                            <i class="entypo-plus"></i>
-                        </button>
-                    </h4>
-                    <div id="addconditions">
-                    </div>
 
-                    <h4>Joins 			    
-                        <button id="jadd" type="button" class="btn btn-info">
-                            <i class="entypo-plus"></i>
-                        </button>
-                    </h4>
-                    <div id="addjoin" class="row form-group">
-                    </div>
-                    <div class="col-md-12 form-group" ng-show="opertation== 'SELECT'">
-                        <div class="col-sm-4"><input type="text" class="form-control" name="groupby" id="group" placeholder="GROUP BY"></div>					  
-                        <div class="col-sm-4"><input type="text" class="form-control" name="orderby" id="order" placeholder="ORDER BY"></div>
-                        <select class="form-control col-sm-4" name="ascdesc" id="ascdesc">
-				    <option value="asc">ASC</option>
-				    <option value="desc">DESC</option>
-				    </select>
-                    </div>
+                </select>
 
+            </div>
+
+            <div class="col-sm-12" ng-show="opertation== 'SELECT' || opertation== 'DELETE'">
+                <h4>Conditions 			    
+                    <button id="add" type="button" class="btn btn-info">
+                        <i class="entypo-plus"></i>
+                    </button>
+                </h4>
+                <div id="addconditions">
                 </div>
 
-                <div class="col-sm-12" ng-show="opertation == 'INSERT' || opertation== 'UPDATE'">
-
-                    <h4>SELECT THE FIELDS FROM ABOVE AND INSERT THEIR RESPECTIVE VALUES BELOW:</h4>    
-                    <div id="insertvalues">
-
-
-                    </div>
-
+                <h4>Joins 			    
+                    <button id="jadd" type="button" class="btn btn-info">
+                        <i class="entypo-plus"></i>
+                    </button>
+                </h4>
+                <div id="addjoin" class="row form-group">
                 </div>
-                
-                    <div class="col-sm-10" ng-show="opertation == 'UPDATE'">
-                        <h4>Conditions 			    
-                        <button id="upadd" type="button" class="btn btn-info">
-                            <i class="entypo-plus"></i>
-                        </button>
-                    </h4>
-                        <div id="updateconditions">
-                    
-                        </div>
-                        
-                </div>
-
-                <div class="col-sm-10" ng-show="opertation == 'CUSTOM'">
-
-
-                    <div class="col-sm-10">
-                        <textarea class="form-control autogrow" name="custom_query" id="custom_query" placeholder="Build your Custom Query here" style="overflow: hidden; word-wrap: break-word; resize: horizontal; height: 72px;"></textarea>
-                    </div>
-                </div>
-
-                <div class="col-md-6 row">
-                    <textarea class="form-control autogrow" name="comment" id="comment" required placeholder="Comment" style="height: 72px; overflow: hidden; word-wrap: break-word; resize: horizontal;"></textarea>
+                <div class="col-md-12 form-group" ng-show="opertation== 'SELECT'">
+                    <div class="col-sm-4"><input type="text" class="form-control" name="groupby" id="group" placeholder="GROUP BY"></div>					  
+                    <div class="col-sm-4"><input type="text" class="form-control" name="orderby" id="order" placeholder="ORDER BY"></div>
+                    <div class="col-sm-4"><select class="form-control" name="ascdesc" id="ascdesc">
+                        <option value="asc">ASC</option>
+                        <option value="desc">DESC</option>
+                    </select></div>
                 </div>
 
             </div>
 
+            <div class="col-sm-12" ng-show="opertation == 'INSERT' || opertation== 'UPDATE'">
+
+                <h4>SELECT THE FIELDS FROM ABOVE AND INSERT THEIR RESPECTIVE VALUES BELOW:</h4>    
+                <div id="insertvalues">
+
+
+                </div>
+
+            </div>
+
+            <div class="col-sm-10" ng-show="opertation == 'UPDATE'">
+                <h4>Conditions 			    
+                    <button id="upadd" type="button" class="btn btn-info">
+                        <i class="entypo-plus"></i>
+                    </button>
+                </h4>
+                <div id="updateconditions">
+
+                </div>
+
+            </div>
+
+            <div class="col-sm-10" ng-show="opertation == 'CUSTOM'">
+
+
+                <div class="col-sm-12">
+                    <textarea class="form-control autogrow" name="custom_query" id="custom_query" placeholder="Build your Custom Query here" style="overflow: hidden; word-wrap: break-word; resize: horizontal; height: 72px;"></textarea>
+                </div>
+            </div>
+
+            <div class="col-sm-10">
+
+                <textarea class="form-control autogrow" name="comment" id="comment" required placeholder="Comment" style="height: 72px; overflow: hidden; word-wrap: break-word; resize: horizontal;"></textarea>
+            </div>
+            
         </div>
 
-
     </div>
+
+
+</div>
 </div>
 <div class="input-group col-md-12">
     <input type="text" class="form-control" name="name" required placeholder="Enter any unique name for generating your API">
@@ -176,182 +177,182 @@ echo form_open('api/generate',$attr); ?>
 					html1 += '<div class="checkbox">';
 					html1 += '<label>';
 					html1 += '<input name="fields[]" class="fields" id="'+tablename+'.'+v.Field+'" value="'+tablename+'.'+v.Field+'" type="checkbox">'+ v.Field +" " +v.Type+'';
-                                
+
 					html1 += '</label>';
 					html1 += '</div>';
 
 					html1 += '</div>';
 					html1 += '</div>';
-                                                
+
 				});
 				html1 +='</div></div></div></div>';
 				$('#tables').append(html1);
-                                
+
 			}
 		});                              
 	}
-   	
+
 	$(document).ready(function () {
         var flag=false;
                //on submit validation
-                var flag=false;
-                jQuery("#submitbtn").click(function() { 
-                        
-                        if($('#optionsRadios5').is(':checked')) {
-                                if (!$.trim($("#custom_query").val())) {
-                                        alert('Please write your custom query');
-                                        flag=false;
-                                }else if (!$.trim($("#comment").val())) {
-                                        alert('Please fill Comment box');
-                                        flag=false;
-                                }
-                                
-                                else{
-                                     flag=true;   
-                                }
-                                
-                        }else if($('#optionsRadios1').is(':checked') || $('#optionsRadios4').is(':checked')){
-                                if( !$.trim( $('#tables').html() ).length ) {
-                                        alert('Please select atleast one table');
-                                        flag=false;
-                                }
-                                else if ($("input[type=checkbox]:checked").length == 0) {
-                                        alert('Select atleast one field');
-                                        flag=false;
-                                }else if (!$.trim($("#comment").val())) {
-                                        alert('Please fill Comment box');
-                                        flag=false;
-                                }
-                                else{
-                                     flag=true;   
-                                }
-                                   
-                                
-                        }else if($('#optionsRadios2').is(':checked') || $('#optionsRadios3').is(':checked')){
-                                if($('#pri_tab').children('option').length > 1) {
-                                        alert('Please select only one table');
-                                        flag=false;
-                                }
-                                else if ($("input[type=checkbox]:checked").length == 0) {
-                                        alert('Select atleast one field');
-                                        flag=false;
-                                }else if (!$.trim($("#comment").val())) {
-                                        alert('Please fill Comment box');
-                                        flag=false;
-                                }
-                                else{
-                                     flag=true;   
-                                }
-                                   
-                                
-                        }
+               var flag=false;
+               jQuery("#submitbtn").click(function() { 
 
-                        return flag;
-                });
-                        
-        
+                if($('#optionsRadios5').is(':checked')) {
+                    if (!$.trim($("#custom_query").val())) {
+                        alert('Please write your custom query');
+                        flag=false;
+                    }else if (!$.trim($("#comment").val())) {
+                        alert('Please fill Comment box');
+                        flag=false;
+                    }
+
+                    else{
+                       flag=true;   
+                   }
+
+               }else if($('#optionsRadios1').is(':checked') || $('#optionsRadios4').is(':checked')){
+                if( !$.trim( $('#tables').html() ).length ) {
+                    alert('Please select atleast one table');
+                    flag=false;
+                }
+                else if ($("input[type=checkbox]:checked").length == 0) {
+                    alert('Select atleast one field');
+                    flag=false;
+                }else if (!$.trim($("#comment").val())) {
+                    alert('Please fill Comment box');
+                    flag=false;
+                }
+                else{
+                   flag=true;   
+               }
+
+
+           }else if($('#optionsRadios2').is(':checked') || $('#optionsRadios3').is(':checked')){
+            if($('#pri_tab').children('option').length > 1) {
+                alert('Please select only one table');
+                flag=false;
+            }
+            else if ($("input[type=checkbox]:checked").length == 0) {
+                alert('Select atleast one field');
+                flag=false;
+            }else if (!$.trim($("#comment").val())) {
+                alert('Please fill Comment box');
+                flag=false;
+            }
+            else{
+               flag=true;   
+           }
+
+
+       }
+
+       return flag;
+   });
+
+
         //jQuery to insert and remove a field when checkbox is checked or unchecked        
         $(document).on("change",".fields",function(){
-                var id=this.id;
-                nid = id.replace(".", "");
-                
-                if($(this).is(":checked"))
-                {
-                        jQuery("#insertvalues").append('<div class ="col-sm-6"><h4>'+id+':</h4><input type="text" id="'+nid+'" name="'+id+'" class="form-control" placeholder="value"></div>');
-                }
-                else
-                {
-                        $('#'+nid).parent().remove();
-                }
+            var id=this.id;
+            nid = id.replace(".", "");
+
+            if($(this).is(":checked"))
+            {
+                jQuery("#insertvalues").append('<div class ="col-sm-6"><h4>'+id+':</h4><input type="text" id="'+nid+'" name="'+id+'" class="form-control" placeholder="value"></div>');
+            }
+            else
+            {
+                $('#'+nid).parent().remove();
+            }
         });
 
-	
-		function add_table(tablename){
+
+        function add_table(tablename){
 		//jQuery("#tableforjoin").append('<option value="'+tablename+'">'+tablename+'</option>');
 		jQuery(".pri_tab").append('<option value="'+tablename+'">'+tablename+'</option>');
 		jQuery('.tableforjoin').html(jQuery('.pri_tab').html());
 		
-		}
-		
-		function remove_table(tablename){
-		$("#tableforjoin option[value="+tablename+"]").remove();
-		$("#pri_tab option[value="+tablename+"]").remove();
-		}
-                
-                
+  }
+
+  function remove_table(tablename){
+      $("#tableforjoin option[value="+tablename+"]").remove();
+      $("#pri_tab option[value="+tablename+"]").remove();
+  }
+
+
                 //jQuery to add Condition in SELECT
-		var counter = 0;
-		jQuery('#add').click(function (e) {
-			
-			jQuery("#addconditions").append('<div id="condition'+counter+'" class="row form-group">'+
-				'<div class="col-sm-2">'+
-				'<select class="form-control" name="opcode[]">'+
-				'<option value="where">WHERE</option>'+
-				'<option value="or_where">WHERE(OR)</option>'+
-				'<option value="having">HAVING</option>'+
-				'</select>'+
-				'</div>'+
-				'<div class="col-sm-2">'+
-				'<input type="text" name="f1[]" class="form-control" id="field-1" required placeholder="field-1">'+
-				'</div>'+
-				'<div class="col-sm-2">'+
-				'<select class="form-control" name="op[]">'+
-				'<option value="=">=</option>'+
-				'<option value=">">&gt;</option>'+
-				'<option value=">=">&gt;=</option>'+
-				'<option value="<">&lt;</option>'+
-				'<option value="<=">&lt;=</option>'+
-				'<option value="!=">!=</option>'+
-				'<option value="LIKE">LIKE</option>'+
-				'</select>'+
-				'</div>'+
+                var counter = 0;
+                jQuery('#add').click(function (e) {
 
-				'<div class="col-sm-2">'+
-				'<input type="text" name="f2[]" class="form-control" id="field-1" required placeholder="field-2/value">'+
-				'</div>'+
-				'<button type="button" id="removecon'+counter+'" class="btn btn-danger" onclick="jQuery(\'#condition'+counter+'\').remove()">'+
-				'<i class="entypo-cancel"></i>'+
-				'</button>'+
+                 jQuery("#addconditions").append('<div id="condition'+counter+'" class="row form-group">'+
+                    '<div class="col-sm-2">'+
+                    '<select class="form-control" name="opcode[]">'+
+                    '<option value="where">WHERE</option>'+
+                    '<option value="or_where">WHERE(OR)</option>'+
+                    '<option value="having">HAVING</option>'+
+                    '</select>'+
+                    '</div>'+
+                    '<div class="col-sm-2">'+
+                    '<input type="text" name="f1[]" class="form-control" id="field-1" required placeholder="field-1">'+
+                    '</div>'+
+                    '<div class="col-sm-2">'+
+                    '<select class="form-control" name="op[]">'+
+                    '<option value="=">=</option>'+
+                    '<option value=">">&gt;</option>'+
+                    '<option value=">=">&gt;=</option>'+
+                    '<option value="<">&lt;</option>'+
+                    '<option value="<=">&lt;=</option>'+
+                    '<option value="!=">!=</option>'+
+                    '<option value="LIKE">LIKE</option>'+
+                    '</select>'+
+                    '</div>'+
 
-				'</div>');
+                    '<div class="col-sm-2">'+
+                    '<input type="text" name="f2[]" class="form-control" id="field-1" required placeholder="field-2/value">'+
+                    '</div>'+
+                    '<button type="button" id="removecon'+counter+'" class="btn btn-danger" onclick="jQuery(\'#condition'+counter+'\').remove()">'+
+                    '<i class="entypo-cancel"></i>'+
+                    '</button>'+
+
+                    '</div>');
 counter++;
 });
 
                 //jQuery to add Condition in UPDATE
                 var counter = 0;
-		jQuery('#upadd').click(function (e) {
-			
-			jQuery("#updateconditions").append('<div id="condition'+counter+'" class="row form-group">'+
-				'<div class="col-sm-2">'+
-				'<select class="form-control" name="opcode[]">'+
-				'<option value="where">WHERE</option>'+
-				'<option value="or_where">WHERE(OR)</option>'+
-				'<option value="having">HAVING</option>'+
-				'</select>'+
-				'</div>'+
-				'<div class="col-sm-2">'+
-				'<input type="text" name="f1[]" class="form-control" id="field-1" required placeholder="field-1">'+
-				'</div>'+
-				'<div class="col-sm-2">'+
-				'<select class="form-control" name="op[]">'+
-				'<option value="=">=</option>'+
-				'<option value=">">&gt;</option>'+
-				'<option value=">=">&gt;=</option>'+
-				'<option value="<">&lt;</option>'+
-				'<option value="<=">&lt;=</option>'+
-				'<option value="!=">!=</option>'+
-				'<option value="LIKE">LIKE</option>'+
-				'</select>'+
-				'</div>'+
+                jQuery('#upadd').click(function (e) {
 
-				'<div class="col-sm-2">'+
-				'<input type="text" name="f2[]" class="form-control" id="field-1" required placeholder="field-2/value">'+
-				'</div>'+
-				'<button type="button" id="removecon'+counter+'" class="btn btn-danger" onclick="jQuery(\'#condition'+counter+'\').remove()">'+
-				'<i class="entypo-cancel"></i>'+
-				'</button>'+
+                 jQuery("#updateconditions").append('<div id="condition'+counter+'" class="row form-group">'+
+                    '<div class="col-sm-2">'+
+                    '<select class="form-control" name="opcode[]">'+
+                    '<option value="where">WHERE</option>'+
+                    '<option value="or_where">WHERE(OR)</option>'+
+                    '<option value="having">HAVING</option>'+
+                    '</select>'+
+                    '</div>'+
+                    '<div class="col-sm-2">'+
+                    '<input type="text" name="f1[]" class="form-control" id="field-1" required placeholder="field-1">'+
+                    '</div>'+
+                    '<div class="col-sm-2">'+
+                    '<select class="form-control" name="op[]">'+
+                    '<option value="=">=</option>'+
+                    '<option value=">">&gt;</option>'+
+                    '<option value=">=">&gt;=</option>'+
+                    '<option value="<">&lt;</option>'+
+                    '<option value="<=">&lt;=</option>'+
+                    '<option value="!=">!=</option>'+
+                    '<option value="LIKE">LIKE</option>'+
+                    '</select>'+
+                    '</div>'+
 
-				'</div>');
+                    '<div class="col-sm-2">'+
+                    '<input type="text" name="f2[]" class="form-control" id="field-1" required placeholder="field-2/value">'+
+                    '</div>'+
+                    '<button type="button" id="removecon'+counter+'" class="btn btn-danger" onclick="jQuery(\'#condition'+counter+'\').remove()">'+
+                    '<i class="entypo-cancel"></i>'+
+                    '</button>'+
+
+                    '</div>');
 counter++;
 });
 
@@ -359,54 +360,54 @@ counter++;
 var count = 0;
 jQuery('#jadd').click(function (e) {
 	jQuery('#addjoin').append('<div id="join'+count+'">'+
-                '<div class="col-sm-11 form-group">'+
-		'<div class="col-sm-2">'+
-		'<select class="form-control" name = "jtype[]">'+
-		'<option value="LEFT">LEFT</option>'+
-		'<option value="RIGHT">RIGHT</option>'+
-		'<option value="INNER">INNER</option>'+
-		'<option value="OUTER">OUTER</option>'+
-		'</select>'+
-		'</div>'+
-		'<div class="col-sm-2">'+
-		'<select name="jtable[]" id="tableforjoin" required class="form-control tableforjoin">'+
-			jQuery('#pri_tab').html()+
-		'</select>'+
-		'</div>'+
-		'<div class="col-sm-2">'+
-		'<select class="form-control" name="jopcode[]">'+
-		'<option value="ON">ON</option>'+
-		'<option value="AND">AND</option>'+
-		'<option value="OR">OR</option>'+
-		'<option value="WHERE">WHERE</option>'+
-		'<option value="HAVING">HAVING</option>'+
-		'</select>'+
-		'</div>'+
-		'<div class="col-sm-2">'+
-		'<input type="text" name="jf1[]" class="form-control" id="field-1" required placeholder="field-1">'+
-		'</div>'+
-		'<div class="col-sm-2">'+
-		'<select class="form-control" name="jop[]">'+
-		'<option value="=">=</option>'+
-		'<option value=">">&gt;</option>'+
-		'<option value=">=">&gt;=</option>'+
-		'<option value="<">&lt;</option>'+
-		'<option value="<=">&lt;=</option>'+
-		'<option value="!=">!=</option>'+
-		'<option value="LIKE">LIKE</option>'+
-		'</select>'+
-		'</div>'+
+        '<div class="col-sm-11 form-group">'+
+        '<div class="col-sm-2">'+
+        '<select class="form-control" name = "jtype[]">'+
+        '<option value="LEFT">LEFT</option>'+
+        '<option value="RIGHT">RIGHT</option>'+
+        '<option value="INNER">INNER</option>'+
+        '<option value="OUTER">OUTER</option>'+
+        '</select>'+
+        '</div>'+
+        '<div class="col-sm-2">'+
+        '<select name="jtable[]" id="tableforjoin" required class="form-control tableforjoin">'+
+        jQuery('#pri_tab').html()+
+        '</select>'+
+        '</div>'+
+        '<div class="col-sm-2">'+
+        '<select class="form-control" name="jopcode[]">'+
+        '<option value="ON">ON</option>'+
+        '<option value="AND">AND</option>'+
+        '<option value="OR">OR</option>'+
+        '<option value="WHERE">WHERE</option>'+
+        '<option value="HAVING">HAVING</option>'+
+        '</select>'+
+        '</div>'+
+        '<div class="col-sm-2">'+
+        '<input type="text" name="jf1[]" class="form-control" id="field-1" required placeholder="field-1">'+
+        '</div>'+
+        '<div class="col-sm-2">'+
+        '<select class="form-control" name="jop[]">'+
+        '<option value="=">=</option>'+
+        '<option value=">">&gt;</option>'+
+        '<option value=">=">&gt;=</option>'+
+        '<option value="<">&lt;</option>'+
+        '<option value="<=">&lt;=</option>'+
+        '<option value="!=">!=</option>'+
+        '<option value="LIKE">LIKE</option>'+
+        '</select>'+
+        '</div>'+
 
-		'<div class="col-sm-2">'+
-		'<input type="text" name="jf2[]" class="form-control" id="field-1" required placeholder="field-2/value">'+
-		'</div>'+'</div>'+'<div class="col-sm-1">'+
-		'<button  id="removejoin'+count+'" type="button" class="btn btn-danger" onclick="jQuery(\'#join'+count+'\').remove()">'+
-		'<i class="entypo-cancel"></i>'+
-		'</button>'+
-		'</div></div>');
+        '<div class="col-sm-2">'+
+        '<input type="text" name="jf2[]" class="form-control" id="field-1" required placeholder="field-2/value">'+
+        '</div>'+'</div>'+'<div class="col-sm-1">'+
+        '<button  id="removejoin'+count+'" type="button" class="btn btn-danger" onclick="jQuery(\'#join'+count+'\').remove()">'+
+        '<i class="entypo-cancel"></i>'+
+        '</button>'+
+        '</div></div>');
 count++;
 });
-            
+
 var url1 = '<?php echo base_url(); ?>api/tables';
 
 $.ajax({

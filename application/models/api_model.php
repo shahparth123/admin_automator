@@ -10,20 +10,24 @@ Class Api_model extends CI_Model {
 		
 	}
 
-	public function generate($query_fields,$perameter_count,$user_id,$auth_key,$comment) {
+	public function generate($oper,$query_fields,$perameter_count,$user_id,$auth_key,$comment,$name) {
 		$this->db->set("fields",$query_fields);
 		$this->db->set("perameter_count",$perameter_count);
 		$this->db->set("user_id",$user_id);
 		$this->db->set("auth_key",$auth_key);
 		$this->db->set("comment",$comment);
+		$this->db->set("opertation",$oper);
+		$this->db->set("name",$name);
 		$this->db->insert("query_param");
 		return $this->db->insert_id();
 	}
 
-	public function retrive($id,$auth_key) {
+	public function retrive($oper,$id,$auth_key,$name) {
 		$this->db->select("*");
 		$this->db->from("query_param");
 		$this->db->where("id =",$id);
+		$this->db->where("opertation =",$oper);
+		$this->db->where("name =",$name);
 		$this->db->where("auth_key =",$auth_key);
 		return $this->db->get()->result_array();
 	}
