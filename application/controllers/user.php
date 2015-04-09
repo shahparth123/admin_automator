@@ -175,18 +175,18 @@ Class User extends CI_Controller {
        $user_data = $this->session->all_userdata();
        $id = $user_data['logged_in']['id'];
        if ($this->input->post()) {
-        $oldpassword = $this->input->post("oldpassword");
-        $newpassword = $this->input->post("newpassword");
-        $confirmpassword = $this->input->post("confirmpassword");
+        //$oldpassword = $this->input->post("oldpassword");
+        $newpassword = do_hash($this->input->post("newpassword"),'md5');
+        $confirmpassword = do_hash($this->input->post("confirmpassword"),'md5');
         if ($newpassword == $confirmpassword) {
             $checked = $this->login_database->editpassword($id, $newpassword);
             if ($checked == true) {
                 $message = "Your password is Successfully Changed";
                 echo "<script type='text/javascript'>alert('$message');</script>";
-            } else {
-                $message = "Your password is not Changed.(Can be your old password is incorrect.)";
-                echo "<script type='text/javascript'>alert('$message');</script>";
-            }
+            } //else {
+//                $message = "Your password is not Changed.(Can be your old password is incorrect.)";
+//                echo "<script type='text/javascript'>alert('$message');</script>";
+//            }
         } else {
             $message = "Please Enter Same Password";
             echo "<script type='text/javascript'>alert('$message');</script>";
