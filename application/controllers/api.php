@@ -23,6 +23,11 @@ class Api extends CI_Controller {
 		$this->load->model('api_model');
 	}
 	
+	public function detail()
+	{
+
+	}
+
 	public function generate()
 	{
 		//echo "<pre>";
