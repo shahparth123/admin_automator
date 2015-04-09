@@ -23,9 +23,9 @@ echo form_open('api/generate',$attr); ?>
             <div class="panel-heading">
                 <div class="panel-title">
                     <h4>
-                        Real Time Stats
+                        Tables in your database
                         <br />
-                        <small>current server uptime</small>
+                        <small>Select tables from below</small>
                     </h4>
                 </div>
 
