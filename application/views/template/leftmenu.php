@@ -125,7 +125,7 @@
 		<!-- logo -->
 		<div class="logo">
 			<a href="<?php echo base_url();?>dashboard/index">
-				<img src="<?php echo base_url();?>/assets/images/servicegenerator.png" class="img-responsive" alt="" />
+				<img src="<?php echo base_url();?>/assets/images/servicegenerator.png" height="100px" alt="" />
 			</a>
 		</div>
 
