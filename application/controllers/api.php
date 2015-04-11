@@ -21,17 +21,12 @@ class Api extends CI_Controller {
 		parent::__construct();
 
 		$this->load->model('api_model');
-               $this->load->model('login_database');
+		$this->load->model('login_database');
 	}
 	
-	public function detail()
-	{
-
-	}
-
 	public function generate()
 	{
-           
+
 		//echo "<pre>";
 		//print_r($_POST);
 		//echo "</pre>";
@@ -43,23 +38,348 @@ class Api extends CI_Controller {
 		}else {
 			$parameter_count = 0;
 		}
-                $this->login_database->admin_protect();
+		$this->login_database->admin_protect();
 		$user_id=$this->session->userdata('logged_in')['id'];
 		$auth_key=random_string('alnum', 10);
 		$_POST['name']=preg_replace('/[^a-zA-Z0-9]/', '', $_POST['name']);
 		$id= $this->api_model->generate($_POST['opertation'],$a,$parameter_count,$user_id,$auth_key,$_POST['comment'],$_POST['name']);
 
 		$data['apiurl'] = base_url()."api/index/".$_POST['opertation']."/".$id."/".$auth_key."/".$_POST['name'];
-$role=$this->session->userdata('logged_in');
-$data['permission']=$role['permission'];
-			
+		$role=$this->session->userdata('logged_in');
+		$data['permission']=$role['permission'];
+
 		$data['title']="Service Generated";
 		$data['main_content']="service_generator/success";
 		$this->load->view('template/template',$data);	
 	}
 
-		public function index($oper,$id,$auth_key,$name)
+
+	public function detail($oper,$id,$auth_key,$name)
+	{
+		$d=$this->api_model->retrive($oper,$id,$auth_key,$name);
+		$c=$d[0]['perameter_count'];
+		$a=$d[0]['fields'];
+		$input=json_decode($a,true);
+		
+		$opertation=$input['opertation'];
+		$join=array();
+		$conditions=array();
+		$fields=array();
+		if($opertation=="SELECT")
 		{
+//  echo "select ";
+			if(isset($input['fields'])==FALSE)
+			{
+
+				$select[]="ALL";
+			}
+			foreach($input as $key => $values)
+			{
+				if($key=="fields")
+				{
+					foreach($values as $value)
+					{
+						$select[]=$value.",";
+      //  $this->db->select($value);
+					}
+				}
+				else if($key=="pri_tab")
+				{
+     // $this->db->from($values);
+
+					$primary_table=$values;
+				}
+				else if($key=="f1")
+				{
+					$i=0;
+					foreach($values as $value)
+					{
+						$opcode=$input['opcode'][$i];
+						$f1=$input['f1'][$i];
+						$f2=$input['f2'][$i];
+						$op=$input['op'][$i];
+
+						if($opcode=="where")
+						{
+
+							if($opcode=="like")
+							{
+								$conditions[]= "like ".$f1." ".$op."',".$f2;
+							}
+							else{
+								$conditions[]= "where ".$f1." ".$op."',".$f2;
+							}
+						}
+						else if($opcode=="or_where")
+						{
+							if($opcode=="like")
+							{
+								$conditions[]=  "or like ".$f1." ".$op." ".$f2;
+							}
+							else{
+								$conditions[]=  "or where ".$f1." ".$op." ".$f2;
+							}
+
+
+						}
+						else if($opcode=="having")
+						{
+							$conditions[]=  "having ".$f1." ".$op." ".$f2;
+						}
+						$i++;
+					}
+				}
+				else if($key=="jtype")
+				{
+					$j=0;
+					foreach($values as $value)
+					{
+						$jtype=$input['jtype'][$j];
+						$jtable=$input['jtable'][$j];
+						$jopcode=$input['jopcode'][$j];
+						$jf1=$input['jf1'][$j];
+						$jf2=$input['jf2'][$j];
+						$jop=$input['jop'][$j];
+						$join[] = $jtype." join ".$jtable." ".$jopcode." ".$jf1." ".$jop." ".$jf2;
+						$j++;
+					}
+				}
+				else if($key=="groupby" && $values!="")
+				{
+					$groupby[]=$values;
+				}
+				else if($key=="orderby" && $values!="")
+				{
+					$orderby=$values." ".$input['ascdesc'];
+				}
+
+			}
+			foreach($select as $field)
+			{
+				echo $field."<br>";
+			}
+
+			foreach($join as $field1)
+			{
+				echo $field1."<br>";
+			}
+
+			foreach($conditions as $field)
+			{
+				echo $field."<br>";
+			}
+
+
+		}
+		else if($opertation=="UPDATE")
+		{
+			if(isset($input['fields'])==FALSE)
+			{
+
+			}
+			foreach($input as $key => $values)
+			{
+				if($key=="fields")
+				{
+					foreach($values as $value)
+					{
+						$select[]=$value."=".$input[str_replace(".","_",$value)]."<br>";
+
+					}
+				}
+				else if($key=="pri_tab")
+				{
+
+					$primary_table=$input['pri_tab'];
+				}
+				else if($key=="f1")
+				{
+					$i=0;
+					foreach($values as $value)
+					{
+						$opcode=$input['opcode'][$i];
+						$f1=$input['f1'][$i];
+						$f2=$input['f2'][$i];
+						$op=$input['op'][$i];
+
+						if($opcode=="where")
+						{
+
+							if($opcode=="like")
+							{
+								$conditions[]= "like ".$f1." ".$op." ".$f2;
+							}
+							else{
+								$conditions[]= "where ".$f1." ".$op." ".$f2;
+							}
+						}
+						else if($opcode=="or_where")
+						{
+							if($opcode=="like")
+							{
+								$conditions[]=  "or like ".$f1." ".$op." ".$f2;
+							}
+							else{
+								$conditions[]=  "or where ".$f1." ".$op." ".$f2;
+							}
+
+
+						}
+						else if($opcode=="having")
+						{
+							$conditions[]=  "having ".$f1." ".$op." ".$f2;
+						}
+						$i++;
+					}
+				}
+
+			}
+			foreach($select as $field)
+			{
+				echo $field."<br>";
+			}
+			foreach($conditions as $field)
+			{
+				echo $field."<br>";
+			}
+
+
+		}
+
+		else if($opertation=="INSERT")
+		{
+			if(isset($input['fields'])==FALSE)
+			{
+
+			}
+			foreach($input as $key => $values)
+			{
+				if($key=="fields")
+				{
+					foreach($values as $value)
+					{
+						if($input[str_replace(".","_",$value)]=="")
+						{
+							$input[str_replace(".","_",$value)]="NULL";
+						}
+						$select[]= $value."=".$input[str_replace(".","_",$value)]."<br/>";
+					}
+				}
+				else if($key=="pri_tab")
+				{
+					$primary_table=$input['pri_tab'];
+				}
+			}
+
+			foreach($select as $field)
+			{
+				echo $field."<br>";
+			}
+
+		}
+		else if($opertation=="DELETE")
+		{
+			if(isset($input['fields'])==FALSE)
+			{
+
+			}
+			foreach($input as $key => $values)
+			{
+				if($key=="fields")
+				{
+					foreach($values as $value)
+					{
+					}
+				}
+				else if($key=="pri_tab")
+				{
+
+					$primary_table= "from ".$values;
+				}
+				else if($key=="f1")
+				{
+					$i=0;
+					foreach($values as $value)
+					{
+						$opcode=$input['opcode'][$i];
+						$f1=$input['f1'][$i];
+						$f2=$input['f2'][$i];
+						$op=$input['op'][$i];
+
+						if($opcode=="where")
+						{
+
+							if($op=="like")
+							{
+								$conditions[]= "Where ".$f1." like ".$f2.")" ;
+							}
+							else
+							{
+								$conditions[]= "where ".$f1." ".$op." ".$f2;
+							}
+						}
+						else if($opcode=="or_where")
+						{
+							if($op=="like")
+							{
+								$conditions[]= "or ".$f1." ".$op." ".$f2;
+							}
+							else{
+								$conditions[]= "or where ".$f1." ".$op." ".$f2;
+							}
+
+
+						}
+						else if($opcode=="having")
+						{
+							$conditions[]= "having ".$f1." ".$op." ".$f2;
+						}
+						$i++;
+					}
+				}
+				else if($key=="jtype")
+				{
+					$j=0;
+					foreach($values as $value)
+					{
+						$jtype=$input['jtype'][$j];
+						$jtable=$input['jtable'][$j];
+						$jf1=$input['jf1'][$j];
+						$jf2=$input['jf2'][$j];
+						$jop=$input['jop'][$j];
+						$join[]= $jtype." join ".$jtable." ".$jopcode." ".$jf1." ".$jop." ".$jf2;
+				        //$this->db->join($jtable,$jf1." ".$jop." ".$jf2,$jtype);
+						$j++;
+					}
+				}
+
+			}
+			foreach($join as $field)
+			{
+				echo $field."<br>";
+			}
+			foreach($conditions as $field)
+			{
+				echo $field."<br>";
+			}
+		}
+		else if($opertation=="CUSTOM")
+		{
+			if($input['custom_query']!="")
+			{
+				$customquery=$input['custom_query'];
+				echo $customquery;  
+
+			} 
+
+
+		}
+	}
+
+
+
+public function index($oper,$id,$auth_key,$name)
+{
 		/*echo "<pre>";
 		echo $a=json_encode($_POST);
 		//echo serialize($_POST);

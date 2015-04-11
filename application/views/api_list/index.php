@@ -43,7 +43,7 @@
 						<td><?php echo $api['id']; ?></td>
                                                 <td><?php echo $api['auth_key']; ?></td>
                                                 <td><?php echo $api['opertation'];?></td>
-                                                <td><a href="<?php echo base_url()."api/index/".$api['opertation']."/".$api['id']."/".$api['auth_key'].$api['name'] ?>"><?php echo base_url()."api/index/".$api['opertation']."/".$api['id']."/".$api['auth_key']."/".$api['name'] ?></a></td>
+                                                <td><a href="<?php echo base_url()."api/index/".$api['opertation']."/".$api['id']."/".$api['auth_key']."/".$api['name'] ?>"><?php echo base_url()."api/index/".$api['opertation']."/".$api['id']."/".$api['auth_key']."/".$api['name'] ?></a></td>
 						<td><?php echo $api['name']; ?></td>
                                                 <td><?php echo $api['comment']; ?></td>
                                                 <td class="center"><?php echo $api['username']; ?></td>

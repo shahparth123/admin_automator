@@ -28,10 +28,16 @@
           <div class="col-md-4">Data source URL:
             <input type="text" ng-model="url" ng-change="filter()" placeholder="URL" class="form-control" />
           </div>
+          <form action="" ng-model="para" id="frm">
+    <addbuttonsbutton></addbuttonsbutton>
+           <div class="col-md-4">Param:
+              <input type="text" ng-model="para.p1" ng-init="para.p1=''" ng-change="filter()" placeholder="Para" class="form-control" />
+            </div>
             <div class="col-md-4">Param:
-              <input type="text" ng-model="para" ng-change="filter()" placeholder="Para" class="form-control" />
+              <input type="text" ng-model="para.p2" ng-init="para.p2=''" ng-change="filter()" placeholder="Para" class="form-control" />
               {{para|json}}
             </div>
+            </form>
         </div>
         <br/>
         <div class="row">
