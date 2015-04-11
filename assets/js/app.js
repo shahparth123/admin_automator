@@ -1,4 +1,5 @@
 var app = angular.module('admin_automator', ['ui.bootstrap']);
+var count = 1;
 app.filter('startFrom', function() {
 	return function(input, start) {
 		if(input) {
@@ -13,7 +14,7 @@ app.filter('startFrom', function() {
 app.directive("addbuttonsbutton", function(){
 	return {
 		restrict: "E",
-		template: "<button addbuttons>Click to add buttons</button>"
+		template: "<button addbuttons class=\"btn btn-primary\">Click to add parameters</button>"
 	}
 });
 
@@ -21,8 +22,8 @@ app.directive("addbuttonsbutton", function(){
 app.directive("addbuttons", function($compile){
 	return function(scope, element, attrs){
 		element.bind("click", function(){
-			scope.count++;
-			angular.element(document.getElementById('space-for-buttons')).append($compile("<div><button class='btn btn-default' data-alert="+scope.count+">Show alert #"+scope.count+"</button></div>")(scope));
+			count++;
+			angular.element(document.getElementById('frm')).append($compile("<div class=\"col-md-4\">Param:<input type=\"text\" ng-model=\"para.p"+count+"\" ng-init=\"para.p"+count+"=''\" ng-change=\"filter()\" placeholder=\"p"+count+"\" class=\"form-control\" /></div>")(scope));
 		});
 	};
 });
@@ -39,7 +40,7 @@ app.directive("alert", function(){
 
 
 app.controller('customersCrtl', function ($scope, $http, $timeout) {
-	var z=1;
+	
 	$scope.setPage = function(pageNo) {
 		$scope.currentPage = pageNo;
 	};
