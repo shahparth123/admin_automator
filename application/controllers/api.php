@@ -59,19 +59,23 @@ class Api extends CI_Controller {
 		$d=$this->api_model->retrive($oper,$id,$auth_key,$name);
 		$c=$d[0]['perameter_count'];
 		$a=$d[0]['fields'];
+                $apiname=$d[0]['name'];
+                $comment=$d[0]['comment'];
+                $data['apiname']=$apiname;
+                $data['comment']=$comment;
 		$input=json_decode($a,true);
 		
 		$opertation=$input['opertation'];
-		$join=array();
-		$conditions=array();
-		$fields=array();
+		//$join=array();
+		//$conditions=array();
+		//$fields=array();
 		if($opertation=="SELECT")
 		{
 //  echo "select ";
 			if(isset($input['fields'])==FALSE)
 			{
 
-				$select[]="ALL";
+				$fields[]="ALL";
 			}
 			foreach($input as $key => $values)
 			{
@@ -79,7 +83,7 @@ class Api extends CI_Controller {
 				{
 					foreach($values as $value)
 					{
-						$select[]=$value.",";
+						$fields[]=$value.",";
       //  $this->db->select($value);
 					}
 				}
@@ -146,29 +150,45 @@ class Api extends CI_Controller {
 				}
 				else if($key=="groupby" && $values!="")
 				{
-					$groupby[]=$values;
+					$groupby=$values;
+                                        
 				}
 				else if($key=="orderby" && $values!="")
 				{
 					$orderby=$values." ".$input['ascdesc'];
+                                        
 				}
 
 			}
-			foreach($select as $field)
-			{
-				echo $field."<br>";
-			}
-
-			foreach($join as $field1)
-			{
-				echo $field1."<br>";
-			}
-
-			foreach($conditions as $field)
-			{
-				echo $field."<br>";
-			}
-
+                        if(isset($opertation)==true)
+                        {
+                                $data['operation']=$opertation;
+                        }
+                        if(isset($groupby)==true)
+                        {
+                                $data['groupby']=$groupby;
+                        }
+                        if(isset($orderby)==true)
+                        {
+                                $data['orderby']=$orderby;
+                        }
+                        if(isset($fields)==true)
+                        {
+                                $data['fields']=$fields;
+                        }
+                        if(isset($conditions)==true)
+                        {
+                                $data['conditions']=$conditions;
+                        }
+                        if(isset($join)==true)
+                        {
+                                $data['join']=$join;
+                        }
+                        if(isset($primary_table)==true)
+                        {
+                                $data['primary_table']=$primary_table;
+                        }
+			
 
 		}
 		else if($opertation=="UPDATE")
@@ -234,14 +254,42 @@ class Api extends CI_Controller {
 				}
 
 			}
-			foreach($select as $field)
-			{
-				echo $field."<br>";
-			}
-			foreach($conditions as $field)
-			{
-				echo $field."<br>";
-			}
+                        if(isset($opertation)==true)
+                        {
+                                $data['operation']=$opertation;
+                        }
+                        if(isset($groupby)==true)
+                        {
+                                $data['groupby']=$groupby;
+                        }
+                        if(isset($orderby)==true)
+                        {
+                                $data['orderby']=$orderby;
+                        }
+                        if(isset($fields)==true)
+                        {
+                                $data['fields']=$fields;
+                        }
+                        if(isset($conditions)==true)
+                        {
+                                $data['conditions']=$conditions;
+                        }
+                        if(isset($join)==true)
+                        {
+                                $data['join']=$join;
+                        }
+                        if(isset($primary_table)==true)
+                        {
+                                $data['primary_table']=$primary_table;
+                        }
+//			foreach($select as $field)
+//			{
+//				echo $field."<br>";
+//			}
+//			foreach($conditions as $field)
+//			{
+//				echo $field."<br>";
+//			}
 
 
 		}
@@ -270,11 +318,39 @@ class Api extends CI_Controller {
 					$primary_table=$input['pri_tab'];
 				}
 			}
+                        if(isset($opertation)==true)
+                        {
+                                $data['operation']=$opertation;
+                        }
+                        if(isset($groupby)==true)
+                        {
+                                $data['groupby']=$groupby;
+                        }
+                        if(isset($orderby)==true)
+                        {
+                                $data['orderby']=$orderby;
+                        }
+                        if(isset($fields)==true)
+                        {
+                                $data['fields']=$fields;
+                        }
+                        if(isset($conditions)==true)
+                        {
+                                $data['conditions']=$conditions;
+                        }
+                        if(isset($join)==true)
+                        {
+                                $data['join']=$join;
+                        }
+                        if(isset($primary_table)==true)
+                        {
+                                $data['primary_table']=$primary_table;
+                        }
 
-			foreach($select as $field)
-			{
-				echo $field."<br>";
-			}
+//			foreach($select as $field)
+//			{
+//				echo $field."<br>";
+//			}
 
 		}
 		else if($opertation=="DELETE")
@@ -354,25 +430,75 @@ class Api extends CI_Controller {
 				}
 
 			}
-			foreach($join as $field)
-			{
-				echo $field."<br>";
-			}
-			foreach($conditions as $field)
-			{
-				echo $field."<br>";
-			}
+                        if(isset($opertation)==true)
+                        {
+                                $data['operation']=$opertation;
+                        }
+                        if(isset($groupby)==true)
+                        {
+                                $data['groupby']=$groupby;
+                        }
+                        if(isset($orderby)==true)
+                        {
+                                $data['orderby']=$orderby;
+                        }
+                        if(isset($fields)==true)
+                        {
+                                $data['fields']=$fields;
+                        }
+                        if(isset($conditions)==true)
+                        {
+                                $data['conditions']=$conditions;
+                        }
+                        if(isset($join)==true)
+                        {
+                                $data['join']=$join;
+                        }
+                        if(isset($primary_table)==true)
+                        {
+                                $data['primary_table']=$primary_table;
+                        }
+//			foreach($join as $field)
+//			{
+//				echo $field."<br>";
+//			}
+//			foreach($conditions as $field)
+//			{
+//				echo $field."<br>";
+//			}
+                        
 		}
 		else if($opertation=="CUSTOM")
 		{
 			if($input['custom_query']!="")
 			{
 				$customquery=$input['custom_query'];
-				echo $customquery;  
+                                if(isset($opertation)==true)
+                                {
+                                $data['operation']=$opertation;
+                                }
+                                if(isset($conditions)==true)
+                                {
+                                        $data['customquery']=$customquery;
+                                }
+                                
+//				echo $customquery;  
 
 			} 
 
 
+		}
+                if ($this->login_database->is_logged_in()) {
+			
+			$role=$this->session->userdata('logged_in');
+			$data['api_list'] = $this->login_database->api_list();
+			$data['title']="API Analysis";
+			$data['permission']=$role['permission'];
+			$data['main_content']="api_list/api_analysis";
+			$this->load->view('template/template',$data);
+
+		}else{
+			redirect(base_url() . 'user/login');
 		}
 	}
 
