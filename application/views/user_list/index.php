@@ -60,6 +60,10 @@
 	</table>
 
 </div>
+<a href="<?php echo base_url();?>user_list/adduser" class="btn btn-primary">
+	<i class="entypo-plus"></i>
+	Add User
+</a>
 
 
 <script src="<?php echo base_url();?>assets/js/jquery.dataTables.min.js"></script>
