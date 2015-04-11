@@ -31,6 +31,7 @@ class User_list extends CI_Controller {
     }
 
     public function delete() {
+        $this->login_database->admin_protect();
         if (isset($_GET['id'])) {
             $id = $_GET['id'];
             $data = array(
@@ -43,6 +44,7 @@ class User_list extends CI_Controller {
     }
 
     public function edit() {
+        $this->login_database->admin_protect();
         if (isset($_GET['id'])) {
             $id = $_GET['id'];
         }
@@ -56,6 +58,7 @@ class User_list extends CI_Controller {
     }
 
     public function updateuser() {
+        $this->login_database->admin_protect();
         //$id = $_GET['id'];	
         $id = $this->input->post('id');
         $data = array(
@@ -70,6 +73,7 @@ class User_list extends CI_Controller {
     }
 
     public function adduser() {
+        $this->login_database->admin_protect();
         if ($this->input->post()) {
             $name = $this->input->post('name');
             $username = $this->input->post('username');
