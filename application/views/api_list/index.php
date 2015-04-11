@@ -12,25 +12,25 @@
 
 				<tr class="replace-inputs">
 					<th>ID</th>
-                                        <th>auth_key</th>
+                                        <!--<th>auth_key</th>-->
                                         <th>Operation</th>
                                         <th>API_URL</th>
                                         <th>API Name</th>
                                         <th>Description</th>
-                                        <th>Username</th>
-                                         <th>Parameters</th>
+                                        <th>Created By</th>
+                                         <th>Details</th>
                                          <th>Created At</th>
 					<th>Action</th>                                       
 				</tr>
 				<tr>
 					<th>ID</th>
-                                        <th>auth_key</th>
+                                        <!--<th>auth_key</th>-->
                                         <th>Operation</th>
                                         <th>API_URL</th>
                                         <th>API Name</th>
                                         <th>Description</th>
-                                        <th>Username</th>
-                                         <th>Parameters</th>
+                                        <th>Created By</th>
+                                         <th>Details</th>
                                          <th>Created At</th>
 					<th>Action</th>         
 
@@ -41,13 +41,13 @@
 				<?php foreach ($api_list as $api): ?>
 					<tr class="odd gradeX">
 						<td><?php echo $api['id']; ?></td>
-                                                <td><?php echo $api['auth_key']; ?></td>
+                                                <!--<td><?php echo $api['auth_key']; ?></td>-->
                                                 <td><?php echo $api['opertation'];?></td>
                                                 <td><a href="<?php echo base_url()."api/index/".$api['opertation']."/".$api['id']."/".$api['auth_key']."/".$api['name'] ?>"><?php echo base_url()."api/index/".$api['opertation']."/".$api['id']."/".$api['auth_key']."/".$api['name'] ?></a></td>
 						<td><?php echo $api['name']; ?></td>
                                                 <td><?php echo $api['comment']; ?></td>
                                                 <td class="center"><?php echo $api['username']; ?></td>
-                                                <td><?php echo $api['perameter_count']; ?></td>
+                                               <td><a href="<?php echo base_url()."api/detail/".$api['opertation']."/".$api['id']."/".$api['auth_key']."/".$api['name'] ?>">Details</a></td>
 						
 						
 						<td class="center"><?php echo $api['created_at']; ?></td>
@@ -66,13 +66,13 @@
 			<tfoot>
 				<tr>
 					<th>ID</th>
-                                        <th>auth_key</th>
+                                        <!--<th>auth_key</th>-->
                                         <th>Operation</th>
                                         <th>API_URL</th>
                                         <th>API Name</th>
                                         <th>Description</th>
-                                        <th>Username</th>
-                                         <th>Parameters</th>
+                                        <th>Created By</th>
+                                         <th>Details</th>
                                          <th>Created At</th>
 					<th>Action</th>     
 					
