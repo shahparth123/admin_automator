@@ -178,9 +178,6 @@
 <script src="<?php echo base_url();?>assets/js/datatables/lodash.min.js"></script>
 <script src="<?php echo base_url();?>assets/js/datatables/responsive/js/datatables.responsive.js"></script>
 <script src="<?php echo base_url();?>assets/js/select2/select2.min.js"></script>
-<script src="<?php echo base_url();?>assets/js/neon-chat.js"></script>
-<script src="<?php echo base_url();?>assets/js/neon-custom.js"></script>
-<script src="<?php echo base_url();?>assets/js/neon-demo.js"></script>
 
 <script type="text/javascript">
 	jQuery(document).ready(function($)
