@@ -19,8 +19,7 @@
 			</div>
 
 			<div class="panel-body">
-			<?php echo $apiurl;?>	
-
+                            <a href="<?php echo $apiurl;?>"><?php echo $apiurl;?></a>	
 			</div>
 			
 		</div>
