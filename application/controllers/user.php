@@ -60,7 +60,7 @@ Class User extends CI_Controller {
                 'email' => $this->input->post('email'),
                 'password' => do_hash($this->input->post('password'), 'md5'),
                 'emailcode' => $email_code
-                );
+            );
             $result = $this->login_database->registration_insert($data);
             if ($result == TRUE) {
                 $data['message_display'] = 'Registration Successfully !';
@@ -89,12 +89,12 @@ Class User extends CI_Controller {
             $data = array(
                 'username' => $this->input->post('username'),
                 'password' => do_hash($this->input->post('password'), 'md5'),
-                );
+            );
             $result = $this->login_database->login($data);
             if ($result == TRUE) {
                 $sess_array = array(
                     'username' => $this->input->post('username')
-                    );
+                );
 
 // Add user data in session
                 $this->session->set_userdata('logged_in', $sess_array);
@@ -106,7 +106,7 @@ Class User extends CI_Controller {
                         'username' => $result[0]->username,
                         'email' => $result[0]->email,
                         'permission' => $result[0]->permission
-                        );
+                    );
                     //	$this->load->view('user/admin_page', $data);
                 }$this->session->set_userdata('logged_in', $data);
                 $op['login_status'] = "success";
@@ -171,97 +171,104 @@ Class User extends CI_Controller {
     }
 
     public function editpassword() {
-       $role=$this->session->userdata('logged_in');
-       $user_data = $this->session->all_userdata();
-       $id = $user_data['logged_in']['id'];
-       if ($this->input->post()) {
-        //$oldpassword = $this->input->post("oldpassword");
-        $newpassword = do_hash($this->input->post("newpassword"),'md5');
-        $confirmpassword = do_hash($this->input->post("confirmpassword"),'md5');
-        if ($newpassword == $confirmpassword) {
-            $checked = $this->login_database->editpassword($id, $newpassword);
-            if ($checked == true) {
-                $message = "Your password is Successfully Changed";
-                echo "<script type='text/javascript'>alert('$message');</script>";
-            } //else {
+        if ($this->login_database->is_logged_in()) {
+            $role = $this->session->userdata('logged_in');
+            $user_data = $this->session->all_userdata();
+            $id = $user_data['logged_in']['id'];
+            if ($this->input->post()) {
+                //$oldpassword = $this->input->post("oldpassword");
+                $newpassword = do_hash($this->input->post("newpassword"), 'md5');
+                $confirmpassword = do_hash($this->input->post("confirmpassword"), 'md5');
+                if ($newpassword == $confirmpassword) {
+                    $checked = $this->login_database->editpassword($id, $newpassword);
+                    if ($checked == true) {
+                        $message = "Your password is Successfully Changed";
+                        echo "<script type='text/javascript'>alert('$message');</script>";
+                    } //else {
 //                $message = "Your password is not Changed.(Can be your old password is incorrect.)";
 //                echo "<script type='text/javascript'>alert('$message');</script>";
 //            }
+                } else {
+                    $message = "Please Enter Same Password";
+                    echo "<script type='text/javascript'>alert('$message');</script>";
+                }
+            }
+
+
+            $data['title'] = "Edit Password";
+            $data['permission'] = $role['permission'];
+            $data['main_content'] = "user/editpassword";
+            $this->load->view('template/template', $data);
         } else {
-            $message = "Please Enter Same Password";
-            echo "<script type='text/javascript'>alert('$message');</script>";
+            redirect(base_url() . 'user/login');
         }
     }
 
+    public function editprofile() {
+        if ($this->login_database->is_logged_in()) {
+            $role = $this->session->userdata('logged_in');
+            $data['user_detail'] = $this->login_database->editprofile();
+            $data['title'] = "Edit Profile";
+            $data['permission'] = $role['permission'];
+            $data['main_content'] = "user/editprofile";
+            $this->load->view('template/template', $data);
+        } else {
+            redirect(base_url() . 'user/login');
+        }
+    }
 
-    $data['title'] = "Edit Password";
-    $data['permission'] = $role['permission'];
-    $data['main_content'] = "user/editpassword";
-    $this->load->view('template/template', $data);
-}
-
-public function editprofile() {
-    $role=$this->session->userdata('logged_in');
-    $data['user_detail'] = $this->login_database->editprofile();
-    $data['title'] = "Edit Profile";
-    $data['permission'] = $role['permission'];
-    $data['main_content'] = "user/editprofile";
-    $this->load->view('template/template', $data);
-}
-
-public function updateprofile() {
-    $id = $this->input->post('id');
-    $data = array(
-        'name' => $this->input->post('name'),
-        'email' => $this->input->post('email'),
-            //'username' => $this->input->post('username')
+    public function updateprofile() {
+        $id = $this->input->post('id');
+        $data = array(
+            'name' => $this->input->post('name'),
+            'email' => $this->input->post('email'),
+                //'username' => $this->input->post('username')
         );
 
-    $success = $this->login_database->updateprofile($data,$id);
-    if ($success == true) {
-        redirect('dashboard/index', $data);
-    }
-}
-
-public function changepic() {
-    $role=$this->session->userdata('logged_in');
-    $user_data = $this->session->all_userdata();
-    $id = $user_data['logged_in']['id'];
-    $config = array(
-        'upload_path' => "uploads/",
-        'allowed_types' => "jpg",
-        'overwrite' => TRUE,
-            'max_size' => "20480000", // Can be set to particular file size , here it is 2 MB(2048 Kb)
-            'max_height' => "10240",
-            'max_width' => "10240",
-            'file_name' => $id.'.jpg'       
-            
-            );
-    if($this->input->post()){
-        $this->load->library('upload', $config);
-        $this->upload->initialize($config);
-        if ($this->upload->do_upload('userfile')) {
+        $success = $this->login_database->updateprofile($data, $id);
+        if ($success == true) {
             redirect('dashboard/index', $data);
+        }
+    }
+
+    public function changepic() {
+        if ($this->login_database->is_logged_in()) {
+            $role = $this->session->userdata('logged_in');
+            $user_data = $this->session->all_userdata();
+            $id = $user_data['logged_in']['id'];
+            $config = array(
+                'upload_path' => "uploads/",
+                'allowed_types' => "jpg",
+                'overwrite' => TRUE,
+                'max_size' => "20480000", // Can be set to particular file size , here it is 2 MB(2048 Kb)
+                'max_height' => "10240",
+                'max_width' => "10240",
+                'file_name' => $id . '.jpg'
+            );
+            if ($this->input->post()) {
+                $this->load->library('upload', $config);
+                $this->upload->initialize($config);
+                if ($this->upload->do_upload('userfile')) {
+                    redirect('dashboard/index', $data);
+                } else {
+                    $error = array('error' => $this->upload->display_errors());
+                    $data['title'] = "Change Profile Picture";
+                    $data['permission'] = $role['permission'];
+
+                    $data['error_content'] = "<p>" . implode("<p>", $error) . "</p>";
+                    $data['main_content'] = "user/changepic";
+
+                    $this->load->view('template/template', $data);
+                }
+            } else {
+                $data['title'] = "Change Profile Picture";
+                $data['permission'] = $role['permission'];
+                $data['main_content'] = "user/changepic";
+                $this->load->view('template/template', $data);
+            }
         } else {
-         $error = array('error' => $this->upload->display_errors());
-         $data['title'] = "Change Profile Picture";
-         $data['permission'] = $role['permission'];
-
-         $data['error_content']= "<p>".implode("<p>", $error)."</p>";
-         $data['main_content'] = "user/changepic";
-
-         $this->load->view('template/template', $data);
-
-     }
- }
- else{
-    $data['title'] = "Change Profile Picture";
-    $data['permission'] = $role['permission'];
-    $data['main_content'] = "user/changepic";
-    $this->load->view('template/template', $data);
-}
-}
+            redirect(base_url() . 'user/login');
+        }
+    }
 
 }
-
-?>
