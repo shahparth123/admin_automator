@@ -49,6 +49,27 @@
                             <input type="text" name="username" class="form-control" id="field-1" value="<?php echo $user['username'] ?>" required>
                         </div>
                     </div>
+                    
+                      <div class="form-group">
+                    <label for="field-1" class="col-sm-3 control-label">Priviledges</label>
+                    <div class="col-sm-5">
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="priviledges" id="optionsRadios1" value="0" <?php if($user['permission'] == 0){ ?> checked="checked" <?php } ?>>Developer
+                            </label>
+                        </div>
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="priviledges" id="optionsRadios2" value="1" <?php if($user['permission'] == 1){ ?> checked="checked" <?php } ?>>Moderator
+                            </label>
+                        </div>
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="priviledges" id="optionsRadios3" value="2" <?php if($user['permission'] == 2){ ?> checked="checked" <?php } ?>>Admin
+                            </label>
+                        </div>
+                    </div>
+                </div>
                     <div class="form-group">
                         <div class="col-sm-offset-3 col-sm-5">
                             <button type="submit" class="btn btn-default">Update</button>
