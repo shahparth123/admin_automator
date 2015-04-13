@@ -30,7 +30,7 @@
           </div>    <addbuttonsbutton></addbuttonsbutton>
 
           <form action="" ng-model="para" id="frm">
-           <div class="col-md-4">Param:
+           <div class="col-md-4">Parameter 1:
               <input type="text" ng-model="para.p1" ng-init="para.p1=''" ng-change="filter()" placeholder="p1" class="form-control" />
             </div>
               
@@ -59,8 +59,10 @@
               <h4>No customers found</h4>
             </div>
           </div>
-          <div class="col-md-12" ng-show="filteredItems > 0">    
-            <div pagination="" page="currentPage" on-select-page="setPage(page)" boundary-links="true" total-items="filteredItems" items-per-page="entryLimit" class="pagination-small" previous-text="&laquo;" next-text="&raquo;"></div>
+          <div class="col-md-12" ng-show="filteredItems > 0">   
+<div pagination="" page="currentPage" max-size="10" on-select-page="setPage(page)" boundary-links="true" total-items="filteredItems" items-per-page="entryLimit" class="pagination-small" previous-text="«" next-text="»"></div>
+            <!-- <div pagination="" page="currentPage" on-select-page="setPage(page)" boundary-links="true" total-items="filteredItems" items-per-page="entryLimit" class="pagination-small" previous-text="&laquo;" next-text="&raquo;"></div> -->
+          
           </div>
         </div>
       </div>

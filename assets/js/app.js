@@ -23,7 +23,7 @@ app.directive("addbuttons", function($compile){
 	return function(scope, element, attrs){
 		element.bind("click", function(){
 			count++;
-			angular.element(document.getElementById('frm')).append($compile("<div class=\"col-md-4\">Param:<input type=\"text\" ng-model=\"para.p"+count+"\" ng-init=\"para.p"+count+"=''\" ng-change=\"filter()\" placeholder=\"p"+count+"\" class=\"form-control\" /></div>")(scope));
+			angular.element(document.getElementById('frm')).append($compile("<div class=\"col-md-4\">Parameter "+count+":<input type=\"text\" ng-model=\"para.p"+count+"\" ng-init=\"para.p"+count+"=''\" ng-change=\"filter()\" placeholder=\"p"+count+"\" class=\"form-control\" /></div>")(scope));
 		});
 	};
 });

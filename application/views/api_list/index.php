@@ -7,7 +7,7 @@
 
 		<h3></span> List of Already Created API</h3>
 
-                <table class="table table-bordered datatable" id="table-3">
+                <table class="table table-bordered datatable table-responsive col-md-8" id="table-3">
 			<thead>
 
 				<tr class="replace-inputs">

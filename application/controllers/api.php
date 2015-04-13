@@ -63,6 +63,11 @@ class Api extends CI_Controller {
                 $comment=$d[0]['comment'];
                 $data['apiname']=$apiname;
                 $data['comment']=$comment;
+                $data['parameters']=$c;
+                $data['oper']=$oper;
+                $data['id']=$id;
+                $data['auth_key']=$auth_key;
+
 		$input=json_decode($a,true);
 		
 		$opertation=$input['opertation'];
@@ -83,7 +88,7 @@ class Api extends CI_Controller {
 				{
 					foreach($values as $value)
 					{
-						$fields[]=$value.",";
+						$fields[]=$value;
       //  $this->db->select($value);
 					}
 				}
@@ -106,29 +111,29 @@ class Api extends CI_Controller {
 						if($opcode=="where")
 						{
 
-							if($opcode=="like")
+							if($op=="LIKE")
 							{
-								$conditions[]= "like ".$f1." ".$op."',".$f2;
+								$conditions[]= "WHERE ".$f1." ".$op." ".$f2;
 							}
 							else{
-								$conditions[]= "where ".$f1." ".$op."',".$f2;
+								$conditions[]= "WHERE ".$f1." ".$op." ".$f2;
 							}
 						}
 						else if($opcode=="or_where")
 						{
-							if($opcode=="like")
+							if($op="LIKE")
 							{
-								$conditions[]=  "or like ".$f1." ".$op." ".$f2;
+								$conditions[]=  "OR WHERE ".$f1." ".$op." ".$f2;
 							}
 							else{
-								$conditions[]=  "or where ".$f1." ".$op." ".$f2;
+								$conditions[]=  "OR WHERE ".$f1." ".$op." ".$f2;
 							}
 
 
 						}
 						else if($opcode=="having")
 						{
-							$conditions[]=  "having ".$f1." ".$op." ".$f2;
+							$conditions[]=  "HAVING ".$f1." ".$op." ".$f2;
 						}
 						$i++;
 					}
@@ -144,7 +149,7 @@ class Api extends CI_Controller {
 						$jf1=$input['jf1'][$j];
 						$jf2=$input['jf2'][$j];
 						$jop=$input['jop'][$j];
-						$join[] = $jtype." join ".$jtable." ".$jopcode." ".$jf1." ".$jop." ".$jf2;
+						$join[] = $jtype." JOIN ".$jtable." ".$jopcode." ".$jf1." ".$jop." ".$jf2;
 						$j++;
 					}
 				}
@@ -227,27 +232,27 @@ class Api extends CI_Controller {
 
 							if($opcode=="like")
 							{
-								$conditions[]= "like ".$f1." ".$op." ".$f2;
+								$conditions[]= "LIKE ".$f1." ".$op." ".$f2;
 							}
 							else{
-								$conditions[]= "where ".$f1." ".$op." ".$f2;
+								$conditions[]= "WHERE ".$f1." ".$op." ".$f2;
 							}
 						}
 						else if($opcode=="or_where")
 						{
 							if($opcode=="like")
 							{
-								$conditions[]=  "or like ".$f1." ".$op." ".$f2;
+								$conditions[]=  "OR LIKE ".$f1." ".$op." ".$f2;
 							}
 							else{
-								$conditions[]=  "or where ".$f1." ".$op." ".$f2;
+								$conditions[]=  "OR WHERE ".$f1." ".$op." ".$f2;
 							}
 
 
 						}
 						else if($opcode=="having")
 						{
-							$conditions[]=  "having ".$f1." ".$op." ".$f2;
+							$conditions[]=  "HAVING ".$f1." ".$op." ".$f2;
 						}
 						$i++;
 					}
@@ -310,7 +315,7 @@ class Api extends CI_Controller {
 						{
 							$input[str_replace(".","_",$value)]="NULL";
 						}
-						$select[]= $value."=".$input[str_replace(".","_",$value)]."<br/>";
+						$select[]= $value." = ".$input[str_replace(".","_",$value)]."<br/>";
 					}
 				}
 				else if($key=="pri_tab")
@@ -385,23 +390,23 @@ class Api extends CI_Controller {
 						if($opcode=="where")
 						{
 
-							if($op=="like")
+							if($op=="LIKE")
 							{
-								$conditions[]= "Where ".$f1." like ".$f2.")" ;
+								$conditions[]= "WHERE ".$f1." LIKE ".$f2 ;
 							}
 							else
 							{
-								$conditions[]= "where ".$f1." ".$op." ".$f2;
+								$conditions[]= "WHERE ".$f1." ".$op." ".$f2;
 							}
 						}
 						else if($opcode=="or_where")
 						{
-							if($op=="like")
+							if($op=="LIKE")
 							{
-								$conditions[]= "or ".$f1." ".$op." ".$f2;
+								$conditions[]= "OR ".$f1." ".$op." ".$f2;
 							}
 							else{
-								$conditions[]= "or where ".$f1." ".$op." ".$f2;
+								$conditions[]= "OR WHERE ".$f1." ".$op." ".$f2;
 							}
 
 
@@ -423,7 +428,7 @@ class Api extends CI_Controller {
 						$jf1=$input['jf1'][$j];
 						$jf2=$input['jf2'][$j];
 						$jop=$input['jop'][$j];
-						$join[]= $jtype." join ".$jtable." ".$jopcode." ".$jf1." ".$jop." ".$jf2;
+						$join[]= $jtype." JOIN ".$jtable." ".$jopcode." ".$jf1." ".$jop." ".$jf2;
 				        //$this->db->join($jtable,$jf1." ".$jop." ".$jf2,$jtype);
 						$j++;
 					}
