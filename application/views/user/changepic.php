@@ -50,8 +50,8 @@
 							
 						</div>
 					</div>
-					
-					
+				<font color="red"><strong><label class="col-sm-6 control-label">*Please upload image with jpg extension only.</label></strong></font>
+                                        
 					<div class="form-group">
 						<div class="col-sm-offset-3 col-sm-5">
 							<button type="submit" name="submit" class="btn btn-default">Submit</button>
@@ -67,6 +67,7 @@
 	</div>
 </div>
 
+<script src="<?php echo base_url();?>assets/js/fileinput.js"></script>
 
 
 

@@ -45,7 +45,7 @@
 							<label for="field-1" class="col-sm-3 control-label">Username</label>
 
 							<div class="col-sm-5">
-								<input type="text" name="username" class="form-control" id="field-1" value="<?php echo $user['username']?>">
+								<input type="text" name="username"  readonly="readonly" class="form-control" id="field-1" value="<?php echo $user['username']?>">
 							</div>
 						</div>
 						<div class="form-group">

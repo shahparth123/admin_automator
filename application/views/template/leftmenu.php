@@ -204,7 +204,7 @@
 
                 <a href="<?php echo base_url(); ?>user/changepic">
                     <i class="entypo-user"></i>
-                    Change Pic
+                    Change Profile Picture
                 </a>
 
                 <a href="<?php echo base_url(); ?>user/editpassword">
