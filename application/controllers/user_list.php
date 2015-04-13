@@ -14,6 +14,8 @@ class User_list extends CI_Controller {
 
 // Load database
         $this->load->model('login_database');
+// Load md5	        
+         $this->load->helper('security');
     }
 
     public function index() {
@@ -64,7 +66,9 @@ class User_list extends CI_Controller {
         $data = array(
             'name' => $this->input->post('name'),
             'email' => $this->input->post('email'),
-            'username' => $this->input->post('username')
+            'username' => $this->input->post('username'),
+             'permission' => $this->input->post('priviledges')
+            
         );
         $success = $this->login_database->updateuser($data, $id);
         if ($success == true) {
@@ -78,9 +82,9 @@ class User_list extends CI_Controller {
             $name = $this->input->post('name');
             $username = $this->input->post('username');
             $email = $this->input->post('email');
-            $password = $this->input->post('password');
-
-            $this->login_database->adduser($name, $username, $email, $password);
+            $password = do_hash($this->input->post("password"),'md5');
+            $priviledges = $this->input->post('priviledges');
+            $this->login_database->adduser($name, $username, $email, $password,$priviledges);
         }
         $role = $this->session->userdata('logged_in');
         $data['title'] = "Add User";

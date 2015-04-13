@@ -17,56 +17,77 @@
             </div>
 
             <div class="panel-body">
-                
-                    <!-- <form role="form" class="form-horizontal form-groups-bordered"> -->
-                    <?php
-                    $attr = array('id' => "form_adduser", 'class' => 'form-horizontal form-groups-bordered');
-                    echo form_open('user_list/adduser', $attr);
-                    ?>
 
-                    <div class="form-group">
-                        <label for="field-1" class="col-sm-3 control-label">Name</label>
+                <!-- <form role="form" class="form-horizontal form-groups-bordered"> -->
+                <?php
+                $attr = array('id' => "form_adduser", 'class' => 'form-horizontal form-groups-bordered');
+                echo form_open('user_list/adduser', $attr);
+                ?>
 
-                        <div class="col-sm-5">
-                            
-                            <input type="text" name="name" class="form-control" id="field-1" value="" required autocomplete="off">
+                <div class="form-group">
+                    <label for="field-1" class="col-sm-3 control-label">Name</label>
+
+                    <div class="col-sm-5">
+
+                        <input type="text" name="name" class="form-control" id="field-1" value="" required autocomplete="off">
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="field-1" class="col-sm-3 control-label">Username</label>
+
+                    <div class="col-sm-5">
+                        <input type="text" name="username" class="form-control" id="field-1" value="" required autocomplete="off">
+                    </div>
+                </div>
+
+
+
+                <div class="form-group">
+                    <label for="field-1" class="col-sm-3 control-label">Email id</label>
+
+                    <div class="col-sm-5">
+                        <input type="email" name="email" class="form-control" id="field-1" value="" required autocomplete="off">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="field-1" class="col-sm-3 control-label">Password</label>
+
+                    <div class="col-sm-5">
+                        <input type="password" name="password" class="form-control" id="field-1" value="" required autocomplete="off">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="field-1" class="col-sm-3 control-label">Priviledges</label>
+                    <div class="col-sm-5">
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="priviledges" id="optionsRadios1" value="0" checked>Developer
+                            </label>
+                        </div>
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="priviledges" id="optionsRadios2" value="1">Moderator
+                            </label>
+                        </div>
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="priviledges" id="optionsRadios3" value="2">Admin
+                            </label>
                         </div>
                     </div>
+                </div>
 
-                   
-                    <div class="form-group">
-                        <label for="field-1" class="col-sm-3 control-label">Username</label>
+                <div class="form-group">
+                    <div class="col-sm-offset-3 col-sm-5">
+                        <button type="submit" class="btn btn-default">Update</button>
+                    </div>
+                </div>
+                <?php echo form_close(); ?>
 
-                        <div class="col-sm-5">
-                            <input type="text" name="username" class="form-control" id="field-1" value="" required autocomplete="off">
-                        </div>
-                    </div>
-                    
-                    
-                    
-                     <div class="form-group">
-                        <label for="field-1" class="col-sm-3 control-label">Email id</label>
-
-                        <div class="col-sm-5">
-                            <input type="email" name="email" class="form-control" id="field-1" value="" required autocomplete="off">
-                        </div>
-                    </div>
-                    
-                     <div class="form-group">
-                        <label for="field-1" class="col-sm-3 control-label">Password</label>
-
-                        <div class="col-sm-5">
-                            <input type="password" name="password" class="form-control" id="field-1" value="" required autocomplete="off">
-                        </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <div class="col-sm-offset-3 col-sm-5">
-                            <button type="submit" class="btn btn-default">Update</button>
-                        </div>
-                    </div>
-                    <?php  echo form_close(); ?>
-                
                 </form>
 
             </div>
