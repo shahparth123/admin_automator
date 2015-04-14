@@ -54,9 +54,11 @@ class Api extends CI_Controller {
 	}
 
 
-	public function detail($oper,$id,$auth_key,$name)
+	public function detail($oper="0",$id="0",$auth_key="0",$name="0")
 	{
 		$d=$this->api_model->retrive($oper,$id,$auth_key,$name);
+		if(count($d)!=0)
+		{
 		$c=$d[0]['perameter_count'];
 		$a=$d[0]['fields'];
                 $apiname=$d[0]['name'];
@@ -493,6 +495,12 @@ class Api extends CI_Controller {
 
 
 		}
+	}
+		else{
+			redirect(base_url() . 'api_list/index');
+			
+		}
+
                 if ($this->login_database->is_logged_in()) {
 			
 			$role=$this->session->userdata('logged_in');
@@ -505,11 +513,12 @@ class Api extends CI_Controller {
 		}else{
 			redirect(base_url() . 'user/login');
 		}
+
 	}
 
 
 
-public function index($oper,$id,$auth_key,$name)
+public function index($oper="0",$id="0",$auth_key="0",$name="0")
 {
 		/*echo "<pre>";
 		echo $a=json_encode($_POST);
@@ -517,6 +526,9 @@ public function index($oper,$id,$auth_key,$name)
 		echo "</pre>";
 		*/
 		$d=$this->api_model->retrive($oper,$id,$auth_key,$name);
+		if(count($d)!=0)
+		{
+
 		$c=$d[0]['perameter_count'];
 		$a=$d[0]['fields'];
  		//echo file_get_contents('php://input');
@@ -524,7 +536,15 @@ public function index($oper,$id,$auth_key,$name)
 		for($count=1;$count<=$c;$count++)
 		{
 			$string = "/\?\?".$count."\?\?/";
+			if(isset($_POST['p'.$count])==true)
+			{
 			$a= preg_replace($string,$_POST['p'.$count],$a);
+			}
+			else{
+				$error['Error']="Perameter p".$count. " is missig";
+				echo '['.json_encode($error).']';
+				exit();
+			}
 			//echo $a;	
 		}
 		
@@ -891,6 +911,12 @@ public function index($oper,$id,$auth_key,$name)
 			
 
 		}
+		}
+		else{
+			$error['Error']="No Result Found";
+			echo '['.json_encode($error).']';
+			exit();
+		}
 		//$this->load->view('includes/header');
 		/*$data['title']="Dashboard";
 		$data['permission']="Dashboard";
@@ -899,6 +925,9 @@ public function index($oper,$id,$auth_key,$name)
 		*/
 		//$this->load->view('includes/footer');
 	}
+
+
+
 	public function insert()
 	{
 		//$this->load->view('includes/header');
