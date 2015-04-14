@@ -258,7 +258,7 @@ echo form_open('api/generate',$attr); ?>
 
             if($(this).is(":checked"))
             {
-                jQuery("#insertvalues").append('<div class ="col-sm-6"><h4>'+id+':</h4><input type="text" id="'+nid+'" name="'+id+'" class="form-control" placeholder="value"></div>');
+                jQuery("#insertvalues").append('<div class ="col-sm-6" id="'+id+'"><h4>'+id+':</h4><input type="text" id="'+nid+'" name="'+id+'" class="form-control" placeholder="value"></div>');
             }
             else
             {
@@ -277,6 +277,13 @@ echo form_open('api/generate',$attr); ?>
   function remove_table(tablename){
       $("#tableforjoin option[value="+tablename+"]").remove();
       $("#pri_tab option[value="+tablename+"]").remove();
+  }
+  
+  function uncheck_remove(tablename){
+          console.log('hi');
+           jQuery('[id^="'+tablename+'"]').remove();
+          //$('#'+tablename).find('input[type=checkbox]:checked').removeAttr('checked');
+          
   }
 
 
@@ -466,6 +473,7 @@ $.ajax({
 					//alert("Deselect value: " + values);
 					this.qs1.cache();
 					this.qs2.cache();
+                                        uncheck_remove(values);
 					hide_table(values);
 					remove_table(values);
 				}
