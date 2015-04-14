@@ -64,14 +64,14 @@ app.controller('customersCrtl', function ($scope, $http, $timeout) {
         $scope.entryLimit = 5; //max no of items to display in a page
         $scope.filteredItems = $scope.list.length; //Initially for no filter  
         $scope.totalItems = $scope.list.length;
-        console.log($scope.para);
+        //console.log($scope.para);
     }).
 		error(function(response) {
 			$scope.codeStatus = response || "Request failed";
 		});
 
 		$timeout(function() { 
-			$scope.filteredItems = $scope.filtered.length;
+		//	$scope.filteredItems = $scope.filtered.length;
 		}, 10);
 	};
 	$scope.sort_by = function(predicate) {

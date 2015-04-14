@@ -51,21 +51,21 @@
                     </div>
                     
                       <div class="form-group">
-                    <label for="field-1" class="col-sm-3 control-label">Priviledges</label>
+                    <label for="field-1" class="col-sm-3 control-label">Privileges</label>
                     <div class="col-sm-5">
                         <div class="radio">
                             <label>
-                                <input type="radio" name="priviledges" id="optionsRadios1" value="0" <?php if($user['permission'] == 0){ ?> checked="checked" <?php } ?>>Developer
+                                <input type="radio" name="privileges" id="optionsRadios1" value="0" <?php if($user['permission'] == 0){ ?> checked="checked" <?php } ?>>Developer
                             </label>
                         </div>
                         <div class="radio">
                             <label>
-                                <input type="radio" name="priviledges" id="optionsRadios2" value="1" <?php if($user['permission'] == 1){ ?> checked="checked" <?php } ?>>Moderator
+                                <input type="radio" name="privileges" id="optionsRadios2" value="1" <?php if($user['permission'] == 1){ ?> checked="checked" <?php } ?>>Moderator
                             </label>
                         </div>
                         <div class="radio">
                             <label>
-                                <input type="radio" name="priviledges" id="optionsRadios3" value="2" <?php if($user['permission'] == 2){ ?> checked="checked" <?php } ?>>Admin
+                                <input type="radio" name="privileges" id="optionsRadios3" value="2" <?php if($user['permission'] == 2){ ?> checked="checked" <?php } ?>>Admin
                             </label>
                         </div>
                     </div>

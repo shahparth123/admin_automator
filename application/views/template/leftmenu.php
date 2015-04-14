@@ -37,10 +37,10 @@
                 <a href="#" class="user-link">
                     <img src="<?php echo base_url(); ?>uploads/<?php echo $user_data['logged_in']['id'] ?>.jpg" alt="" class="img-circle" />
 
-                    <span>Welcome,</span>
+                  
                     <strong><?php
                         echo $user_data['logged_in']['name'];
-                        ?></strong>
+                        ?></strong> <span><?php if($user_data['logged_in']['permission'] == 0){echo "The Developer";}elseif($user_data['logged_in']['permission'] == 1){echo "The Moderator";}else{echo "The Admin";}?></span>
                 </a>
             </div>
 
@@ -109,7 +109,32 @@
                     <span>API List</span>
                 </a>
             </li>
-
+            <li class="has-sub">
+                <a href="#">
+                    <i class="entypo-cog"></i>
+                    <span>Tickets</span>
+                </a>
+                <ul>
+                    <li>
+                        <a href="<?php echo base_url(); ?>ticket/newticket">
+                            <i class="entypo-vcard"></i>
+                            <span>New Ticket</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?php echo base_url(); ?>ticket/listticket">
+                            <i class="entypo-user"></i>
+                            <span>List Ticket</span>
+                        </a>
+                    </li>
+<!--                    <li>
+                        <a href="<?php //echo base_url(); ?>user/editpassword">
+                            <i class="entypo-key"></i>
+                            <span>Change Password</span>
+                        </a>
+                    </li>-->
+                </ul>
+            </li>
             <li class="has-sub">
                 <a href="#">
                     <i class="entypo-cog"></i>
@@ -188,10 +213,9 @@
                 <a href="#" class="user-link">
                     <img src="<?php echo base_url(); ?>uploads/<?php echo $user_data['logged_in']['id'] ?>.jpg" alt="" class="img-circle" />
 
-                    <span>Welcome,</span>
-                    <strong><?php
+                   <strong><?php
                         echo $user_data['logged_in']['name'];
-                        ?></strong>
+                        ?></strong> <span><?php if($user_data['logged_in']['permission'] == 0){echo "The Developer";}elseif($user_data['logged_in']['permission'] == 1){echo "The Moderator";}else{echo "The Admin";}?></span>
                 </a>
             </div>
 
