@@ -1,6 +1,8 @@
 <div class="row">
     <div class="col-md-12">
-
+<font color="green"><strong>
+            <?php echo $this->session->flashdata('msg'); ?>
+       </strong></font>
         <div class="panel panel-primary" data-collapsed="0">
 
             <div class="panel-heading">
@@ -61,21 +63,21 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="field-1" class="col-sm-3 control-label">Priviledges</label>
+                    <label for="field-1" class="col-sm-3 control-label">Privileges</label>
                     <div class="col-sm-5">
                         <div class="radio">
                             <label>
-                                <input type="radio" name="priviledges" id="optionsRadios1" value="0" checked>Developer
+                                <input type="radio" name="privileges" id="optionsRadios1" value="0" checked>Developer
                             </label>
                         </div>
                         <div class="radio">
                             <label>
-                                <input type="radio" name="priviledges" id="optionsRadios2" value="1">Moderator
+                                <input type="radio" name="privileges" id="optionsRadios2" value="1">Moderator
                             </label>
                         </div>
                         <div class="radio">
                             <label>
-                                <input type="radio" name="priviledges" id="optionsRadios3" value="2">Admin
+                                <input type="radio" name="privileges" id="optionsRadios3" value="2">Admin
                             </label>
                         </div>
                     </div>
@@ -83,7 +85,7 @@
 
                 <div class="form-group">
                     <div class="col-sm-offset-3 col-sm-5">
-                        <button type="submit" class="btn btn-default">Update</button>
+                        <button type="submit" class="btn btn-default">Add</button>
                     </div>
                 </div>
                 <?php echo form_close(); ?>

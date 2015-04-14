@@ -198,10 +198,11 @@ Class Login_Database extends CI_Model {
 
     public function updateuser($data, $id) {
         $this->db->where('id', $id);
-        return $this->db->update('auto_user', $data);
+        $this->db->update('auto_user', $data);
+        return true;
     }
 
-    public function adduser($name, $username, $email, $password,$priviledges) {
+    public function adduser($name, $username, $email, $password,$privileges) {
         $emailcode = uniqid();
         $data = array(
             'name' => $name,
@@ -210,7 +211,7 @@ Class Login_Database extends CI_Model {
             'password' => $password,
             'emailcode' => $emailcode,
             'status' => 1,
-            'permission' => $priviledges
+            'permission' => $privileges
         );
 
         $this->db->insert('auto_user', $data);

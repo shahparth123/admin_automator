@@ -37,10 +37,10 @@
                 <a href="#" class="user-link">
                     <img src="<?php echo base_url(); ?>uploads/<?php echo $user_data['logged_in']['id'] ?>.jpg" alt="" class="img-circle" />
 
-                    <span>Welcome,</span>
+                  
                     <strong><?php
                         echo $user_data['logged_in']['name'];
-                        ?></strong>
+                        ?></strong> <span><?php if($user_data['logged_in']['permission'] == 0){echo "The Developer";}elseif($user_data['logged_in']['permission'] == 1){echo "The Moderator";}else{echo "The Admin";}?></span>
                 </a>
             </div>
 
@@ -188,10 +188,9 @@
                 <a href="#" class="user-link">
                     <img src="<?php echo base_url(); ?>uploads/<?php echo $user_data['logged_in']['id'] ?>.jpg" alt="" class="img-circle" />
 
-                    <span>Welcome,</span>
-                    <strong><?php
+                   <strong><?php
                         echo $user_data['logged_in']['name'];
-                        ?></strong>
+                        ?></strong> <span><?php if($user_data['logged_in']['permission'] == 0){echo "The Developer";}elseif($user_data['logged_in']['permission'] == 1){echo "The Moderator";}else{echo "The Admin";}?></span>
                 </a>
             </div>
 

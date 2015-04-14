@@ -1,6 +1,8 @@
 <?php if ($permission == 2) { ?>
     <div class="row">
-
+<font color="green"><strong>
+            <?php echo $this->session->flashdata('msg'); ?>
+       </strong></font>
         <h2>API List</h2>
 
 

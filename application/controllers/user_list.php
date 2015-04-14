@@ -15,7 +15,7 @@ class User_list extends CI_Controller {
 // Load database
         $this->load->model('login_database');
 // Load md5	        
-         $this->load->helper('security');
+        $this->load->helper('security');
     }
 
     public function index() {
@@ -67,11 +67,12 @@ class User_list extends CI_Controller {
             'name' => $this->input->post('name'),
             'email' => $this->input->post('email'),
             'username' => $this->input->post('username'),
-             'permission' => $this->input->post('priviledges')
-            
+            'permission' => $this->input->post('priviledges')
         );
         $success = $this->login_database->updateuser($data, $id);
+        
         if ($success == true) {
+           $this->session->set_flashdata('msg', 'You have Successfully Updated User.');
             redirect('user_list/index');
         }
     }
@@ -82,9 +83,13 @@ class User_list extends CI_Controller {
             $name = $this->input->post('name');
             $username = $this->input->post('username');
             $email = $this->input->post('email');
-            $password = do_hash($this->input->post("password"),'md5');
-            $priviledges = $this->input->post('priviledges');
-            $this->login_database->adduser($name, $username, $email, $password,$priviledges);
+            $password = do_hash($this->input->post("password"), 'md5');
+            $privileges = $this->input->post('privileges');
+            $success = $this->login_database->adduser($name, $username, $email, $password, $privileges);
+            if ($success == TRUE) {
+                $this->session->set_flashdata('msg', 'You have Successfully Added User.');
+                redirect('user_list/adduser');
+            }
         }
         $role = $this->session->userdata('logged_in');
         $data['title'] = "Add User";
