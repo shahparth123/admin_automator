@@ -1,5 +1,16 @@
+
 <?php if ($permission == 2) { ?>
     <div class="row">
+        <ol class="breadcrumb 2">
+						<li>
+				<a href="<?php echo base_url();?>"><i class="entypo-home"></i>Home</a>
+			</li>
+				
+				<li class="active">
+			
+							<strong>API List</strong>
+					</li>
+				</ol>
 <font color="green"><strong>
             <?php echo $this->session->flashdata('msg'); ?>
        </strong></font>
@@ -87,7 +98,16 @@
 
 
     <div class="row">
-
+<ol class="breadcrumb 2">
+						<li>
+				<a href="<?php echo base_url();?>"><i class="entypo-home"></i>Home</a>
+			</li>
+					
+				<li class="active">
+			
+							<strong>API List</strong>
+					</li>
+				</ol>
         <h2>API List</h2>
 
 

@@ -1,22 +1,24 @@
 
 	
 	<div class="row">
+            <ol class="breadcrumb 2">
+						<li>
+				<a href="<?php echo base_url();?>"><i class="entypo-home"></i>Home</a>
+			</li>
+					<li>
+			
+							<a href="#">Profile Setting</a>
+					</li>
+				<li class="active">
+			
+							<strong>Change Password</strong>
+					</li>
+				</ol>
+            <h2>Change Password</h2>
 		<div class="col-md-12">
 			
 			<div class="panel panel-primary" data-collapsed="0">
 				
-				<div class="panel-heading">
-					<div class="panel-title">
-						Change Your Password
-					</div>
-					
-					<div class="panel-options">
-						<a href="#sample-modal" data-toggle="modal" data-target="#sample-modal-dialog-1" class="bg"><i class="entypo-cog"></i></a>
-						<a href="#" data-rel="collapse"><i class="entypo-down-open"></i></a>
-						<a href="#" data-rel="reload"><i class="entypo-arrows-ccw"></i></a>
-						<a href="#" data-rel="close"><i class="entypo-cancel"></i></a>
-					</div>
-				</div>
 				
 				<div class="panel-body">
 					

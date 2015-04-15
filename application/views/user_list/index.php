@@ -1,9 +1,17 @@
 
 <div class="row">
+    <ol class="breadcrumb 2">
+        <li>
+            <a href="<?php echo base_url(); ?>"><i class="entypo-home"></i>Home</a>
+        </li>
+        <li class="active">
+            <strong>User List</strong>
+        </li>
+    </ol>
+    <h2>Users List</h2>
     <font color="green"><strong>
-            <?php echo $this->session->flashdata('msg'); ?>
-       </strong></font>
-    <h2>User List</h2>
+        <?php echo $this->session->flashdata('msg'); ?>
+    </strong></font>
 
     <table class="table table-bordered datatable" id="table-3">
         <thead>
@@ -60,7 +68,7 @@
                         </a>
                     </td>
                 </tr>
-<?php endforeach; ?>
+            <?php endforeach; ?>
         </tbody>
         <tfoot>
             <tr>

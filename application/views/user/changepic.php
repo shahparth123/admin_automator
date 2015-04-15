@@ -1,6 +1,20 @@
 
 	
 	<div class="row">
+            <ol class="breadcrumb 2">
+						<li>
+				<a href="<?php echo base_url();?>"><i class="entypo-home"></i>Home</a>
+			</li>
+					<li>
+			
+							<a href="#">Profile Setting</a>
+					</li>
+				<li class="active">
+			
+							<strong>Change Profile Picture</strong>
+					</li>
+				</ol>
+            <h2>Change Profile Picture</h2>
 		<div class="col-md-12">
 			
 			<div class="panel panel-primary" data-collapsed="0">

@@ -1,5 +1,5 @@
 
-<h1 class="margin-bottom">Add New Ticket</h1>
+
 <ol class="breadcrumb 2">
     <li>
         <a href="<?php echo base_url();?>"><i class="entypo-home"></i>Home</a>
@@ -13,7 +13,7 @@
         <strong>New Ticket</strong>
     </li>
 </ol>
-
+<h2 class="margin-bottom">Add New Ticket</h1>
 <br />
 
 <style>

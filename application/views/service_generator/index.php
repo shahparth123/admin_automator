@@ -1,6 +1,17 @@
 <?php $attr=array('id'=>'query_maker'); 
 echo form_open('api/generate',$attr); ?>
 <div class="row">
+    
+    <ol class="breadcrumb 2">
+    <li>
+        <a href="<?php echo base_url();?>"><i class="entypo-home"></i>Home</a>
+    </li>
+    <li class="active">
+
+        <strong>Service Generator</strong>
+    </li>
+</ol>
+    <h2>Service Generator</h2>
     <div class="col-sm-8">
 
         <div class="panel panel-primary" id="charts_env">
