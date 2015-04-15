@@ -8,7 +8,8 @@
             <strong>User List</strong>
         </li>
     </ol>
-    <h2>Users List</h2>
+    <div class="col-md-12">
+     <h2 class="margin-bottom">Users List</h2>
     <font color="green"><strong>
         <?php echo $this->session->flashdata('msg'); ?>
     </strong></font>
