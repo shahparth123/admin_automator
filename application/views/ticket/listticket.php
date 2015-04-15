@@ -75,7 +75,7 @@
 							We are interested to overtake your Admin_Automator.
 						</a>
 					</td>
-					<td class="col-options">are interested to overtake
+					<td class="col-options">
 						<a href="mailbox-message.html"><i class="entypo-attach"></i></a>
 					</td>
 					<td class="col-time">13:52</td>

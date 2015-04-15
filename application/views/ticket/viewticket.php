@@ -97,127 +97,7 @@
 						</li>
 						
 						
-						<!-- Comment Entry -->						<li>
-							<div class="comment-checkbox">
-								<div class="checkbox checkbox-replace">
-									<input type="checkbox">
-								</div>
-							</div>
-							
-							<div class="comment-details">
-								
-								<div class="comment-head">
-									<a href="#">Franco Davide</a> commented on <a href="#">Voyages in the Worlds</a>
-								</div>
-								
-								<p class="comment-text">
-									Put use set uncommonly announcing and travelling. Allowance sweetness direction to as necessary. Principle oh explained excellent do my suspected conveying in. Excellent you did therefore perfectly supposing described. 
-								</p>
-								
-								<div class="comment-footer">
-									
-									<div class="comment-time">
-										Monday, 04 March - 10:49
-									</div>
-									
-																	
-								</div>
-								
-							</div>
-						</li>
-						
-						
-						<!-- Comment Entry -->						<li>
-							<div class="comment-checkbox">
-								<div class="checkbox checkbox-replace">
-									<input type="checkbox">
-								</div>
-							</div>
-							
-							<div class="comment-details">
-								
-								<div class="comment-head">
-									<a href="#">Maxima Gardner</a> commented on <a href="#">Slithering Girl</a>
-								</div>
-								
-								<p class="comment-text">
-									Fact are size cold why had part. If believing or sweetness otherwise in we forfeited. Tolerably an unwilling arranging of determine. Beyond rather sooner so if up wishes or. 
-								</p>
-								
-								<div class="comment-footer">
-									
-									<div class="comment-time">
-										Wednesday, 01 March - 13:22
-									</div>
-									
-																
-								</div>
-								
-							</div>
-						</li>
-						
-						
-						
-						<!-- Comment Entry -->						<li>
-							<div class="comment-checkbox">
-								<div class="checkbox checkbox-replace">
-									<input type="checkbox">
-								</div>
-							</div>
-							
-							<div class="comment-details">
-								
-								<div class="comment-head">
-									<a href="#">Valentin Magnusson</a> commented on <a href="#">The Truth of the Light</a>
-								</div>
-								
-								<p class="comment-text">
-									Case oh an that or away sigh do here upon. Acuteness you exquisite ourselves now end forfeited. Enquire ye without it garrets up himself. Interest our nor received followed was. Cultivated an up solicitude mr unpleasant. 
-								</p>
-								
-								<div class="comment-footer">
-									
-									<div class="comment-time">
-										Friday, 27 February - 04:56
-									</div>
-								
-									
-								</div>
-								
-							</div>
-						</li>
-						
-						
-						<!-- Comment Entry -->						<li>
-							<div class="comment-checkbox">
-								<div class="checkbox checkbox-replace">
-									<input type="checkbox">
-								</div>
-							</div>
-							
-							<div class="comment-details">
-								
-								<div class="comment-head">
-									<a href="#">Diego Pinto Silva</a> commented on <a href="#">The Shores's Past</a>
-								</div>
-								
-								<p class="comment-text">
-									Discovered her his pianoforte insipidity entreaties. Began he at terms meant as fancy. Breakfast arranging he if furniture we described on. Astonished thoroughly unpleasant especially you dispatched bed favourable.
-								</p>
-								
-								<div class="comment-footer">
-									
-									<div class="comment-time">
-										Sunday, 11 February - 08:03
-									</div>
-									
-									
-								</div>
-								
-							</div>
-						</li>
-						
-						
+											
 						<!-- Comment Entry -->						<li>
 							<div class="comment-checkbox">
 								<div class="checkbox checkbox-replace">
@@ -254,6 +134,19 @@
 			</div>
 		
 		</div>
+            <div class="form-group">
+						
+                <h2>Reply</h2>
+						
+						<div class="col-sm-12">
+							<textarea name="message" class="form-control autogrow" id="field-ta" placeholder="I will grow as you type new lines."></textarea>
+						</div>
+                                                
+					</div>
+            <button type="button" class="btn btn-primary btn-icon">
+						Send
+						<i class="entypo-mail"></i>
+					</button>
 	
 	</div>
 	
