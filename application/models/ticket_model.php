@@ -11,7 +11,7 @@ Class Ticket_model extends CI_Model {
         $id=$this->db->insert_id();                 
         return $id;
     }
-public function check_ticket($ticketid) {
+    public function check_ticket($ticketid) {
         $this->db->select('*');
         $this->db->from('tickets');
         $this->db->where('id =',$ticketid);
@@ -37,12 +37,15 @@ public function check_ticket($ticketid) {
         return $query;
     }
 
-    public function list_ticket($userid) {
+    public function list_ticket($userid,$permission) {
         //SELECT * FROM `tickets` inner join auto_user on auto_user.id=tickets.user_id where tickets.user_id=1 order by tickets.created_at
         $this->db->select('*,tickets.id as ticketid');
         $this->db->from('tickets');
         $this->db->join('auto_user','auto_user.id=tickets.user_id','LEFT');
-        $this->db->where('tickets.user_id =',$userid);
+        if($permission!=2)
+        {
+            $this->db->where('tickets.user_id =',$userid);
+        }        
         $this->db->order_by('created_at','ASC');
         $query=$this->db->get()->result_array();
         return $query;

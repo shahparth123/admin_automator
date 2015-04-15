@@ -42,7 +42,7 @@ class Ticket extends CI_Controller {
         $userid=$role['id'];
         $data['title'] = "List Ticket";
         $data['permission'] = $role['permission'];
-        $data['content']=$this->ticket_model->list_ticket($userid);
+        $data['content']=$this->ticket_model->list_ticket($userid,$role['permission']);
         if(count($data['content'])==0)
         {
             redirect(base_url());
