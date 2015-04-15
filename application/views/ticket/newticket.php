@@ -1,43 +1,65 @@
 
+<h1 class="margin-bottom">Add New Ticket</h1>
+<ol class="breadcrumb 2">
+    <li>
+        <a href="<?php echo base_url();?>"><i class="entypo-home"></i>Home</a>
+    </li>
+    <li>
 
-<div class="row">
-    <div class="col-md-12">
+        <a href="#">Ticket</a>
+    </li>
+    <li class="active">
 
-        <div class="panel panel-primary" data-collapsed="0">
+        <strong>New Ticket</strong>
+    </li>
+</ol>
 
-            <div class="panel-heading">
-                <div class="panel-title">
-                    Description of new ticket
-                </div>
+<br />
 
-                <div class="panel-options">
-                    <a href="#sample-modal" data-toggle="modal" data-target="#sample-modal-dialog-1" class="bg"><i class="entypo-cog"></i></a>
-                    <a href="#" data-rel="collapse"><i class="entypo-down-open"></i></a>
-                    <a href="#" data-rel="reload"><i class="entypo-arrows-ccw"></i></a>
-                    <a href="#" data-rel="close"><i class="entypo-cancel"></i></a>
-                </div>
-            </div>
+<style>
+    .ms-container .ms-list {
+        width: 135px;
+        height: 205px;
+    }
 
-            <div class="panel-body">
+    .post-save-changes {
+        float: right;
+    }
 
-                <?php $attr = array('id'=> "form_newticket",'class'=>'form-horizontal form-groups-bordered');
-					echo form_open('ticket/newticket',$attr); ?>
-                    <div class="form-group">
-                        <label for="field-ta" class="col-sm-3 control-label">Description</label>
+    @media screen and (max-width: 789px)
+    {
+        .post-save-changes {
+            float: none;
+            margin-bottom: 20px;
+        }
+    }
+</style>
 
-                        <div class="col-sm-5">
-                            <textarea class="form-control autogrow" id="field-ta" placeholder="Ticket in Detail"></textarea>
-                        </div>
-                    </div>
-                    <div class="col-sm-offset-3 col-sm-5">
-                        <button type="submit" class="btn btn-default">Submit</button>
-                    </div>
+<?php $attr = array('id' => "form_changepic", 'class' => 'form-horizontal form-groups-bordered');
+echo form_open('ticket/newticket', $attr);
+?>
+<!-- Title and Publish Buttons -->	<div class="row">
+    <div class="col-sm-2 post-save-changes">
+        <button type="submit" class="btn btn-green btn-lg btn-block btn-icon">
+            Submit
+            <i class="entypo-check"></i>
+        </button>
+    </div>
 
-                <?php echo form_close(); ?>
-
-            </div>
-
-        </div>
-
+    <div class="col-sm-10">
+        <input type="text" class="form-control input-lg" name="subject" placeholder="Subject" required/>
     </div>
 </div>
+
+<br />
+
+<!-- WYSIWYG - Content Editor -->	<div class="row">
+    <div class="col-sm-12">
+        <textarea class="form-control wysihtml5" rows="18" data-stylesheet-url="assets/css/wysihtml5-color.css" name="message" id="post_content" required></textarea>
+    </div>
+</div>
+<?php echo form_close(); ?>
+<br />
+
+
+</form>
