@@ -58,8 +58,18 @@ class Ticket extends CI_Controller {
         $role = $this->session->userdata('logged_in');
         $userid=$role['id'];
 
+        if($this->input->post())
+        {
+            $ticket_id = $this->input->post('ticket_id');
+            $message = $this->input->post('message');
+            $status = $this->input->post('status');
+            //print_r($role);
+            $ticket_id=$this->ticket_model->reply_ticket($userid,$ticket_id,$message,$status);
+            redirect(base_url()."ticket/viewticket/".$ticket_id);
+        }
+
         $data['title'] = "View Ticket";
-        $data['content']=$this->ticket_model->view_ticket($userid,$ticketid);
+        $data['content']=$this->ticket_model->view_ticket($userid,$ticketid,$role['permission']);
         $ticket_detail=$this->ticket_model->check_ticket($ticketid);
         $data['isreply']=1; 
 

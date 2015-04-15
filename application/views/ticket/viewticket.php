@@ -43,9 +43,9 @@
     </div>
 </div>
 
-
+<form action="" method="POST">
 <section class="comments-env">
-
+<input type="hidden" name="ticket_id" value="<?php echo $content[0]['ticket_id'];?>">
     <!-- Comments List Panel -->	
     <div class="row">
 
@@ -124,17 +124,17 @@
             <div class="col-sm-12">
                 <textarea name="message" class="form-control autogrow" id="field-ta" placeholder="I will grow as you type new lines."></textarea>
             </div>
+			<div class="col-sm-12">
+                <textarea name="status" class="form-control autogrow" id="field-ta" placeholder="I will grow as you type new lines."></textarea>
+            </div>
 
         </div>
-        <button type="button" class="btn btn-primary btn-icon">
+        <button type="submit" class="btn btn-primary btn-icon">
             Send
             <i class="entypo-mail"></i>
         </button>
 
     </div>
 
-
-
-
-
 </section>
+</form>
