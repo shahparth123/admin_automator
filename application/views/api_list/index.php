@@ -2,19 +2,21 @@
 <?php if ($permission == 2) { ?>
     <div class="row">
         <ol class="breadcrumb 2">
-						<li>
-				<a href="<?php echo base_url();?>"><i class="entypo-home"></i>Home</a>
-			</li>
-				
-				<li class="active">
-			
-							<strong>API List</strong>
-					</li>
-				</ol>
-<font color="green"><strong>
+            <li>
+                <a href="<?php echo base_url(); ?>"><i class="entypo-home"></i>Home</a>
+            </li>
+
+            <li class="active">
+
+                <strong>API List</strong>
+            </li>
+        </ol>
+        <div class="col-md-12">
+            <h2 class="margin-bottom">API List</h2>
+        <font color="green"><strong>
             <?php echo $this->session->flashdata('msg'); ?>
-       </strong></font>
-        <h2>API List</h2>
+        </strong></font>
+        
 
 
 
@@ -98,16 +100,16 @@
 
 
     <div class="row">
-<ol class="breadcrumb 2">
-						<li>
-				<a href="<?php echo base_url();?>"><i class="entypo-home"></i>Home</a>
-			</li>
-					
-				<li class="active">
-			
-							<strong>API List</strong>
-					</li>
-				</ol>
+        <ol class="breadcrumb 2">
+            <li>
+                <a href="<?php echo base_url(); ?>"><i class="entypo-home"></i>Home</a>
+            </li>
+
+            <li class="active">
+
+                <strong>API List</strong>
+            </li>
+        </ol>
         <h2>API List</h2>
 
 
