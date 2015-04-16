@@ -117,19 +117,19 @@
             </li>
             <li class="has-sub">
                 <a href="#">
-                    <i class="entypo-cog"></i>
+                    <i class="entypo-docs"></i>
                     <span>Tickets</span>
                 </a>
                 <ul>
                     <li>
                         <a href="<?php echo base_url(); ?>ticket/newticket">
-                            <i class="entypo-vcard"></i>
+                            <i class="entypo-doc"></i>
                             <span>New Ticket</span>
                         </a>
                     </li>
                     <li>
                         <a href="<?php echo base_url(); ?>ticket/listticket">
-                            <i class="entypo-user"></i>
+                            <i class="entypo-book-open"></i>
                             <span>List Ticket</span>
                         </a>
                     </li>
@@ -284,20 +284,20 @@
                 </a>
             </li>
             <li class="has-sub">
-                <a href="#">
-                    <i class="entypo-cog"></i>
+               <a href="#">
+                    <i class="entypo-docs"></i>
                     <span>Tickets</span>
                 </a>
                 <ul>
                     <li>
                         <a href="<?php echo base_url(); ?>ticket/newticket">
-                            <i class="entypo-vcard"></i>
+                            <i class="entypo-doc"></i>
                             <span>New Ticket</span>
                         </a>
                     </li>
                     <li>
                         <a href="<?php echo base_url(); ?>ticket/listticket">
-                            <i class="entypo-user"></i>
+                            <i class="entypo-book-open"></i>
                             <span>List Ticket</span>
                         </a>
                     </li>
