@@ -12,8 +12,9 @@ echo form_open('api/generate',$attr); ?>
         <strong>Service Generator</strong>
     </li>
 </ol>
-    <h2>Service Generator</h2>
-    <div class="col-sm-8">
+    <div class="col-md-12">
+    <h2 class="margin-bottom">Service Generator</h2>
+    </div><div class="col-sm-8">
 
         <div class="panel panel-primary" id="charts_env">
 
@@ -90,7 +91,7 @@ echo form_open('api/generate',$attr); ?>
                 </select>
 
             </div>
-
+                
             <div class="col-sm-12" ng-show="opertation== 'SELECT' || opertation== 'DELETE'">
                 <h4>Conditions 			    
                     <button id="add" type="button" class="btn btn-info">
