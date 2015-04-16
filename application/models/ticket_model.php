@@ -27,13 +27,17 @@ Class Ticket_model extends CI_Model {
     }
 
 
-    public function check_ticket($ticketid) {
+    public function check_ticket($ticketid,$userid,$permission) {
         $this->db->select('*');
         $this->db->from('tickets');
         $this->db->where('id =',$ticketid);
+        if($permission!=2)
+        {
+        $this->db->where('user_id =',$userid);
+        }
+        
         $query=$this->db->get()->result_array();
         return $query;
-
     }
     
     public function view_ticket($userid,$ticketid,$permission) {

@@ -70,7 +70,7 @@ class Ticket extends CI_Controller {
 
         $data['title'] = "View Ticket";
         $data['content']=$this->ticket_model->view_ticket($userid,$ticketid,$role['permission']);
-        $ticket_detail=$this->ticket_model->check_ticket($ticketid);
+        $ticket_detail=$this->ticket_model->check_ticket($ticketid,$userid,$role['permission']);
         $data['isreply']=1; 
 
         if(count($data['content'])==0)
