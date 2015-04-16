@@ -34,33 +34,32 @@
         }
     }
 </style>
+<?php
+$attr = array('id' => "form_changepic", 'class' => 'form-horizontal form-groups-bordered');
+echo form_open('ticket/newticket', $attr);
+?>
 <?php $user_data = $this->session->all_userdata(); ?>
 <?php if ($permission == 2) { ?>
-<div class="panel-body">	
+    <div class="panel-body">	
 
-    
+
         <div class="form-group">
 
             <div class="col-sm-4">
 
-                <select name="test" class="selectboxit" data-first-option="false">
+                <select name="uid" class="selectboxit" data-first-option="false">
                     <option>Select User</option>
-                    <option value="1">Alabama</option>
-                    <option value="2">Boston</option>
-                    <option value="3">Ohaio</option>
-                    <option value="4">New York</option>
-                    <option value="5">Washington</option>
+                    <?php foreach ($users as $user): ?>
+                        <option value="<?php echo $user['id']; ?>"><?php echo $user['username']; ?></option>
+                    <?php endforeach; ?>
                 </select>
 
             </div>
         </div>
     </div
-    <?php } ?>
+<?php } ?>
 
-<?php
-$attr = array('id' => "form_changepic", 'class' => 'form-horizontal form-groups-bordered');
-echo form_open('ticket/newticket', $attr);
-?>
+
 <!-- Title and Publish Buttons -->	<div class="row">
     <div class="col-sm-2 post-save-changes">
         <button type="submit" class="btn btn-green btn-lg btn-block btn-icon">

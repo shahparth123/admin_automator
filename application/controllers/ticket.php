@@ -22,13 +22,21 @@ class Ticket extends CI_Controller {
     public function newticket() {
         if ($this->login_database->is_logged_in()) {
             $role = $this->session->userdata('logged_in');
-
+            $data['users']=$this->login_database->getalluser();
+           
 
             if ($this->input->post()) {
+               
+                if(!empty($this->input->post('uid'))){
+                    $uid=$this->input->post('uid');
+                    $userid=$uid;
+                }else{
+                     $userid = $role['id'];
+                }
+                //echo $userid;exit;
                 $message = $this->input->post('message');
                 $subject = $this->input->post('subject');
-                //print_r($role);
-                $userid = $role['id'];
+               
                 $ticket_id = $this->ticket_model->new_ticket($userid, $subject, $message);
                 redirect(base_url() . "ticket/viewticket/" . $ticket_id);
             }
