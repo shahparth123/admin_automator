@@ -57,8 +57,8 @@ class Ticket extends CI_Controller {
             $data['permission'] = $role['permission'];
             $data['content'] = $this->ticket_model->list_ticket($userid, $role['permission']);
             if (count($data['content']) == 0) {
-                redirect(base_url());
-                exit;
+               // redirect(base_url());
+               // exit;
             }
 
             $data['main_content'] = "ticket/listticket";

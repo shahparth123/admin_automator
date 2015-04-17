@@ -8,6 +8,9 @@ Class Ticket_model extends CI_Model {
         $this->db->set('message',$message);
         $this->db->set('is_active',1);
         $this->db->insert('tickets'); //TABLE NAME
+        $this->db->set('read_status',0);
+        $this->db->set('admin_read_status',0);
+        
         $id=$this->db->insert_id();                 
         return $id;
     }
@@ -16,6 +19,7 @@ Class Ticket_model extends CI_Model {
         $this->db->set('ticket_id',$ticket_id);
         $this->db->set('comment',$message);
         $this->db->set('read_status',0);
+        $this->db->set('admin_read_status',0);
         $this->db->insert('comments'); //TABLE NAME
         $id=$this->db->insert_id();                 
         
@@ -52,16 +56,34 @@ Class Ticket_model extends CI_Model {
         $this->db->where('tickets.id =',$ticketid);
         $this->db->order_by('comments.created_at','ASC');
         $query=$this->db->get()->result_array();
+        
+        if($permission!=2)
+        {
         $this->db->set('read_status',1);
-        $this->db->where('comments.user_id =',$userid);
+        }
+        else{
+        $this->db->set('admin_read_status',1);
+        }
+        //$this->db->where('comments.user_id =',$userid);
         $this->db->where('ticket_id =',$ticketid);
         $this->db->update('comments');
+        
+        if($permission!=2)
+        {
+        $this->db->set('read_status',1);
+        }
+        else{
+        $this->db->set('admin_read_status',1);
+        }
+        $this->db->where('id =',$ticketid);
+        $this->db->update('tickets');
+        
         return $query;
     }
 
     public function list_ticket($userid,$permission) {
         //SELECT * FROM `tickets` inner join auto_user on auto_user.id=tickets.user_id where tickets.user_id=1 order by tickets.created_at
-        $this->db->select('*,tickets.id as ticketid');
+        $this->db->select('*,tickets.id as ticketid,tickets.admin_read_status as admin_ticket_read,tickets.read_status as user_ticket_read');
         $this->db->from('tickets');
         $this->db->join('auto_user','auto_user.id=tickets.user_id','LEFT');
         if($permission!=2)
