@@ -107,6 +107,7 @@ Class User extends CI_Controller {
                         'email' => $result[0]->email,
                         'permission' => $result[0]->permission
                     );
+                    $this->login_database->loginlog($result[0]->id,$this->input->ip_address(),$this->input->user_agent());
                     //	$this->load->view('user/admin_page', $data);
                 }$this->session->set_userdata('logged_in', $data);
                 $op['login_status'] = "success";

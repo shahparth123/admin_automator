@@ -43,7 +43,12 @@ Class Login_Database extends CI_Model {
             return false;
         }
     }
-
+public function loginlog($id,$ip,$ua){
+$this->db->set('user_id',$id);
+$this->db->set('ip',$ip);
+$this->db->set('useragent',$ua);
+$this->db->insert('log');
+}
 // Read data from database to show data in admin page
     public function read_user_information($sess_array) {
 
@@ -96,7 +101,7 @@ Class Login_Database extends CI_Model {
 
             $data = array(
                 'emailcode' => $emailcode,
-            );
+                );
 
             $this->db->where('email', $email);
             $this->db->update('auto_user', $data);
@@ -115,7 +120,7 @@ Class Login_Database extends CI_Model {
         if ($query->num_rows() == 1) {
             $data = array(
                 'password' => $password,
-            );
+                );
 
             $this->db->where('email', $email);
             $this->db->update('auto_user', $data);
@@ -131,7 +136,7 @@ Class Login_Database extends CI_Model {
         if ($query->num_rows() == 1) {
             $data = array(
                 'password' => $newpassword,
-            );
+                );
 
             $this->db->where('id', $id);
             $this->db->update('auto_user', $data);
@@ -212,7 +217,7 @@ Class Login_Database extends CI_Model {
             'emailcode' => $emailcode,
             'status' => 1,
             'permission' => $privileges
-        );
+            );
 
         $this->db->insert('auto_user', $data);
         return TRUE;
@@ -220,15 +225,14 @@ Class Login_Database extends CI_Model {
     
     public function getalluser(){
       $this->db->select('id,username');
-        $this->db->from('auto_user');
-        $result = $this->db->get()->result_array();
-        return $result;
-        
-    }
+      $this->db->from('auto_user');
+      $result = $this->db->get()->result_array();
+      return $result;
+
+  }
 
 }
 
 ?>
 
 
-        
