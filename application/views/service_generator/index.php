@@ -274,7 +274,7 @@ echo form_open('api/generate',$attr); ?>
   
   function uncheck_remove(tablename){
           console.log('hi');
-           jQuery('[id^="'+tablename+'"]').remove();
+           jQuery('[id^="'+tablename+'."]').remove();
           //$('#'+tablename).find('input[type=checkbox]:checked').removeAttr('checked');
           
   }
