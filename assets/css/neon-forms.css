@@ -5753,7 +5753,7 @@ hr + .mail-env {
   height: 40px;
 }
 .mail-env .mail-body {
-  width: 78%;
+  width: 100%;
   float: right;
   overflow: hidden;
 }

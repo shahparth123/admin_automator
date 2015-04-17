@@ -1,7 +1,20 @@
+
 <?php $attr=array('id'=>'query_maker'); 
 echo form_open('api/generate',$attr); ?>
 <div class="row">
-    <div class="col-sm-8">
+    
+    <ol class="breadcrumb 2">
+    <li>
+        <a href="<?php echo base_url();?>"><i class="entypo-home"></i>Home</a>
+    </li>
+    <li class="active">
+
+        <strong>Service Generator</strong>
+    </li>
+</ol>
+    <div class="col-md-12">
+    <h2 class="margin-bottom">Service Generator</h2>
+    </div><div class="col-sm-8">
 
         <div class="panel panel-primary" id="charts_env">
 
@@ -78,7 +91,7 @@ echo form_open('api/generate',$attr); ?>
                 </select>
 
             </div>
-
+                
             <div class="col-sm-12" ng-show="opertation== 'SELECT' || opertation== 'DELETE'">
                 <h4>Conditions 			    
                     <button id="add" type="button" class="btn btn-info">
@@ -170,34 +183,27 @@ echo form_open('api/generate',$attr); ?>
 			dataType: "json",
 			success: function (data) {
 				var html1 = '<div class="col-md-4 tablename" id = "'+tablename+'"><div class="sorted"><div class="panel panel-info" data-collapsed="0"><!-- panel head --><div class="panel-heading"><div class="panel-title">'+tablename+'</div></div><!-- panel body --><div class="panel-body">';
-
 				jQuery.each(data, function (k,v) {
 					html1 += '<div class="form-group">';
 					html1 += '<div class="col-sm-12">';
 					html1 += '<div class="checkbox">';
 					html1 += '<label>';
 					html1 += '<input name="fields[]" class="fields" id="'+tablename+'.'+v.Field+'" value="'+tablename+'.'+v.Field+'" type="checkbox">'+ v.Field +" " +v.Type+'';
-
 					html1 += '</label>';
 					html1 += '</div>';
-
 					html1 += '</div>';
 					html1 += '</div>';
-
 				});
 				html1 +='</div></div></div></div>';
 				$('#tables').append(html1);
-
 			}
 		});                              
 	}
-
 	$(document).ready(function () {
         var flag=false;
                //on submit validation
                var flag=false;
                jQuery("#submitbtn").click(function() { 
-
                 if($('#optionsRadios5').is(':checked')) {
                     if (!$.trim($("#custom_query").val())) {
                         alert('Please write your custom query');
@@ -206,11 +212,9 @@ echo form_open('api/generate',$attr); ?>
                         alert('Please fill Comment box');
                         flag=false;
                     }
-
                     else{
                        flag=true;   
                    }
-
                }else if($('#optionsRadios1').is(':checked') || $('#optionsRadios4').is(':checked')){
                 if( !$.trim( $('#tables').html() ).length ) {
                     alert('Please select atleast one table');
@@ -226,8 +230,6 @@ echo form_open('api/generate',$attr); ?>
                 else{
                    flag=true;   
                }
-
-
            }else if($('#optionsRadios2').is(':checked') || $('#optionsRadios3').is(':checked')){
             if($('#pri_tab').children('option').length > 1) {
                 alert('Please select only one table');
@@ -243,19 +245,13 @@ echo form_open('api/generate',$attr); ?>
             else{
                flag=true;   
            }
-
-
        }
-
        return flag;
    });
-
-
         //jQuery to insert and remove a field when checkbox is checked or unchecked        
         $(document).on("change",".fields",function(){
             var id=this.id;
             nid = id.replace(".", "");
-
             if($(this).is(":checked"))
             {
                 jQuery("#insertvalues").append('<div class ="col-sm-6" id="'+id+'"><h4>'+id+':</h4><input type="text" id="'+nid+'" name="'+id+'" class="form-control" placeholder="value"></div>');
@@ -265,15 +261,12 @@ echo form_open('api/generate',$attr); ?>
                 $('#'+nid).parent().remove();
             }
         });
-
-
         function add_table(tablename){
 		//jQuery("#tableforjoin").append('<option value="'+tablename+'">'+tablename+'</option>');
 		jQuery(".pri_tab").append('<option value="'+tablename+'">'+tablename+'</option>');
 		jQuery('.tableforjoin').html(jQuery('.pri_tab').html());
 		
   }
-
   function remove_table(tablename){
       $("#tableforjoin option[value="+tablename+"]").remove();
       $("#pri_tab option[value="+tablename+"]").remove();
@@ -285,12 +278,9 @@ echo form_open('api/generate',$attr); ?>
           //$('#'+tablename).find('input[type=checkbox]:checked').removeAttr('checked');
           
   }
-
-
                 //jQuery to add Condition in SELECT
                 var counter = 0;
                 jQuery('#add').click(function (e) {
-
                  jQuery("#addconditions").append('<div id="condition'+counter+'" class="row form-group">'+
                     '<div class="col-sm-2">'+
                     '<select class="form-control" name="opcode[]">'+
@@ -313,22 +303,18 @@ echo form_open('api/generate',$attr); ?>
                     '<option value="LIKE">LIKE</option>'+
                     '</select>'+
                     '</div>'+
-
                     '<div class="col-sm-2">'+
                     '<input type="text" name="f2[]" class="form-control" id="field-1" required placeholder="field-2/value">'+
                     '</div>'+
                     '<button type="button" id="removecon'+counter+'" class="btn btn-danger" onclick="jQuery(\'#condition'+counter+'\').remove()">'+
                     '<i class="entypo-cancel"></i>'+
                     '</button>'+
-
                     '</div>');
 counter++;
 });
-
                 //jQuery to add Condition in UPDATE
                 var counter = 0;
                 jQuery('#upadd').click(function (e) {
-
                  jQuery("#updateconditions").append('<div id="condition'+counter+'" class="row form-group">'+
                     '<div class="col-sm-2">'+
                     '<select class="form-control" name="opcode[]">'+
@@ -351,18 +337,15 @@ counter++;
                     '<option value="LIKE">LIKE</option>'+
                     '</select>'+
                     '</div>'+
-
                     '<div class="col-sm-2">'+
                     '<input type="text" name="f2[]" class="form-control" id="field-1" required placeholder="field-2/value">'+
                     '</div>'+
                     '<button type="button" id="removecon'+counter+'" class="btn btn-danger" onclick="jQuery(\'#condition'+counter+'\').remove()">'+
                     '<i class="entypo-cancel"></i>'+
                     '</button>'+
-
                     '</div>');
 counter++;
 });
-
 //jQuery to add Join in SELECT
 var count = 0;
 jQuery('#jadd').click(function (e) {
@@ -404,7 +387,6 @@ jQuery('#jadd').click(function (e) {
         '<option value="LIKE">LIKE</option>'+
         '</select>'+
         '</div>'+
-
         '<div class="col-sm-2">'+
         '<input type="text" name="jf2[]" class="form-control" id="field-1" required placeholder="field-2/value">'+
         '</div>'+'</div>'+'<div class="col-sm-1">'+
@@ -414,9 +396,7 @@ jQuery('#jadd').click(function (e) {
         '</div></div>');
 count++;
 });
-
 var url1 = '<?php echo base_url(); ?>api/tables';
-
 $.ajax({
 	url: url1,
 		//async: false,
@@ -424,17 +404,11 @@ $.ajax({
 		success: function (data) {
 			var html1 = "";
 			jQuery.each(data, function (k,v) {
-
-
 				var tblnam = Object.keys(v).map(function(k) { return v[k] });
-
 				html1 += "<option value='" +tblnam[0] + "'>" + tblnam[0] + "</option>";
-
-
 			});
 			$('#callbacks').html(html1);
 			$(".tablename" ).draggable();
-
 			$('#callbacks').multiSelect({
 				selectableHeader: "<input type='text' class='search-input' autocomplete='off' placeholder='Search'>",
 				selectionHeader: "<input type='text' class='search-input' autocomplete='off' placeholder='Search'>",
@@ -444,7 +418,6 @@ $.ajax({
 					$selectionSearch = that.$selectionUl.prev(),
 					selectableSearchString = '#' + that.$container.attr('id') + ' .ms-elem-selectable:not(.ms-selected)',
 					selectionSearchString = '#' + that.$container.attr('id') + ' .ms-elem-selection.ms-selected';
-
 					that.qs1 = $selectableSearch.quicksearch(selectableSearchString)
 					.on('keydown', function (e) {
 						if (e.which === 40) {
@@ -452,7 +425,6 @@ $.ajax({
 							return false;
 						}
 					});
-
 					that.qs2 = $selectionSearch.quicksearch(selectionSearchString)
 					.on('keydown', function (e) {
 						if (e.which == 40) {
@@ -478,10 +450,7 @@ $.ajax({
 					remove_table(values);
 				}
 			});
-
 }
 });
 });
-
-
 </script>

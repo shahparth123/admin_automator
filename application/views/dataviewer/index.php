@@ -1,13 +1,19 @@
 
 <div class="row">
   <div class="col-sm-12">
+ <ol class="breadcrumb 2">
+    <li>
+        <a href="<?php echo base_url();?>"><i class="entypo-home"></i>Home</a>
+    </li>
+    <li class="active">
 
+        <strong>Data Viewer</strong>
+    </li>
+</ol>
+       <h2>Data Viewer</h2>
    <div class="panel panel-primary" id="charts_env">
 
-     <div class="panel-heading">
-      <div class="panel-title">Data Viewer</div>
-    </div>
-
+  
     <div class="panel-body" id="tables">
 
       <div ng-controller="customersCrtl">

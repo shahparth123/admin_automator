@@ -217,7 +217,18 @@ Class Login_Database extends CI_Model {
         $this->db->insert('auto_user', $data);
         return TRUE;
     }
+    
+    public function getalluser(){
+      $this->db->select('id,username');
+        $this->db->from('auto_user');
+        $result = $this->db->get()->result_array();
+        return $result;
+        
+    }
 
 }
 
 ?>
+
+
+        
