@@ -68,7 +68,7 @@
                     foreach ($content as $contents) {
                         ?>
 
-                        <tr <?php if($permission==2 && $contents['admin_ticket_read']==0){?> class="unread" <?php }else if($permission!=2 && $contents['user_ticket_read']==0){?> class="unread" <?php } ?>  ><!-- new email class: unread -->
+                        <tr <?php if($permission==2 && $contents['admin_ticket_read']==0){?> class="unread 1" <?php }else if($permission!=2 && $contents['user_ticket_read']==0){?> class="unread 2" <?php } else if($permission==2 && $contents['admin_comment_read']>0){?> class="unread 3" <?php }else if($permission!=2 && $contents['comment_read']>0){?> class="unread 4" <?php } ?> ><!-- new email class: unread -->
                             <td class="col-name">
                                 <a href="<?php echo base_url() . "ticket/viewticket/" . $contents['ticketid']; ?>" class="col-name"><?php echo $contents['subject']; ?></a>
                             </td>

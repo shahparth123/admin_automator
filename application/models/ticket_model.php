@@ -10,8 +10,8 @@ Class Ticket_model extends CI_Model {
         $this->db->insert('tickets'); //TABLE NAME
         $this->db->set('read_status',0);
         $this->db->set('admin_read_status',0);
-        
         $id=$this->db->insert_id();                 
+        
         return $id;
     }
     public function reply_ticket($userid,$ticket_id,$message,$status) {
@@ -83,7 +83,7 @@ Class Ticket_model extends CI_Model {
 
     public function list_ticket($userid,$permission) {
         //SELECT * FROM `tickets` inner join auto_user on auto_user.id=tickets.user_id where tickets.user_id=1 order by tickets.created_at
-        $this->db->select('*,tickets.id as ticketid,tickets.admin_read_status as admin_ticket_read,tickets.read_status as user_ticket_read');
+        $this->db->select('*,tickets.id as ticketid,(select count(read_status) from comments where ticket_id=ticketid and read_status=0) as comment_read,(select count(admin_read_status) from comments where ticket_id=ticketid and admin_read_status=0) as admin_comment_read ,tickets.admin_read_status as admin_ticket_read,tickets.read_status as user_ticket_read');
         $this->db->from('tickets');
         $this->db->join('auto_user','auto_user.id=tickets.user_id','LEFT');
         if($permission!=2)

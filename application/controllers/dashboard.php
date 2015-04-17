@@ -66,9 +66,14 @@ class Dashboard extends CI_Controller {
             $this->db->from('comments');
             $this->db->where('admin_read_status', 0);
             $results_comment_admin = $this->db->count_all_results();
-            
+            if($role['permission']!=2)
+            {
             $results_comment_user=$this->db->query('SELECT count(read_status) FROM `comments` where read_status=0 and ticket_id in (select id from tickets where user_id=2)')->result_array();
-           
+            }
+            else{
+
+            	$results_comment_user=$this->db->query('SELECT count(admin_read_status) FROM `comments` where admin_read_status=0 and ticket_id in (select id from tickets)')->result_array();
+           }
             $data = array('num_results_api' => $num_results_api, 'num_results' => $num_results, 'num_results_message' => $num_results_message, 'num_results_user_message' => $num_results_user_message, 'results_comment_admin' => $results_comment_admin,'results_comment_user'=>$results_comment_user[0]);
 
             

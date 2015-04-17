@@ -35,7 +35,7 @@
 
             <div class="sui-normal">
                 <a href="#" class="user-link">
-                    <img src="<?php echo base_url(); ?>uploads/<?php echo $user_data['logged_in']['id'] ?>.jpg" alt="" class="img-circle" />
+                    <img src="<?php echo base_url(); ?>uploads/<?php echo $user_data['logged_in']['id'] ?>.jpg" onerror="this.onerror=null;this.src='<?php echo base_url(); ?>assets/images/default.png'" alt="" class="img-circle" />
 
 
                     <strong><?php
@@ -217,7 +217,7 @@
 
             <div class="sui-normal">
                 <a href="#" class="user-link">
-                    <img src="<?php echo base_url(); ?>uploads/<?php echo $user_data['logged_in']['id'] ?>.jpg" alt="" class="img-circle" />
+                    <img src="<?php echo base_url(); ?>uploads/<?php echo $user_data['logged_in']['id'] ?>.jpg" onerror="this.onerror=null;this.src='<?php echo base_url(); ?>assets/images/default.png'" alt="" class="img-circle" />
 
                     <strong><?php
     echo $user_data['logged_in']['name'];
