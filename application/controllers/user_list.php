@@ -40,8 +40,11 @@ class User_list extends CI_Controller {
                 'is_delete' => 1,
             );
             $this->db->where('id', $id);
-            $this->db->update('auto_user', $data);
+            $success=$this->db->update('auto_user', $data);
+             if ($success == true) {
+            $this->session->set_flashdata('msg', 'You have Successfully Deleted User.');
             redirect('user_list/index');
+             }
         }
     }
 
@@ -67,7 +70,7 @@ class User_list extends CI_Controller {
             'name' => $this->input->post('name'),
             'email' => $this->input->post('email'),
             'username' => $this->input->post('username'),
-            'permission' => $this->input->post('priviledges')
+            'permission' => $this->input->post('privileges')
         );
         $success = $this->login_database->updateuser($data, $id);
         

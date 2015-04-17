@@ -218,10 +218,10 @@ function getRandomInt(min, max)
 		
 		<div class="tile-stats tile-aqua">
 			<div class="icon"><i class="entypo-mail"></i></div>
-			<div class="num" data-start="0" data-end="23" data-postfix="" data-duration="1500" data-delay="1200">0</div>
+			<div class="num" data-start="0" data-end="<?php echo $num_results_message;?>" data-postfix="" data-duration="1500" data-delay="1200">0</div>
 			
-			<h3>New Messages</h3>
-			<p>messages per day.</p>
+			<h3>New Tickets</h3>
+			<p>Unread Tickets</p>
 		</div>
 		
 	</div>
@@ -230,10 +230,10 @@ function getRandomInt(min, max)
 		
 		<div class="tile-stats tile-blue">
 			<div class="icon"><i class="entypo-rss"></i></div>
-			<div class="num" data-start="0" data-end="52" data-postfix="" data-duration="1500" data-delay="1800">0</div>
+			<div class="num" data-start="0" data-end="<?php echo $results_comment_admin;?>" data-postfix="" data-duration="1500" data-delay="1800">0</div>
 			
-			<h3>Subscribers</h3>
-			<p>on our site right now.</p>
+			<h3>New Message</h3>
+			<p>Unread Messages</p>
 		</div>
 		
 	</div>
@@ -556,22 +556,21 @@ function getRandomInt(min, max)
 		
 		<div class="tile-stats tile-aqua">
 			<div class="icon"><i class="entypo-mail"></i></div>
-			<div class="num" data-start="0" data-end="23" data-postfix="" data-duration="1500" data-delay="1200">0</div>
+			<div class="num" data-start="0" data-end="<?php echo $num_results_user_message;?>" data-postfix="" data-duration="1500" data-delay="1200">0</div>
 			
 			<h3>New Messages</h3>
-			<p>messages per day.</p>
+			<p>Unread Messages</p>
 		</div>
 		
 	</div>
-	
 	<div class="col-sm-3">
 		
 		<div class="tile-stats tile-blue">
 			<div class="icon"><i class="entypo-rss"></i></div>
-			<div class="num" data-start="0" data-end="52" data-postfix="" data-duration="1500" data-delay="1800">0</div>
+			<div class="num" data-start="0" data-end="<?php $results_comment_user['count(read_status)'];?>" data-postfix="" data-duration="1500" data-delay="1800">0</div>
 			
-			<h3>Subscribers</h3>
-			<p>on our site right now.</p>
+			<h3>New Message</h3>
+			<p>Unread Messages</p>
 		</div>
 		
 	</div>
