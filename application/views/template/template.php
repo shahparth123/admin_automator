@@ -46,7 +46,7 @@
 
 			<div class="main-content">
 				<?php $this->load->view('template/header',$data); ?>
-				<hr />
+			<!-- 	<hr /> -->
 
 <?php $this->load->view($main_content); ?>
 <!-- Footer -->
