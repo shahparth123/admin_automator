@@ -90,7 +90,7 @@ Class Ticket_model extends CI_Model {
         {
             $this->db->where('tickets.user_id =',$userid);
         }        
-        $this->db->order_by('created_at','ASC');
+        $this->db->order_by('created_at','DESC');
         $query=$this->db->get()->result_array();
         return $query;
     }

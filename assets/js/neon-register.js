@@ -79,7 +79,7 @@ var neonRegister = neonRegister || {};
 							},
 							error: function()
 							{
-								alert("An error occoured!");
+								alert("An error occoured! Please try again with different data.");
 							},
 							success: function(response)
 							{

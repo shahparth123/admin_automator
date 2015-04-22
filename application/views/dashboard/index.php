@@ -1,256 +1,261 @@
 	
 <?php if ($permission == 2) { ?>		
 
+    <!--Dashboard of Admin or user who has permission(privilege) = 2-->
+    <script>
+        if (<?php echo $pen_users; ?> > 0) {
+            $(document).ready(function () {
+                toastr.warning("<?php echo $pen_users; ?>", "Pending Users :");
+            });
+        }</script>
+    <div class="row">
+        <div class="col-sm-3">  
+            <a href="<?php echo base_url(); ?>user_list/index">
+                <div class="tile-stats tile-red">
+                    <div class="icon"><i class="entypo-users"></i></div>
+                    <div class="num" data-start="0" data-end="<?php echo $num_results; ?>" data-postfix="" data-duration="1500" data-delay="0">0</div>
+
+                    <h3>Registered users</h3>
+                    <p>Total users in Database</p>
+                </div>
+            </a>
+        </div>
+
+        <div class="col-sm-3">
+            <a href="<?php echo base_url(); ?>api_list/index">
+                <div class="tile-stats tile-green">
+                    <div class="icon"><i class="entypo-chart-bar"></i></div>
+                    <div class="num" data-start="0" data-end="<?php echo $num_results_api; ?>" data-postfix="" data-duration="1500" data-delay="600">0</div>
+
+                    <h3>APIs</h3>
+                    <p>Generated till now</p>
+                </div>
+            </a>
+        </div>
+
+        <div class="col-sm-3">
+            <a href="<?php echo base_url(); ?>ticket/listticket">
+
+                <div class="tile-stats tile-aqua">
+                    <div class="icon"><i class="entypo-mail"></i></div>
+                    <div class="num" data-start="0" data-end="<?php echo $num_results_message; ?>" data-postfix="" data-duration="1500" data-delay="1200">0</div>
+
+                    <h3>New Tickets</h3>
+                    <p>Unread Tickets</p>
+                </div>
+            </a>
+
+        </div>
+
+        <div class="col-sm-3">
+            <a href="<?php echo base_url(); ?>ticket/listticket">
+
+                <div class="tile-stats tile-blue">
+                    <div class="icon"><i class="entypo-rss"></i></div>
+                    <div class="num" data-start="0" data-end="<?php echo $results_comment_admin; ?>" data-postfix="" data-duration="1500" data-delay="1800">0</div>
+
+                    <h3>New Message</h3>
+                    <p>Unread Messages</p>
+                </div>
+            </a>
+
+        </div>
+    </div>
 
 
-<div class="row">
-	<div class="col-sm-3">
-		<a href="<?php echo base_url(); ?>user_list/index">
-			<div class="tile-stats tile-red">
-				<div class="icon"><i class="entypo-users"></i></div>
-				<div class="num" data-start="0" data-end="<?php echo $num_results; ?>" data-postfix="" data-duration="1500" data-delay="0">0</div>
+    <div class="mail-env">
 
-				<h3>Registered users</h3>
-				<p>Total user in Database</p>
-			</div>
-		</a>
-	</div>
+        <!-- Mail Body -->
+        <div class="mail-body">
 
-	<div class="col-sm-3">
-		<a href="<?php echo base_url(); ?>api_list/index">
-			<div class="tile-stats tile-green">
-				<div class="icon"><i class="entypo-chart-bar"></i></div>
-				<div class="num" data-start="0" data-end="<?php echo $num_results_api; ?>" data-postfix="" data-duration="1500" data-delay="600">0</div>
+            <div class="mail-header">
+                <!-- title -->
+                <h3 class="mail-title">
+                    Recent Logins
+                    <span class="count"></span>
+                </h3>
 
-				<h3>APIs</h3>
-				<p>Generated till now</p>
-			</div>
-		</a>
-	</div>
+                <!-- search -->
 
-	<div class="col-sm-3">
-		<a href="<?php echo base_url(); ?>ticket/listticket">
-
-			<div class="tile-stats tile-aqua">
-				<div class="icon"><i class="entypo-mail"></i></div>
-				<div class="num" data-start="0" data-end="<?php echo $num_results_message; ?>" data-postfix="" data-duration="1500" data-delay="1200">0</div>
-
-				<h3>New Tickets</h3>
-				<p>Unread Tickets</p>
-			</div>
-		</a>
-
-	</div>
-
-	<div class="col-sm-3">
-		<a href="<?php echo base_url(); ?>ticket/listticket">
-
-			<div class="tile-stats tile-blue">
-				<div class="icon"><i class="entypo-rss"></i></div>
-				<div class="num" data-start="0" data-end="<?php echo $results_comment_admin; ?>" data-postfix="" data-duration="1500" data-delay="1800">0</div>
-
-				<h3>New Message</h3>
-				<p>Unread Messages</p>
-			</div>
-		</a>
-
-	</div>
-</div>
+            </div>
 
 
-<div class="mail-env">
+            <!-- mail table -->
+            <table class="table mail-table">
+                <!-- mail table header -->
+                <thead>
+                    <tr>
+                        <th>
+                <div class="mail-select-options">
+                    IP Address
+                </div>
+                </th>
+                <th>
 
-	<!-- Mail Body -->
-	<div class="mail-body">
-
-		<div class="mail-header">
-			<!-- title -->
-			<h3 class="mail-title">
-				Recent Logins
-				<span class="count"></span>
-			</h3>
-
-			<!-- search -->
-
-		</div>
+                <div class="mail-select-options">Time</div>
 
 
-		<!-- mail table -->
-		<table class="table mail-table">
-			<!-- mail table header -->
-			<thead>
-				<tr>
-					<th>
-						<div class="mail-select-options">
-							IP Address
-						</div>
-					</th>
-					<th>
-
-						<div class="mail-select-options">Time</div>
+                </th>
+                <th>
+                <div class="mail-select-options">
+                    User Agent
+                </div>
+                </th>
 
 
-					</th>
-					<th>
-						<div class="mail-select-options">
-							User Agent
-						</div>
-					</th>
+                </tr>
+                </thead>
 
+                <!-- email list -->
+                <tbody>
 
-				</tr>
-			</thead>
+                    <?php foreach ($query as $login): ?>
+                        <tr>
+                            <td class="col-name">
+                                <?php echo $login['ip']; ?>
+                            </td>
+                            <td class="col-subject">
+                                <?php echo $login['login_time']; ?>  
 
-			<!-- email list -->
-			<tbody>
+                            </td>
+                            <td class="col-subject">
+                                <?php echo $login['useragent']; ?>
+                            </td>
 
-				<?php foreach ($query as $login): ?>
-					<tr>
-						<td class="col-name">
-							<?php echo $login['ip'];?>
-						</td>
-						<td class="col-subject">
-							<?php echo $login['login_time'];?>  
+                        </tr>
 
-						</td>
-						<td class="col-subject">
-							<?php echo $login['useragent'];?>
-						</td>
+                    <?php endforeach; ?>
 
-					</tr>
+                    </tfoot>
+            </table>
+        </div>
 
-				<?php endforeach; ?>
-
-			</tfoot>
-		</table>
-	</div>
-
-</div>
+    </div>
 
 
 
 
 <?php } else { ?>
+    <!--Dashborad of user who has permission(privilege) != 2-->
+
+    <div class="row">
+        <div class="col-sm-3">
+            <a href="<?php echo base_url(); ?>dataviewer/index">
+                <div class="tile-stats tile-red">
+                    <div class="icon"><i class="entypo-users"></i></div>
+                    <div class="num" data-start="" data-end="" data-postfix="" data-duration="1500" data-delay="0">&nbsp;</div>
+
+                    <h3>Data Viewer</a></h3>
+                    <p>Generate Data in Table</p>
+                </div>
+            </a>
+        </div>
+
+        <div class="col-sm-3">
+            <a href="<?php echo base_url(); ?>api_list/index">
+                <div class="tile-stats tile-green">
+                    <div class="icon"><i class="entypo-chart-bar"></i></div>
+                    <div class="num" data-start="0" data-end="<?php echo $num_results_api; ?>" data-postfix="" data-duration="1500" data-delay="600">0</div>
+
+                    <h3>APIs</h3>
+                    <p>Generated till now</p>
+                </div>
+            </a>
+        </div>
+
+        <div class="col-sm-3">
+            <a href="<?php echo base_url(); ?>ticket/listticket">
+                <div class="tile-stats tile-aqua">
+                    <div class="icon"><i class="entypo-mail"></i></div>
+                    <div class="num" data-start="0" data-end="<?php echo $num_results_user_message; ?>" data-postfix="" data-duration="1500" data-delay="1200">0</div>
+
+                    <h3>New Tickets</h3>
+                    <p>Unread Tickets</p>
+                </div>
+            </a>
+        </div>
+        <div class="col-sm-3">
+            <a href="<?php echo base_url(); ?>ticket/listticket">
+                <div class="tile-stats tile-blue">
+                    <div class="icon"><i class="entypo-rss"></i></div>
+                    <div class="num" data-start="0" data-end="<?php echo $results_comment_user['count(read_status)']; ?>" data-postfix="" data-duration="1500" data-delay="1800">0</div>
+
+                    <h3>New Message</h3>
+                    <p>Unread Messages</p>
+                </div>
+            </a>
+        </div>
 
 
-<div class="row">
-	<div class="col-sm-3">
-<a href="<?php echo base_url(); ?>dataviewer/index">
-		<div class="tile-stats tile-red">
-			<div class="icon"><i class="entypo-users"></i></div>
-			<div class="num" data-start="" data-end="" data-postfix="" data-duration="1500" data-delay="0">&nbsp;</div>
+        <div class="mail-env">
 
-			<h3>Data Viewer</a></h3>
-			<p>Generate Data in Table</p>
-		</div>
-</a>
-	</div>
+            <!-- Mail Body -->
+            <div class="mail-body">
 
-	<div class="col-sm-3">
-<a href="<?php echo base_url(); ?>api_list/index">
-		<div class="tile-stats tile-green">
-			<div class="icon"><i class="entypo-chart-bar"></i></div>
-			<div class="num" data-start="0" data-end="<?php echo $num_results_api; ?>" data-postfix="" data-duration="1500" data-delay="600">0</div>
+                <div class="mail-header">
+                    <!-- title -->
+                    <h3 class="mail-title">
+                        Recent Logins
+                        <span class="count"></span>
+                    </h3>
 
-			<h3>APIs</h3>
-			<p>Generated till now</p>
-		</div>
-</a>
-	</div>
+                    <!-- search -->
 
-	<div class="col-sm-3">
-<a href="<?php echo base_url(); ?>ticket/listticket">
-		<div class="tile-stats tile-aqua">
-			<div class="icon"><i class="entypo-mail"></i></div>
-			<div class="num" data-start="0" data-end="<?php echo $num_results_user_message; ?>" data-postfix="" data-duration="1500" data-delay="1200">0</div>
-
-			<h3>New Tickets</h3>
-			<p>Unread Tickets</p>
-		</div>
-</a>
-	</div>
-	<div class="col-sm-3">
-<a href="<?php echo base_url(); ?>ticket/listticket">
-		<div class="tile-stats tile-blue">
-			<div class="icon"><i class="entypo-rss"></i></div>
-			<div class="num" data-start="0" data-end="<?php echo $results_comment_user['count(read_status)']; ?>" data-postfix="" data-duration="1500" data-delay="1800">0</div>
-
-			<h3>New Message</h3>
-			<p>Unread Messages</p>
-		</div>
-</a>
-	</div>
+                </div>
 
 
-	<div class="mail-env">
+                <!-- mail table -->
+                <table class="table mail-table">
+                    <!-- mail table header -->
+                    <thead>
+                        <tr>
+                            <th>
+                    <div class="mail-select-options">
+                        IP Address
+                    </div>
+                    </th>
+                    <th> <!--Dashborad of user who has permission(privilege) != 2-->
 
-		<!-- Mail Body -->
-		<div class="mail-body">
-
-			<div class="mail-header">
-				<!-- title -->
-				<h3 class="mail-title">
-					Recent Logins
-					<span class="count"></span>
-				</h3>
-
-				<!-- search -->
-
-			</div>
+                    <div class="mail-select-options">Time</div>
 
 
-			<!-- mail table -->
-			<table class="table mail-table">
-				<!-- mail table header -->
-				<thead>
-					<tr>
-						<th>
-							<div class="mail-select-options">
-								IP Address
-							</div>
-						</th>
-						<th>
-
-							<div class="mail-select-options">Time</div>
+                    </th>
+                    <th>
+                    <div class="mail-select-options">
+                        User Agent
+                    </div>
+                    </th>
 
 
-						</th>
-						<th>
-							<div class="mail-select-options">
-								User Agent
-							</div>
-						</th>
+                    </tr>
+                    </thead>
 
+                    <!-- email list -->
+                    <tbody>
 
-					</tr>
-				</thead>
+                        <?php foreach ($query as $login): ?>
+                            <tr>
+                          <!--Dashborad of user who has permission(privilege) != 2-->       <td class="col-name">
+                                    <?php echo $login['ip']; ?>
+                                </td>
+                                <td class="col-subject">
+                                    <?php echo $login['login_time']; ?>  
 
-				<!-- email list -->
-				<tbody>
+                                </td>
+                                <td class="col-subject">
+                                    <?php echo $login['useragent']; ?>
+                                </td>
 
-					<?php foreach ($query as $login): ?>
-						<tr>
-							<td class="col-name">
-								<?php echo $login['ip'];?>
-							</td>
-							<td class="col-subject">
-								<?php echo $login['login_time'];?>  
+                            </tr>
 
-							</td>
-							<td class="col-subject">
-								<?php echo $login['useragent'];?>
-							</td>
+                        <?php endforeach; ?>
 
-						</tr>
+                        </tfoot>
+                </table>
+            </div>  
+        </div>
 
-					<?php endforeach; ?>
+        <br />
 
-				</tfoot>
-			</table>
-		</div>  
-	</div>
-
-	<br />
-
-	<?php
-}?>
+    <?php
+    }?>

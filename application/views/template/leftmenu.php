@@ -1,5 +1,6 @@
 <?php $user_data = $this->session->all_userdata(); ?>
 <?php if ($permission == 2) { ?>
+    <!--Left Menu for Admin or user who have permission(privilege=2)-->
     <div class="sidebar-menu">
 
 
@@ -40,13 +41,15 @@
 
                     <strong><?php
                         echo $user_data['logged_in']['name'];
-                        ?></strong> <span><?php if ($user_data['logged_in']['permission'] == 0) {
-                        echo "The Developer";
-                    } elseif ($user_data['logged_in']['permission'] == 1) {
-                        echo "The Moderator";
-                    } else {
-                        echo "The Admin";
-                    } ?></span>
+                        ?></strong> <span><?php
+                        if ($user_data['logged_in']['permission'] == 0) {
+                            echo "The Developer";
+                        } elseif ($user_data['logged_in']['permission'] == 1) {
+                            echo "The Moderator";
+                        } else {
+                            echo "The Admin";
+                        }
+                        ?></span>
                 </a>
             </div>
 
@@ -134,7 +137,7 @@
                         </a>
                     </li>
                     <!--                    <li>
-                                            <a href="<?php //echo base_url();  ?>user/editpassword">
+                                            <a href="<?php //echo base_url();    ?>user/editpassword">
                                                 <i class="entypo-key"></i>
                                                 <span>Change Password</span>
                                             </a>
@@ -181,6 +184,8 @@
     </div>
 <?php } else { ?>
 
+    <!--Left Menu for Developer or user who has permission(privilege!=2)-->
+
     <div class="sidebar-menu">
 
 
@@ -196,7 +201,7 @@
             <!-- logo collapse icon -->
 
             <div class="sidebar-collapse">
-                <a href="#" class="sidebar-collapse-icon with-animation"><!-- add class "with-animation" if you want sidebar to have animation during expanding/collapsing transition -->
+                <a href="#" class="sidebar-collapse-icon"><!-- add class "with-animation" if you want sidebar to have animation during expanding/collapsing transition -->
                     <i class="entypo-menu"></i>
                 </a>
             </div>
@@ -220,14 +225,16 @@
                     <img src="<?php echo base_url(); ?>uploads/<?php echo $user_data['logged_in']['id'] ?>.jpg" onerror="this.onerror=null;this.src='<?php echo base_url(); ?>assets/images/default.png'" alt="" class="img-circle" />
 
                     <strong><?php
-    echo $user_data['logged_in']['name'];
-    ?></strong> <span><?php if ($user_data['logged_in']['permission'] == 0) {
-        echo "The Developer";
-    } elseif ($user_data['logged_in']['permission'] == 1) {
-        echo "The Moderator";
-    } else {
-        echo "The Admin";
-    } ?></span>
+                        echo $user_data['logged_in']['name'];
+                        ?></strong> <span><?php
+                        if ($user_data['logged_in']['permission'] == 0) {
+                            echo "The Developer";
+                        } elseif ($user_data['logged_in']['permission'] == 1) {
+                            echo "The Moderator";
+                        } else {
+                            echo "The Admin";
+                        }
+                        ?></span>
                 </a>
             </div>
 
@@ -284,7 +291,7 @@
                 </a>
             </li>
             <li class="has-sub">
-               <a href="#">
+                <a href="#">
                     <i class="entypo-docs"></i>
                     <span>Tickets</span>
                 </a>
@@ -302,7 +309,7 @@
                         </a>
                     </li>
                     <!--                    <li>
-                                            <a href="<?php //echo base_url();  ?>user/editpassword">
+                                            <a href="<?php //echo base_url();    ?>user/editpassword">
                                                 <i class="entypo-key"></i>
                                                 <span>Change Password</span>
                                             </a>

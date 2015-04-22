@@ -37,22 +37,27 @@ class Dashboard extends CI_Controller {
      */
     public function index() {
         if ($this->login_database->is_logged_in()) {
+            
+//            Total no of Registered users where is_delete = 0 in auto_user table
             $role = $this->session->userdata('logged_in');
             $this->db->select('id');
             $this->db->from('auto_user');
             $this->db->where('is_delete', 0);
             $num_results = $this->db->count_all_results();
 
+//            Total no of APIs where is_delete = 0 in query_param table
             $this->db->select('id');
             $this->db->from('query_param');
             $this->db->where('is_delete', 0);
             $num_results_api = $this->db->count_all_results();
 
+//             No of new Messages or read_status of any admin = 0
             $this->db->select('admin_read_status');
             $this->db->from('tickets');
             $this->db->where('admin_read_status', 0);
             $num_results_message = $this->db->count_all_results();
 
+//            No of new Messages or read_status of particular user = 0
             $user_data = $this->session->all_userdata();
             $id = $user_data['logged_in']['id'];
             $this->db->select('read_status');
@@ -61,15 +66,20 @@ class Dashboard extends CI_Controller {
             $this->db->where('read_status', 0);
             $num_results_user_message = $this->db->count_all_results();
 
+//            Recent 5 Logins
             $this->db->select('*');
             $this->db->from('log');
             $this->db->where('user_id', $id);
             $this->db->order_by('id', 'DESC');
             $this->db->limit('5');
-
             $login = $this->db->get();
             $query = $login->result_array();
-
+            
+//            No of Pending Users or who has status = 0
+            $this->db->select('id');
+            $this->db->from('auto_user');
+            $this->db->where('status', 0);
+            $pen_users = $this->db->count_all_results();
 
             $this->db->select('admin_read_status');
             $this->db->from('comments');
@@ -81,7 +91,7 @@ class Dashboard extends CI_Controller {
 
                 $results_comment_user = $this->db->query('SELECT count(admin_read_status) FROM `comments` where admin_read_status=0 and ticket_id in (select id from tickets)')->result_array();
             }
-            $data = array('num_results_api' => $num_results_api, 'num_results' => $num_results, 'num_results_message' => $num_results_message, 'num_results_user_message' => $num_results_user_message, 'results_comment_admin' => $results_comment_admin, 'results_comment_user' => $results_comment_user[0], 'query' => $query);
+            $data = array('num_results_api' => $num_results_api, 'num_results' => $num_results, 'num_results_message' => $num_results_message, 'num_results_user_message' => $num_results_user_message, 'results_comment_admin' => $results_comment_admin, 'results_comment_user' => $results_comment_user[0], 'query' => $query,'pen_users' => $pen_users);
 
             $data['title'] = "Dashboard";
             $data['permission'] = $role['permission'];
