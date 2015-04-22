@@ -50,6 +50,22 @@
                         </div>
                     </div>
                     
+                                          <div class="form-group">
+                    <label for="field-1" class="col-sm-3 control-label">Status</label>
+                    <div class="col-sm-5">
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="status" id="optionsRadios1" value="0" <?php if($user['status'] == 0){ ?> checked="checked" <?php } ?>>Pending
+                            </label>
+                        </div>
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="status" id="optionsRadios2" value="1" <?php if($user['status'] == 1){ ?> checked="checked" <?php } ?>>Verified
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                    
                       <div class="form-group">
                     <label for="field-1" class="col-sm-3 control-label">Privileges</label>
                     <div class="col-sm-5">

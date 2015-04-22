@@ -70,7 +70,8 @@ class User_list extends CI_Controller {
             'name' => $this->input->post('name'),
             'email' => $this->input->post('email'),
             'username' => $this->input->post('username'),
-            'permission' => $this->input->post('privileges')
+             'status' => $this->input->post('status'),
+            'permission' => $this->input->post('privileges')           
         );
         $success = $this->login_database->updateuser($data, $id);
         

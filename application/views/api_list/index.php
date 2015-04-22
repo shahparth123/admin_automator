@@ -96,6 +96,10 @@
         </table>
 
     </div>
+        <a href="<?php echo base_url(); ?>service_generator/index" class="btn btn-primary">
+    <i class="entypo-plus"></i>
+    Generate New API
+</a>
 <?php } else { ?>
 
 
