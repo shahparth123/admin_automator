@@ -53,8 +53,11 @@
                     <td class="center"><?php
                         if ($user['status'] == 1) {
                             $status = "Verified";
-                        } else {
+                        } elseif($user['status'] == 0) {
                             $status = "Pending";
+                        }
+                        else{
+                            $status="Suspended";
                         }
                         ?><?php echo $status; ?></td>
                     <td class="center"><?php echo $user['created']; ?></td> 

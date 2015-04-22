@@ -8,7 +8,7 @@
 	<meta name="description" content="Neon Admin Panel" />
 	<meta name="author" content="" />
 	
-	<title>Neon | Register</title>
+	<title>Admin Automator Registration</title>
 	
 
 	<link rel="stylesheet" href="<?php echo base_url ();?>/assets/js/jquery-ui/css/no-theme/jquery-ui-1.10.3.custom.min.css">
@@ -45,7 +45,7 @@ var baseurl = '';
 		
 		<div class="login-content">
 			
-			<a href="index.html" class="logo">
+			<a href="<?php echo base_url();?>user/login" class="logo">
 				<img src="<?php echo base_url ();?>assets/images/servicegenerator.png" class="img-responsive" alt="" />
 			</a>
 			
@@ -54,7 +54,7 @@ var baseurl = '';
 			<!-- progress bar indicator -->
 			<div class="login-progressbar-indicator">
 				<h3>43%</h3>
-				<span>logging in...</span>
+				<span>Registering...</span>
 			</div>
 		</div>
 		
@@ -74,7 +74,7 @@ var baseurl = '';
 				<div class="form-register-success">
 					<i class="entypo-check"></i>
 					<h3>You have been successfully registered.</h3>
-					<p>We have emailed you the confirmation link for your account.</p>
+					<p>Please Wait Until Admin Approve your Request.</p>
 				</div>
 				
 				<div class="form-steps">

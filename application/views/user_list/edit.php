@@ -63,6 +63,11 @@
                                 <input type="radio" name="status" id="optionsRadios2" value="1" <?php if($user['status'] == 1){ ?> checked="checked" <?php } ?>>Verified
                             </label>
                         </div>
+                         <div class="radio">
+                            <label>
+                                <input type="radio" name="status" id="optionsRadios3" value="2" <?php if($user['status'] == 2){ ?> checked="checked" <?php } ?>>Suspend
+                            </label>
+                        </div>
                     </div>
                 </div>
                     

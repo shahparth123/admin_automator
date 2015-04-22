@@ -44,7 +44,7 @@
 			
 			<div class="login-content">
 				
-				<a href="index.html" class="logo">
+				<a href="<?php echo base_url();?>user/login" class="logo">
 					<img src="<?php echo base_url();?>/assets/images/servicegenerator.png" class="img-responsive" alt="" />
 				</a>
 				

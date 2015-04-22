@@ -63,15 +63,15 @@ Class User extends CI_Controller {
             );
             $result = $this->login_database->registration_insert($data);
             if ($result == TRUE) {
-                $data['message_display'] = 'Registration Successfully !';
-                $subject = "Email Verification";
-                $message = "Welcome " . $data['username'] . " to Admin Automator. To verify click Here:" . base_url() . "user/verify?code=" . $email_code . "&usnm=" . $data['username'];
-                $this->login_database->sendemail($data['email'], $subject, $message);
+//                $data['message_display'] = 'Registration Successfully !';
+//                $subject = "Email Verification";
+//                $message = "Welcome " . $data['username'] . " to Admin Automator. To verify click Here:" . base_url() . "user/verify?code=" . $email_code . "&usnm=" . $data['username'];
+               // $this->login_database->sendemail($data['email'], $subject, $message);
                 //$this->load->view('login_form', $data);
-                echo json_encode(array("success" => "true"));
+               echo json_encode(array("success" => "true"));
             } else {
                 $data['message_display'] = 'Username already exist!';
-                //$this->load->view('user/registration_form', $data);
+//                //$this->load->view('user/registration_form', $data);
             }
         }
     }
