@@ -18,7 +18,7 @@ class Dashboard extends CI_Controller {
 
 // Load database
         $this->load->model('login_database');
-    }
+   }
 
     /**
      * Index Page for this controller.
@@ -37,7 +37,7 @@ class Dashboard extends CI_Controller {
      */
     public function index() {
         if ($this->login_database->is_logged_in()) {
-            
+
 //            Total no of Registered users where is_delete = 0 in auto_user table
             $role = $this->session->userdata('logged_in');
             $this->db->select('id');
